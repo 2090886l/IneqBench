@@ -2,7 +2,7 @@
 
 <project
 
-	name="se-notes.demos.whitespace.JacobFord"
+	name="se-notes.demos.whitespace.mike"
 	basedir="."
 	xmlns:ivy="antlib:org.apache.ivy.ant"
 	default="build"
