@@ -107,6 +107,7 @@
 		>
 			<classpath refid="project.classpath"/>
 			<test name="uk.ac.glasgow.senotes.ant.test.HelloWorldTest"/>
+			<formatter type="xml" />
 		</junit>
 	
 	</target>
