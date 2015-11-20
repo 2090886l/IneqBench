@@ -1,0 +1,26 @@
+This is the documentation of ineqbench's restapi-backend.
+
+This software was designed to provide REST API interfaces to ineqbench's backend system. 
+Queries are to be made with a single page application from a web browser, or any other HTTP REST client, such as a mobile application. 
+
+The application currently contains a sample Customer class and relevant methods. 
+ - GET /getCustomerById?id=4
+	returns customer number 4 from CUSTOMER
+
+ - GET /getCustomerByName?name=someone 
+	returns an array of customers matching the name 'someone' from CUSTOMER
+
+ - POST /addCustomer?name=someone&age=21 
+	adds a 21 years old customer called 'someone' to database's CUSTOMER 
+
+ - DELETE /deleteCustomer?id=4
+	deletes customer number 4 from the table CUSTOMER 
+
+Prerequisites: 
+	 - Java 8
+	 - Maven
+	 - MySQL 
+
+To setup and enter MySQL details edit src/main/resources/database/Spring-Datasource.xml 
+
+I used `mvn spring-boot:run` on MacOS 10.11 to compile and run the application.  
