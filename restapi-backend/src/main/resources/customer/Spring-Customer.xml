@@ -7,5 +7,8 @@
 	<bean id="customerDAO" class="me.ineqbench.customer.dao.impl.JdbcCustomerDAO">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-
+	
+	<bean id="ethnicityDAO" class="me.ineqbench.customer.dao.impl.JdbcEthnicityDAO">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
 </beans>
