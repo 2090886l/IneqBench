@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename Java project &apos;gs-rest-service-complete&apos; to &apos;Ineqbench-web-services-server&apos;&#x0A;- Original element: &apos;gs-rest-service-complete&apos;&#x0A;- Renamed element: &apos;gs-rest-service-complete&apos;&#x0A;- Update references to refactored element" description="Rename Java project &apos;gs-rest-service-complete&apos;" flags="7" id="org.eclipse.jdt.ui.rename.java.project" input="=gs-rest-service-complete" name="Ineqbench-web-services-server" references="true" stamp="1449851887224" version="1.0"/>
+</session>
