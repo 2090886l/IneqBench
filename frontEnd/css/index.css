@@ -1,0 +1,41 @@
+.blockDisplay{
+    display:block;
+}
+.alignLeft{
+    text-align: left;
+}
+.halfDiv{
+    width:50%;
+    margin: 0 auto;
+}
+.thirdDiv{
+    width:30%;
+    margin: 0 auto;
+}
+.threeFourthsDiv{
+    width:75%;
+    margin: 0 auto;
+}
+.noWrap{
+    white-space: nowrap;
+}
+.form-control{
+    width: 200px;
+}
+.btn-long{
+    width: 250px;
+}
+.dropDownStyle{
+    color: white;
+    background-color: #0843AF;
+}
+.blackText{
+    color: black;
+}
+.extraMargin{
+    margin: 30px 0px 0px 0px;
+}
+.fullSizeContainer{
+    margin: 5px 5px;
+    width: 100%;
+}
