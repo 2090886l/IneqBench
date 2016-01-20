@@ -225,14 +225,13 @@
             </div>
         </div>
     </header>
-    mode:{{mode}},numberOfPeople:{{numberOfPeople}},gender:{{gender}},region:{{region}},ageRange:{{ageRange}},ineqParameters:{{ineqParameters}}
+    <!--remove this -just for testing-->mode:{{mode}},numberOfPeople:{{numberOfPeople}},gender:{{gender}},region:{{region}},ageRange:{{ageRange}},ineqParameters:{{ineqParameters}}, deprivationCriteria:{{deprivationCriteria}}
     <section class="bg-primary" id="about" ng-show="showSelectSection"><!--ng-show="showSelectSection"-->
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center" ng-show="showPopulationVariables">
+                <div class="col-lg-8 col-lg-offset-2 text-center" ng-if="showPopulationVariables">
                     <h1 class="section-heading">Search Criterias</h1>
                     <hr class="light">
-                    <br>
                     <br>
                     <div class="row">
                         <!-- Population Variables Part -->
@@ -252,32 +251,56 @@
                             </div>
                         </div>
                         <div class="col-lg-6 text-center">
-                            <h3>Population Variables</h3>
+                            <h3>Deprivation Criteria</h3>
                             <br>
-                            <div class="alignLeft halfDiv">
+                            <div class="alignLeft halfDiv noWrap">
                                 <span class="blockDisplay">
-                                    <input type="radio" name="gender" ng-model="gender" ng-click="genderClicked()" value="All People:">All Gender
+                                    <input type="radio" name="deprivationCriteria" ng-model="deprivationCriteria" ng-change="doesProceedPopulationVariables()" value="ethicity">Ethnicity
                                 </span>
                                 <span class="blockDisplay">
-                                    <input type="radio" name="gender" ng-model="gender" ng-click="genderClicked()" value="Males:">Male
+                                    <input type="radio" name="deprivationCriteria" ng-model="deprivationCriteria" ng-change="doesProceedPopulationVariables()" value="taxBand">Tax Bands
+                                </span>
+                                 <span class="blockDisplay">
+                                    <input type="radio" name="deprivationCriteria" ng-model="deprivationCriteria" ng-change="doesProceedPopulationVariables()" value="unpaidCareers">Unpaid Careers
                                 </span>
                                 <span class="blockDisplay">
-                                    <input type="radio" name="gender" ng-model="gender" ng-click="genderClicked()" value="Females:">Female
+                                    <input type="radio" name="deprivationCriteria" ng-model="deprivationCriteria" ng-change="doesProceedPopulationVariables()" value="learningDisabilities">Learning Disabilities
                                 </span>
-                                <div class="btn-group">
-                                    <select class="form-control" ng-model="region" ng-options="r as r.name for r in regions"  ng-change="doesProceedPopulationVariables()">
-                                    </select>
-                                </div>
-                                Age Group<div class="btn-group">
-                                    <select class="form-control" ng-model="ageRange" ng-options="r as r.rangeStr for r in ranges"  ng-change="doesProceedPopulationVariables()">
-                                        <option selected disabled>Choose here</option>
-                                    </select>
-                                </div>
+                                <span class="blockDisplay">
+                                    <input type="radio" name="deprivationCriteria" ng-model="deprivationCriteria" ng-change="doesProceedPopulationVariables()" value="educationalAttainment">Educational Attainment
+                                </span>
+                                <span class="blockDisplay">
+                                    <input type="radio" name="deprivationCriteria" ng-model="deprivationCriteria" ng-change="doesProceedPopulationVariables()" value="transport">Transport
+                                </span>
+                                <span class="blockDisplay">
+                                    <input type="radio" name="deprivationCriteria" ng-model="deprivationCriteria" ng-change="doesProceedPopulationVariables()" value="unemployed">Unemployed
+                                </span>
+                                <span class="blockDisplay">
+                                    <input type="radio" name="deprivationCriteria" ng-model="deprivationCriteria" ng-change="doesProceedPopulationVariables()" value="livingInDeprivedArea">Living in a deprived area
+                                </span>
+                                <span class="blockDisplay">
+                                    <input type="radio" name="deprivationCriteria" ng-model="deprivationCriteria" ng-change="doesProceedPopulationVariables()" value="homeless">Homeless
+                                </span>
+                                <span class="blockDisplay">
+                                    <input type="radio" name="deprivationCriteria" ng-model="deprivationCriteria" ng-click="doesProceedPopulationVariables()" value="lowPay">Low Pay
+                                </span>
+                                <span class="blockDisplay">
+                                    <input type="radio" name="deprivationCriteria" ng-model="deprivationCriteria" ng-click="doesProceedPopulationVariables()" value="fuelPoverty">Fuel Poverty
+                                </span>
+                                <span class="blockDisplay">
+                                     <input type="radio" name="deprivationCriteria" ng-model="deprivationCriteria" ng-click="doesProceedPopulationVariables()" value="offenders">Offenders
+                                </span>
+                                <span class="blockDisplay">
+                                     <input type="radio" name="deprivationCriteria" ng-model="deprivationCriteria" ng-click="doesProceedPopulationVariables()" value="illnesses">Long Term Condition/Life-limiting illness
+                                </span>
+                                <span class="blockDisplay">
+                                    <input type="radio" name="deprivationCriteria" ng-model="deprivationCriteria" ng-click="doesProceedPopulationVariables()" value="mentalHealthAndWellbeing">Mental Health & Wellbeing
+                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-10 col-lg-offset-1 text-center" ng-show="showDeprivationCriteriaParams">
+                <div class="col-lg-10 col-lg-offset-1 text-center" ng-if="showDeprivationCriteriaParams">
                     <h1 class="section-heading">Search Criterias</h1>
                     <hr class="light">
                     <br>
@@ -378,7 +401,7 @@
                 </div>
 
 
-                <div class="col-lg-10 col-lg-offset-1 text-center" ng-show="showOutputType">
+                <div class="col-lg-10 col-lg-offset-1 text-center" ng-if="showOutputType">
                     <h1 class="section-heading">Search Criterias</h1>
                     <hr class="light">
                     <br>

@@ -13,21 +13,20 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
     $scope.isPredictingCheckedPopVar = false;
     $scope.numberOfPeople = null;
     $scope.gender=null;
-    $scope.r={};
     $scope.region=null;
     $scope.ageRange=null;
     //Population variables end
     //Deprivation Criteria
-    $scope.deprivationCriteria=null;
+    $scope.deprivationCriteria="";
     //Deprivation Criteria end
     //Ethincity Deprivation
     $scope.ethincityDeprivationViewShow = false;
     $scope.ineqParameters={};
     $scope.isBenchmarkingCheckedIneq = false;
     $scope.isPredictingCheckedIneq = false;
-    $scope.isAllGenderCheckedIneq = true;
-    $scope.isMaleGenderCheckedIneq = true;
-    $scope.isFemaleGenderChecked = true;
+    $scope.isAllGenderCheckedIneq = false;
+    $scope.isMaleGenderCheckedIneq = false;
+    $scope.isFemaleGenderChecked = false;
     //Ethincity Deprivation end
 
 
@@ -276,7 +275,7 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
     }
 
     $scope.doesProceedPopulationVariables = function(){
-        if ($scope.region!=null && $scope.ageRange!=null && $scope.gender!=null && $scope.numberOfPeople!=null){
+        if ($scope.deprivationCriteria!=null && $scope.numberOfPeople!=null){
             $scope.showPopulationVariables = false;
             $scope.showDeprivationCriteriaParams = true;
 
