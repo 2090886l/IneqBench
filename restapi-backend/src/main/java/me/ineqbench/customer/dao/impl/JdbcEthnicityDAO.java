@@ -30,7 +30,7 @@ public class JdbcEthnicityDAO implements EthnicityDAO{
 	 
 		jdbcCall = new SimpleJdbcCall(dataSource)
 	    .withoutProcedureColumnMetaDataAccess()
-	    .withProcedureName("getOutput")
+	    .withProcedureName("getEthnicOutput")
 	    .returningResultSet("ethnicityData", new EthnicityResponseMapper());
 	}
 
