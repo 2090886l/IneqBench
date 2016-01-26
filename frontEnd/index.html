@@ -198,9 +198,6 @@
                         <a class="page-scroll" href="#services">Services</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#portfolio">Deprivation Categories</a>
-                    </li>
-                    <li>
                         <a class="page-scroll" href="#contact">Contact</a>
                     </li>
                 </ul>
@@ -222,7 +219,7 @@
                         click the "Predict" button.
                     </p>
                     <a href="#about" class="btn btn-primary btn-xl" ng-click="benchmarkClicked()">Benchmark</a><!--page-scroll - > removed because it does not position page correctly-->
-                    <a href="#about" class="btn btn-primary btn-xl page-scroll">Predict</a>
+                    <!--<a href="#about" class="btn btn-primary btn-xl page-scroll">Predict</a>-->
                 </div>
             </div>
         </section>
@@ -675,7 +672,7 @@
         </div>
     </section>
 
-    <section id="visualization" ng-show="isVisualizing"><!-- isVisualizing -->
+    <section id="visualization" ng-show="true"><!-- isVisualizing -->
         <div class="container fullSizeContainer">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -683,24 +680,51 @@
                     <br>
                     <br>
                     <div class="estimate">
-                        <table class="table table-hover table-bordered table-striped">
+                        <table class="table table-hover table-bordered">
                             <tr>
-                                <th>Deprivation Criteria</th>
-                                <th>Total Deprived</th>
-                                <th>Rate</th>
-                                <th>Q</th>
-                                <th>Upper</th>
-                                <th>Lower</th>
-                                <th>Estimate</th>
+                                <th>Inequalities Indicator</th>
+                                <th>Total Population In Locality</th>
+                                <th>Estimates</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th>Total | Percentage</th>
+                                <th>
+                                    <table class="table">
+                                        <tr>
+                                            <th>Estimate | Percentage</th>
+                                            <th>Lower Range | Percentage</th>
+                                            <th>Upper Range | Percentage</th>
+                                        </tr>
+                                    </table>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>Total Population</td>
+                                <td>{{result.totalPopulation}} | 100%</td>
+                                <td>
+                                    <table class="table">
+                                        <tr>
+                                            <td> -, -%</td>
+                                            <td> -, -%</td>
+                                            <td> -, -%</td>
+                                        </tr>
+                                    </table>
+                                 </td>
                             </tr>
                             <tr>
                                 <td>{{deprivationCriteriaDisplayedName}}</td>
-                                <td>{{result.totalDeprived}}</td>
-                                <td>{{result.rate}}</td>
-                                <td>{{result.q}}</td>
-                                <td>{{result.upper}}</td>
-                                <td>{{result.lower}}</td>
-                                <td>{{result.estimate}}</td>
+                                <td>{{result.totalDeprived}} | {{result.totalDeprivedPercentage}}%</td>
+                                <td>
+                                    <table class="table">
+                                        <tr>
+                                            <td>{{result.estimate}}, {{result.estimatePercentage}}%</td>
+                                            <td>{{result.lowerRange}}, {{result.lowerRangePercentage}}%</td>
+                                            <td>{{result.upperRange}}, {{result.upperRangePercentage}}%</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
                             </tr>
                         </table>
                     </div>
@@ -711,7 +735,7 @@
         <br>
         <br>
         <br>
-        <div class="container fullSizeContainer">
+    <!--    <div class="container fullSizeContainer">
             <div class="row">
                 <div class="col-lg-12 col-md-12 text-center">
                     <h2> Possible Visualization Mechanisms</h2>
@@ -729,6 +753,7 @@
                 </div>
             </div>
         </div>
+        -->
     </section>
 
     <section id="services">
@@ -774,7 +799,7 @@
         </div>
     </section>
 
-    <section class="no-padding" id="portfolio">
+    <!--<section class="no-padding" id="portfolio">
         <div class="container-fluid">
             <div class="row no-gutter">
                 <div class="col-lg-4 col-sm-6">
@@ -876,7 +901,7 @@
 
         </div>
     </aside>
-
+    -->
     <section id="contact">
         <div class="container">
             <div class="row">
@@ -886,13 +911,25 @@
                     <p>Ready to start your next project with us? That's great! Give us a call or send us an email and we will get back to you as soon as possible!</p>
                 </div>
                 <div class="col-lg-4 col-lg-offset-2 text-center">
-                    <i class="fa fa-phone fa-3x wow bounceIn"></i>
-                    <p>123-456-6789</p>
+                    <!--<i class="fa fa-phone fa-3x wow bounceIn"></i>-->
+                    <br>
+                    <br>
+                    <p>Akos Szente</p>
+                    <p>Alex Chilikov</p>
+                    <p>Ivaylo Lafchiev</p>
+                    <p>Jacob Ford</p>
+                    <p>Mike Harling</p>
+                    <p>Mindaugas Ribakauskas</p>
                 </div>
                 <div class="col-lg-4 text-center">
                     <i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i>
-                    <p><a href="mailto:your-email@your-domain.com">feedback@startbootstrap.com</a></p>
+                    <p><a href="mailto:your-email@your-domain.com">2094613s@student.gla.ac.uk</a></p>
+                    <p><a href="mailto:your-email@your-domain.com">2090886l@student.gla.ac.uk  </a></p>
+                    <p><a href="mailto:your-email@your-domain.com">2091723f@student.gla.ac.uk </a></p>
+                    <p><a href="mailto:your-email@your-domain.com">2147621h@student.gla.ac.uk </a></p>
+                    <p><a href="mailto:your-email@your-domain.com">2093693r@student.gla.ac.uk </a></p>
                 </div>
+
             </div>
         </div>
     </section>

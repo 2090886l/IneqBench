@@ -147,11 +147,15 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
         $scope.result=data;
     }
     function roundData(data){
-        data.rate=Math.round(data.rate*1000)/1000;
-        data.q=Math.round(data.q*1000)/1000;
-        data.upper=Math.round(data.upper*1000)/1000;
-        data.lower=Math.round(data.lower*1000)/1000;
-        data.estimate=Math.round(data.estimate*1000)/1000;
+        data.totalPopulation=Math.round(data.totalPopulation);
+        data.totalDeprived=Math.round(data.totalDeprived);
+        data.upperRange=Math.round(data.upperRange);
+        data.lowerRange=Math.round(data.lowerRange);
+        data.estimate=Math.round(data.estimate);
+        data.totalDeprivedPercentage=Math.round((data.totalDeprived/data.totalPopulation)*100);
+        data.estimatePercentage=Math.round((data.estimate/data.totalPopulation)*100);
+        data.lowerRangePercentage=Math.round((data.lowerRange/data.totalPopulation)*100);
+        data.upperRangePercentage=Math.round((data.upperRange/data.totalPopulation)*100);
         return data;
     }
     //HTTP Restful Requests

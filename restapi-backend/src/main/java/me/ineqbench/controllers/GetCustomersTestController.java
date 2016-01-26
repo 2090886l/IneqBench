@@ -19,6 +19,7 @@ import me.ineqbench.customer.dao.CustomerDAO;
 import me.ineqbench.customer.dao.EthnicityDAO;
 import me.ineqbench.customer.dao.TransportDAO;
 import me.ineqbench.customer.model.Customer;
+import me.ineqbench.dbRequestPOJOs.Range;
 import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
 
 @RestController
@@ -64,12 +65,7 @@ public class GetCustomersTestController {
     	ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
     	EthnicityDAO ethnicityDAO = (EthnicityDAO)context.getBean("ethnicityDAO");
     	//Temporary
-    	//List<EthnicityResponseTuplePOJO> ethnicityDBREsponse = ethnicityDAO.findData(gender, new Range(ageGroup[0],ageGroup[1]));
-    	List<ResponseTuplePOJO> ethnicityDBREsponse = new ArrayList<>();
-    	ResponseTuplePOJO test=new ResponseTuplePOJO();
-    	test.setTotalDeprived(231);
-    	test.setTotalPopulation(45001);
-    	ethnicityDBREsponse.add(test);
+    	List<ResponseTuplePOJO> ethnicityDBREsponse = ethnicityDAO.findData(gender, new Range(ageGroup[0],ageGroup[1]));
     	ClientResponsePOJO estimate = Analyser.getEstimate(ethnicityDBREsponse, numberOfPeople);
     	return estimate;
     }
@@ -83,12 +79,8 @@ public class GetCustomersTestController {
     	ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
     	TransportDAO transportDAO = (TransportDAO)context.getBean("transportDAO");
     	//Temporary
-    	//List<EthnicityResponseTuplePOJO> ethnicityDBREsponse = transportDAO.findData(gender, new Range(ageGroup[0],ageGroup[1]));
-    	List<ResponseTuplePOJO> transportDBREsponse = new ArrayList<>();
-    	ResponseTuplePOJO test=new ResponseTuplePOJO();
-    	test.setTotalDeprived(231);
-    	test.setTotalPopulation(45001);
-    	transportDBREsponse.add(test);
+    	List<ResponseTuplePOJO> transportDBREsponse = transportDAO.findData(gender, new Range(ageGroup[0],ageGroup[1]));
+    	
     	ClientResponsePOJO estimate = Analyser.getEstimate(transportDBREsponse, numberOfPeople);
     	return estimate;
     }
