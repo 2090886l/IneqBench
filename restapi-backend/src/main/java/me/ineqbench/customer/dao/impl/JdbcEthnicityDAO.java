@@ -12,7 +12,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import me.ineqbench.customer.dao.EthnicityDAO;
 import me.ineqbench.dbRequestPOJOs.Gender;
 import me.ineqbench.dbRequestPOJOs.Range;
-import me.ineqbench.dbResponsePOJOs.EthnicityResponseTuplePOJO;
+import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
 import me.ineqbench.mappers.EthnicityResponseMapper;
 
 public class JdbcEthnicityDAO implements EthnicityDAO{
@@ -36,7 +36,7 @@ public class JdbcEthnicityDAO implements EthnicityDAO{
 
 	//source :https://numberformat.wordpress.com/2010/05/20/calling-stored-procedures-using-spring-2-5-simplejdbccall/
 	@Override 
-	public List<EthnicityResponseTuplePOJO> findData(String gender, Range range) {
+	public List<ResponseTuplePOJO> findData(String gender, Range range) {
 //		String SQL = "select * from Student";
 //	      
 //	      List <Student> students = jdbcTemplateObject.query(SQL, 
@@ -47,7 +47,7 @@ public class JdbcEthnicityDAO implements EthnicityDAO{
 		jdbcCall.declareParameters(new SqlParameter("end_age", Types.INTEGER));
 		jdbcCall.declareParameters(new SqlParameter("sexIn", Types.CHAR));
 		Map mapResult = jdbcCall.execute(range.getStartOfRange(),range.getEndOfRange(),gender);
-		List<EthnicityResponseTuplePOJO> result = (List<EthnicityResponseTuplePOJO>)mapResult.get("ethnicityData");
+		List<ResponseTuplePOJO> result = (List<ResponseTuplePOJO>)mapResult.get("ethnicityData");
 		return result;
 	}
 	

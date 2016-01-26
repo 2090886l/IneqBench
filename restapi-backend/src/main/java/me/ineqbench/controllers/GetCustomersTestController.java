@@ -1,5 +1,6 @@
 package me.ineqbench.controllers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,14 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import me.ineqbench.clientResponsePojos.EthnicityClientResponsePOJO;
+import me.ineqbench.analyst.Analyser;
+import me.ineqbench.clientResponsePojos.ClientResponsePOJO;
 import me.ineqbench.customer.dao.CustomerDAO;
 import me.ineqbench.customer.dao.EthnicityDAO;
+import me.ineqbench.customer.dao.TransportDAO;
 import me.ineqbench.customer.model.Customer;
-import me.ineqbench.dbRequestPOJOs.Gender;
-import me.ineqbench.dbRequestPOJOs.Range;
-import me.ineqbench.dbResponsePOJOs.EthnicityResponseTuplePOJO;
-import me.ineqbench.util.EthinicityCache;
+import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
 
 @RestController
 public class GetCustomersTestController {
@@ -58,21 +58,41 @@ public class GetCustomersTestController {
     @CrossOrigin
     @RequestMapping(value="/getEthnicity", method = RequestMethod.GET)
     //EthnicityClientResponsePOJO
-    public  EthnicityClientResponsePOJO getEthnicityData(@RequestParam(value="numberOfPeople") int numberOfPeople, @RequestParam(value="ageGroup") int[] ageGroup,
+    public  ClientResponsePOJO getEthnicityData(@RequestParam(value="numberOfPeople") int numberOfPeople, @RequestParam(value="ageGroup") int[] ageGroup,
     		@RequestParam(value="gender") String gender){
     	System.out.println("in getEthnicity");
     	ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
     	EthnicityDAO ethnicityDAO = (EthnicityDAO)context.getBean("ethnicityDAO");
-
-    	List<EthnicityResponseTuplePOJO> ethnicityDBREsponse = ethnicityDAO.findData(gender, new Range(ageGroup[0],ageGroup[1]));
-    	double rate = ethnicityDBREsponse.get(0).getTotalDeprived()/((double)ethnicityDBREsponse.get(0).getTotalPopulation());
-    	double expectedDeprived = rate*numberOfPeople;
-    	double upper = (2*expectedDeprived+(1.96*1.96)+(1.96*Math.sqrt(1.96*1.96+4*expectedDeprived*(1/rate))))/(2*(numberOfPeople+1.96*1.96));
-    	double lower = (2*expectedDeprived+(1.96*1.96)-(1.96*Math.sqrt(1.96*1.96+4*expectedDeprived*(1/rate))))/(2*(numberOfPeople+1.96*1.96));
-    	EthnicityClientResponsePOJO ethnicityClientResponsePOJO = new EthnicityClientResponsePOJO(ethnicityDBREsponse.get(0).getTotalDeprived(),rate,
-    			1/rate,upper,lower,expectedDeprived);
-    	return ethnicityClientResponsePOJO;
+    	//Temporary
+    	//List<EthnicityResponseTuplePOJO> ethnicityDBREsponse = ethnicityDAO.findData(gender, new Range(ageGroup[0],ageGroup[1]));
+    	List<ResponseTuplePOJO> ethnicityDBREsponse = new ArrayList<>();
+    	ResponseTuplePOJO test=new ResponseTuplePOJO();
+    	test.setTotalDeprived(231);
+    	test.setTotalPopulation(45001);
+    	ethnicityDBREsponse.add(test);
+    	ClientResponsePOJO estimate = Analyser.getEstimate(ethnicityDBREsponse, numberOfPeople);
+    	return estimate;
     }
+    
+    @CrossOrigin
+    @RequestMapping(value="/getTransport", method = RequestMethod.GET)
+    //TransportClientResponsePOJO
+    public  ClientResponsePOJO getTransportData(@RequestParam(value="numberOfPeople") int numberOfPeople, @RequestParam(value="ageGroup") int[] ageGroup,
+    		@RequestParam(value="gender") String gender){
+    	System.out.println("in getEthnicity");
+    	ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
+    	TransportDAO transportDAO = (TransportDAO)context.getBean("transportDAO");
+    	//Temporary
+    	//List<EthnicityResponseTuplePOJO> ethnicityDBREsponse = transportDAO.findData(gender, new Range(ageGroup[0],ageGroup[1]));
+    	List<ResponseTuplePOJO> transportDBREsponse = new ArrayList<>();
+    	ResponseTuplePOJO test=new ResponseTuplePOJO();
+    	test.setTotalDeprived(231);
+    	test.setTotalPopulation(45001);
+    	transportDBREsponse.add(test);
+    	ClientResponsePOJO estimate = Analyser.getEstimate(transportDBREsponse, numberOfPeople);
+    	return estimate;
+    }
+    
     @SuppressWarnings("serial")
 	@RequestMapping(value="/deleteCustomer", method = RequestMethod.DELETE)
     public HashMap<String,Boolean> deleteCustomer(@RequestParam(value="id") Integer id) {
