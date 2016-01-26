@@ -51,6 +51,9 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
     // Transport
     $scope.transportViewShow = false;
     $scope.transport = {};
+    $scope.transport.noCar = null;
+    $scope.transport.oneCar = null;
+    $scope.transport.twoOrMoreCars = null;
     // Transport end
     // Unemployed
     $scope.unemployedViewShow = false;
@@ -96,6 +99,14 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
     $scope.isFemaleGenderCheckedOutPut = false;
     //System state end
 
+    //Deprivation Criterias
+    $scope.deprivationCriteriaDisplayedName=null;
+    var deprivationCriteriasNames={
+        ethicity:"Ethnicity",
+        taxBand:"Tax Band",
+        unpaidCareers: "Unpaid Careers",
+        transport:"Transport"
+    };
     //Data
     $scope.regions=[
         {name:'AnnandaleEskdale'},
@@ -129,6 +140,20 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
     //    console.log(data);
     //});
 
+    //Miscellaneous
+    function setResult(data){
+        data= roundData(data);
+        $scope.deprivationCriteriaDisplayedName = deprivationCriteriasNames[$scope.popVariables.deprivationCriteria];
+        $scope.result=data;
+    }
+    function roundData(data){
+        data.rate=Math.round(data.rate*1000)/1000;
+        data.q=Math.round(data.q*1000)/1000;
+        data.upper=Math.round(data.upper*1000)/1000;
+        data.lower=Math.round(data.lower*1000)/1000;
+        data.estimate=Math.round(data.estimate*1000)/1000;
+        return data;
+    }
     //HTTP Restful Requests
     function getEthicityData(numberOfPeople, ageGroup,gender){//numberOfPeople: int ageGroup:list<int>
         //$http.post("http://localhost:8080/getEthnicity",
@@ -137,7 +162,7 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
         //})
 
         $http.get('http://localhost:8080/getEthnicity?numberOfPeople='+numberOfPeople+"&ageGroup="+ageGroup+"&gender="+gender).success(function(data){
-            $scope.result=data;
+            setResult(data);
         });
     }
 
@@ -185,12 +210,12 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
         });
     }
     function getTransport(numberOfPeople, ageGroup,gender,transport){
-        $http.get('http://localhost:8080/getEthnicity?numberOfPeople='+numberOfPeople+
+        $http.get('http://localhost:8080/getTransport?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
             /////
         ).success(function(data){
-            $scope.result=data;
+            setResult(data);
         });
     }
     function getUnemployed(numberOfPeople, ageGroup,gender,unemployed){
@@ -217,6 +242,7 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
             "&gender="+gender
             /////
         ).success(function(data){
+
             $scope.result=data;
         });
     }
@@ -270,12 +296,20 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
     //Events
     $scope.benchmarkClicked = function(){
         $scope.showSelectSection = true;
+        $scope.showPopulationVariables = false;
+        $scope.showDeprivationCriteriaParams = false;
+        $scope.showOutputType = false;
         $scope.showPopulationVariables = true;
         $scope.popVariables.isBenchmarkingCheckedPopVar = true;
         $scope.popVariables.mode = "benchmarking"; //needed to set the mode, it is not set automatically from ng-model as checked state
         //set  programmatically
     }
 
+    $scope.backToTop = function(){
+        $scope.showPopulationVariables = false;
+        $scope.showDeprivationCriteriaParams = false;
+        $scope.showOutputType = false;
+    };
     $scope.doesProceedPopulationVariables = function(){
         if ($scope.popVariables.deprivationCriteria!=null && $scope.popVariables.numberOfPeople!=null){
             $scope.showPopulationVariables = false;
