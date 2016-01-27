@@ -154,8 +154,8 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
         data.estimate=Math.round(data.estimate);
         data.totalDeprivedPercentage=Math.round((data.totalDeprived/data.totalPopulation)*100);
         data.estimatePercentage=Math.round((data.estimate/data.totalPopulation)*100);
-        data.lowerRangePercentage=Math.round((data.lowerRange/data.totalPopulation)*100);
-        data.upperRangePercentage=Math.round((data.upperRange/data.totalPopulation)*100);
+        data.lowerRangePercentage=Math.round((data.lowerRange/data.totalPopulation)*10000)/100;
+        data.upperRangePercentage=Math.round((data.upperRange/data.totalPopulation)*10000)/100;
         return data;
     }
     //HTTP Restful Requests

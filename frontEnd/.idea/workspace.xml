@@ -41,21 +41,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4923077">
-              <caret line="221" column="98" selection-start-line="221" selection-start-column="98" selection-end-line="221" selection-end-column="98" />
+            <state vertical-scroll-proportion="204.23763">
+              <caret line="683" column="32" selection-start-line="683" selection-start-column="32" selection-end-line="683" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mainController.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="mainController.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/angular/mainController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.212121">
-              <caret line="152" column="29" selection-start-line="152" selection-start-column="29" selection-end-line="152" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.33296824">
+              <caret line="152" column="11" selection-start-line="152" selection-start-column="11" selection-end-line="152" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -74,8 +74,8 @@
         <option value="$PROJECT_DIR$/js/creative.js" />
         <option value="$USER_HOME$/University/NetworkSystems/Lab/lab02/wserver.c" />
         <option value="$USER_HOME$/University/OS/StartingPoint/scheduler.c" />
-        <option value="$PROJECT_DIR$/angular/mainController.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/angular/mainController.js" />
       </list>
     </option>
   </component>
@@ -535,18 +535,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/angular/mainController.js">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.212121">
-          <caret line="152" column="29" selection-start-line="152" selection-start-column="29" selection-end-line="152" selection-end-column="29" />
+        <state vertical-scroll-proportion="204.23763">
+          <caret line="683" column="32" selection-start-line="683" selection-start-column="32" selection-end-line="683" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/angular/mainController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4923077">
-          <caret line="221" column="98" selection-start-line="221" selection-start-column="98" selection-end-line="221" selection-end-column="98" />
+        <state vertical-scroll-proportion="0.33296824">
+          <caret line="152" column="11" selection-start-line="152" selection-start-column="11" selection-end-line="152" selection-end-column="11" />
           <folding />
         </state>
       </provider>

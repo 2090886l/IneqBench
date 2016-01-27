@@ -672,7 +672,7 @@
         </div>
     </section>
 
-    <section id="visualization" ng-show="true"><!-- isVisualizing -->
+    <section id="visualization" ng-show="isVisualizing"><!-- isVisualizing -->
         <div class="container fullSizeContainer">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -718,9 +718,9 @@
                                 <td>
                                     <table class="table">
                                         <tr>
-                                            <td>{{result.estimate}}, {{result.estimatePercentage}}%</td>
-                                            <td>{{result.lowerRange}}, {{result.lowerRangePercentage}}%</td>
-                                            <td>{{result.upperRange}}, {{result.upperRangePercentage}}%</td>
+                                            <td>{{result.estimate}} | {{result.estimatePercentage}}%</td>
+                                            <td>{{result.lowerRange}} | {{result.lowerRangePercentage}}%</td>
+                                            <td>{{result.upperRange}} | {{result.upperRangePercentage}}%</td>
                                         </tr>
                                     </table>
                                 </td>
