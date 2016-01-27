@@ -180,17 +180,17 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
             "&taxBandC=" + taxBands.c +
             "&taxBandD=" + taxBands.d
         ).success(function(data){
-            $scope.result=data;
+            setResult(data);
         })
     }
 
     function getLearningDisabilities(numberOfPeople, ageGroup,gender,learningDisabilities){//numberOfPeople: int ageGroup:list<int>
-        $http.get('http://localhost:8080/getEthnicity?numberOfPeople='+numberOfPeople+
+        $http.get('http://localhost:8080/getLearningDisabilities?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
             ///
         ).success(function(data){
-            $scope.result=data;
+            setResult(data);
         });
     }
 
@@ -201,7 +201,7 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
             "&gender="+gender
             /////
         ).success(function(data){
-            $scope.result=data;
+            setResult(data);
         });
     }
     function getEducationalAttainment(numberOfPeople, ageGroup,gender,educationalAttainment){
@@ -210,7 +210,7 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
             "&gender="+gender
             /////
         ).success(function(data){
-            $scope.result=data;
+            setResult(data);
         });
     }
     function getTransport(numberOfPeople, ageGroup,gender,transport){
@@ -228,7 +228,7 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
             "&gender="+gender
             /////
         ).success(function(data){
-            $scope.result=data;
+            setResult(data);
         });
     }
     function getLivingInDeprivedArea(numberOfPeople, ageGroup,gender,livingInDeprivatedArea){
@@ -237,7 +237,7 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
             "&gender="+gender
             /////
         ).success(function(data){
-            $scope.result=data;
+            setResult(data);
         });
     }
     function getHomeless(numberOfPeople, ageGroup,gender,homeless){
@@ -246,8 +246,7 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
             "&gender="+gender
             /////
         ).success(function(data){
-
-            $scope.result=data;
+            setResult(data);
         });
     }
     function getLowPay(numberOfPeople, ageGroup,gender,lowPay){
@@ -256,16 +255,16 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
             "&gender="+gender
             /////
         ).success(function(data){
-            $scope.result=data;
+            setResult(data);
         });
     }
     function getFuelPoverty(numberOfPeople, ageGroup,gender,fuelPoverty){
-        $http.get('http://localhost:8080/getEthnicity?numberOfPeople='+numberOfPeople+
+        $http.get('http://localhost:8080/getFuelPoverty?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
             /////
         ).success(function(data){
-            $scope.result=data;
+            setResult(data);
         });
     }
     function getOffenders(numberOfPeople, ageGroup,gender,offenders){
@@ -274,7 +273,7 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
             "&gender="+gender
             /////
         ).success(function(data){
-            $scope.result=data;
+            setResult(data);
         });
     }
     function getIllness(numberOfPeople, ageGroup,gender,illness){
@@ -283,7 +282,7 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
             "&gender="+gender
             /////
         ).success(function(data){
-            $scope.result=data;
+            setResult(data);
         });
     }
     function getMentalHealthAndWellbeing(numberOfPeople, ageGroup,gender,mentalHealthAndWellbeing){
@@ -292,7 +291,7 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
             "&gender="+gender
             /////
         ).success(function(data){
-            $scope.result=data;
+            setResult(data);
         });
     }
     //HTTP Restful Requests End
@@ -313,6 +312,19 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
         $scope.showPopulationVariables = false;
         $scope.showDeprivationCriteriaParams = false;
         $scope.showOutputType = false;
+        $scope.ethincityDeprivationViewShow = false;
+        $scope.taxBandViewShow = false;
+        $scope.unpaidCareersViewShow = false;
+        $scope.learningDisabilitiesViewShow = false;
+        $scope.educationalAttainmentViewShow = false;
+        $scope.transportViewShow = false;
+        $scope.unemployedViewShow = false;
+        $scope.homelessViewShow = false;
+        $scope.lowPayViewShow = false;
+        $scope.offendersViewShow = false;
+        $scope.mentalHealthAndWellbeingViewShow = false;
+        $scope.fuelPovertyViewShow = false;
+        $scope.illnessViewShow = false;
     };
     $scope.doesProceedPopulationVariables = function(){
         if ($scope.popVariables.deprivationCriteria!=null && $scope.popVariables.numberOfPeople!=null){

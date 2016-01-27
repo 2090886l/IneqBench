@@ -15,4 +15,13 @@
 	<bean id="transportDAO" class="me.ineqbench.customer.dao.impl.JdbcTransportDAO">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
+	
+	<bean id="fuelPovertyDAO" class="me.ineqbench.customer.dao.impl.JdbcFuelPovertyDAO">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<bean id="learningDisabilitiesDAO" class="me.ineqbench.customer.dao.impl.JdbcLearningDisabilitiesDAO">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
 </beans>
