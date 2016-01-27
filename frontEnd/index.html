@@ -260,7 +260,7 @@
                                     <input type="radio" name="deprivationCriteria" ng-model="popVariables.deprivationCriteria" ng-change="doesProceedPopulationVariables()" value="taxBand">Tax Bands
                                 </span>
                                  <span class="blockDisplay">
-                                    <input type="radio" name="deprivationCriteria" ng-model="popVariables.deprivationCriteria" ng-change="doesProceedPopulationVariables()" value="unpaidCareers">Unpaid Careers
+                                    <input type="radio" name="deprivationCriteria" ng-model="popVariables.deprivationCriteria" ng-change="doesProceedPopulationVariables()" value="unpaidCarers">Unpaid Carers
                                 </span>
                                 <span class="blockDisplay">
                                     <input type="radio" name="deprivationCriteria" ng-model="popVariables.deprivationCriteria" ng-change="doesProceedPopulationVariables()" value="learningDisabilities">Learning Disabilities
@@ -360,7 +360,7 @@
                                     <input type="radio" name="deprivationCriteria" ng-model="popVariables.deprivationCriteria" ng-click="doesProceedDeprivationParameters()" value="taxBand">Tax Bands
                                 </span>
                                  <span class="blockDisplay">
-                                    <input type="radio" name="deprivationCriteria" ng-model="popVariables.deprivationCriteria" ng-click="doesProceedDeprivationParameters()" value="unpaidCareers">Unpaid Careers
+                                    <input type="radio" name="deprivationCriteria" ng-model="popVariables.deprivationCriteria" ng-click="doesProceedDeprivationParameters()" value="unpaidCarers">Unpaid Carers
                                 </span>
                                 <span class="blockDisplay">
                                     <input type="radio" name="deprivationCriteria" ng-model="popVariables.deprivationCriteria" ng-click="doesProceedDeprivationParameters()" value="learningDisabilities">Learning Disabilities
@@ -489,17 +489,18 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="col-lg-3 text-center" ng-show="unpaidCareersViewShow">
-                            <h3>Unpaid Careers</h3>
+                        <div class="col-lg-3 text-center" ng-show="unpaidCarersViewShow">
+                            <h3>Unpaid Carers</h3>
                             <br>
-                            <div class="alignLeft halfDiv noWrap">
+                            <h5> No relevant subparameters to be selected </h5>
+                            <!--<div class="alignLeft halfDiv noWrap">
                                 <span class="blockDisplay">
-                                    <input type="checkbox" name="unpaidCareers1" ng-model="unpaidCareers.a" value="."> ....
+                                    <input type="checkbox" name="unpaidCarers1" ng-model="unpaidCarers.a" value="."> ....
                                 </span>
                                 <span class="blockDisplay">
-                                    <input type="checkbox" name="unpaidCareers"2 ng-model="unpaidCareers.b" value="."> ...
+                                    <input type="checkbox" name="unpaidCarers"2 ng-model="unpaidCarers.b" value="."> ...
                                 </span>
-                            </div>
+                            </div>-->
                         </div>
                         <div class="col-lg-3 text-center" ng-show="learningDisabilitiesViewShow">
                             <h3>Learning Disabilities</h3>
@@ -517,14 +518,14 @@
                         <div class="col-lg-3 text-center" ng-show="educationalAttainmentViewShow">
                             <h3>Educational Attainment</h3>
                             <br>
-                            <div class="alignLeft halfDiv noWrap">
-                                <span class="blockDisplay">
+                            <h5> No relevant subparameters to be selected </h5>
+                            <!--    <span class="blockDisplay">
                                     <input type="checkbox" name="educationalAttainment1" ng-model="educationalAttainment.a" value="."> ....
                                 </span>
                                 <span class="blockDisplay">
                                     <input type="checkbox" name="educationalAttainment2" ng-model="educationalAttainment.b" value="."> ...
                                 </span>
-                            </div>
+                            </div>-->
                         </div>
                         <div class="col-lg-3 text-center" ng-show="transportViewShow">
                             <h3>Transport</h3>
@@ -628,14 +629,15 @@
                             <h3>Illness</h3>
                             <br>
                             <br>
-                            <div class="alignLeft halfDiv noWrap">
+                            <h5> No relevant subparameters to be selected </h5>
+                            <!--<div class="alignLeft halfDiv noWrap">
                                 <span class="blockDisplay">
                                     <input type="checkbox" name="illness1" ng-model="illness.a" value="."> ....
                                 </span>
                                 <span class="blockDisplay">
                                     <input type="checkbox" name="illness2" ng-model="illness.b" value="."> ...
                                 </span>
-                            </div>
+                            </div>-->
                         </div>
                         <div class="col-lg-3 text-center" ng-show="mentalHealthAndWellbeingViewShow">
                             <h3>Illness</h3>

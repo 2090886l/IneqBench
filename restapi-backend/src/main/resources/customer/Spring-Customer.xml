@@ -24,4 +24,16 @@
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 	
+	<bean id="unpaidCarersDAO" class="me.ineqbench.customer.dao.impl.JdbcUnpaidCarersDAO">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<bean id="educationalAttainmentDAO" class="me.ineqbench.customer.dao.impl.JdbcEducationalAttainmentDAO">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<bean id="illnessDAO" class="me.ineqbench.customer.dao.impl.JdbcIllnessDAO">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
 </beans>
