@@ -1,0 +1,17 @@
+﻿CREATE DEFINER=`ineqbench_user`@`%` PROCEDURE `getCarOutput`(IN start_age int(2), IN end_age int(2), IN sexIn VARCHAR(25))
+BEGIN
+SELECT (
+	SELECT REPLACE(FORMAT(SUM(ALL_PEOPLE)*(SELECT  SUM(PERCENT)/100
+FROM POP_AGE_PERCENT
+WHERE AGE BETWEEN start_age AND end_age),0),',','')
+	FROM ETHNIC_GROUP
+	WHERE SEX = sexIn
+	AND AGE != 'Total') AS 'totalPopulation',
+
+(SELECT REPLACE(FORMAT((SUM(NO_CAR))*(SELECT  SUM(PERCENT)/100
+FROM POP_AGE_PERCENT
+WHERE AGE BETWEEN start_age AND end_age),0),',','')
+FROM CAR_AVAILABILITY
+WHERE SEX = sexIn
+AND AGE != 'Total') AS 'totalDeprived';
+END

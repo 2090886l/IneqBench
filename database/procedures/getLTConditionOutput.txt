@@ -1,0 +1,11 @@
+﻿CREATE DEFINER=`ineqbench_user`@`%` PROCEDURE `getLTConditionOutput`(IN start_age int(2), IN end_age int(2))
+BEGIN SELECT (
+
+SELECT REPLACE(FORMAT(SUM(ALL_PEOPLE)*(SELECT SUM(PERCENT)/100
+FROM POP_AGE_PERCENT WHERE AGE BETWEEN start_age AND end_age),0),',','')
+
+FROM ETHNIC_GROUP WHERE AGE != 'Total') AS 'totalPopulation',
+
+(SELECT REPLACE(FORMAT((SUM(SEVERE) + SUM(MILD))*(
+SELECT SUM(PERCENT)/100 FROM POP_AGE_PERCENT WHERE AGE BETWEEN start_age AND end_age),0),',','')
+FROM LONG_TERM_CONDITIONS WHERE AGE != 'All people') AS 'totalDeprived'; END
