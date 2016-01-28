@@ -1,0 +1,12 @@
+﻿CREATE DEFINER=`ineqbench_user`@`%` PROCEDURE `getQualificationOutput`(IN start_age int(2), IN end_age int(2), IN sexIn VARCHAR(25))
+BEGIN
+	SELECT
+	(SELECT
+		REPLACE(FORMAT(SUM(TOTAL_PEOPLE)*
+        (SELECT SUM(PERCENT)/100 FROM POP_AGE_PERCENT WHERE AGE BETWEEN start_age AND end_age),0),',','')
+		FROM QUALIFICATIONS WHERE SEX = sexIN AND AGE = 'Total') AS 'totalPopulation',
+    (SELECT
+		REPLACE(FORMAT(SUM( NO_QUALIFICATIONS )*
+        (SELECT SUM(PERCENT)/100 FROM POP_AGE_PERCENT WHERE AGE BETWEEN start_age AND end_age),0),',','')
+		FROM QUALIFICATIONS WHERE SEX = sexIN AND AGE = 'Total') AS 'totalDeprived';
+END
