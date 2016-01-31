@@ -127,7 +127,7 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
         {rangeStr:"70-80",rangeInt:[70,80]},
         {rangeStr:"80-90",rangeInt:[80,90]},
         {rangeStr:"90-100",rangeInt:[90,100]},
-        {rangeStr:"100-110",rangeInt:[100,110]},
+        {rangeStr:"100-110",rangeInt:[100,110]}
     ];
     //Data end
 
@@ -158,6 +158,23 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
         data.upperRangePercentage=Math.round((data.upperRange/$scope.popVariables.numberOfPeople)*10000)/100;
         return data;
     }
+
+    function nullifyAllViewShowParams(){
+        $scope.ethincityDeprivationViewShow = false;
+        $scope.taxBandViewShow = false;
+        $scope.unpaidCarersViewShow = false;
+        $scope.learningDisabilitiesViewShow = false;
+        $scope.educationalAttainmentViewShow = false;
+        $scope.transportViewShow = false;
+        $scope.unemployedViewShow = false;
+        $scope.homelessViewShow = false;
+        $scope.lowPayViewShow = false;
+        $scope.offendersViewShow = false;
+        $scope.mentalHealthAndWellbeingViewShow = false;
+        $scope.fuelPovertyViewShow = false;
+        $scope.illnessViewShow = false;
+    }
+    //End Miscellaneous
     //HTTP Restful Requests
     function getEthicityData(numberOfPeople, ageGroup,gender){//numberOfPeople: int ageGroup:list<int>
         //$http.post("http://localhost:8080/getEthnicity",
@@ -201,7 +218,7 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
         });
     }
     function getEducationalAttainment(numberOfPeople, ageGroup,gender,educationalAttainment){
-            $http.get('http://localhost:8080/getEducationalAttainment?numberOfPeople='+numberOfPeople+
+        $http.get('http://localhost:8080/getEducationalAttainment?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
             /////
@@ -337,6 +354,7 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
             $scope.popVariables.deprivationCriteria!=null){//isEmpty($scope.ineqParameters)
             $scope.showDeprivationCriteriaParams = false;
             $scope.showOutputType = true;
+            nullifyAllViewShowParams();
             if ($scope.popVariables.deprivationCriteria=="ethicity")
                 $scope.ethincityDeprivationViewShow = true;
             else if ($scope.popVariables.deprivationCriteria=="taxBand")

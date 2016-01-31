@@ -35,7 +35,7 @@ public class JdbcTransportDAO implements TransportDAO{
 		jdbcCall.declareParameters(new SqlParameter("end_age", Types.INTEGER));
 		jdbcCall.declareParameters(new SqlParameter("sexIn", Types.CHAR));
 		Map mapResult = jdbcCall.execute(range.getStartOfRange(),range.getEndOfRange(),gender);
-		List<ResponseTuplePOJO> result = (List<ResponseTuplePOJO>)mapResult.get("ethnicityData");
+		List<ResponseTuplePOJO> result = (List<ResponseTuplePOJO>)mapResult.get("carData");
 		return result;
 	}
 	
