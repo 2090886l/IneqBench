@@ -7,9 +7,9 @@
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/my_test" />
-		<property name="username" value="root" />
-		<property name="password" value="ineqbench" />
+		<property name="url" value="jdbc:mysql://mikeharling.co.uk:3306/ineq_bench?noAccessToProcedureBodies=true" />
+		<property name="username" value="ineqbench_server" />
+		<property name="password" value="MikeRox!" />
 	</bean>
 
 </beans>
