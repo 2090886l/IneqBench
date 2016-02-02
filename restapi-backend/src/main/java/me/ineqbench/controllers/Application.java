@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.jdbc.*;
 import org.springframework.context.annotation.*;
 
 @SpringBootApplication
+@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
 public class Application extends SpringBootServletInitializer {
 
     @Override
