@@ -1,22 +1,20 @@
-package me.ineqbench.customer.dao.impl;
+package me.ineqbench.dao.impl;
 
 import java.sql.Types;
 import java.util.List;
 import java.util.Map;
-import java.util.jar.Pack200.Unpacker;
 
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 
-import me.ineqbench.customer.dao.TransportDAO;
-import me.ineqbench.customer.dao.UnpaidCarersDAO;
+import me.ineqbench.dao.EducationalAttainmentDAO;
 import me.ineqbench.dbRequestPOJOs.Range;
 import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
 import me.ineqbench.mappers.EthnicityResponseMapper;
 
-public class JdbcUnpaidCarersDAO implements UnpaidCarersDAO{
+public class JdbcEducationalAttainmentDAO implements EducationalAttainmentDAO{
 	
 	private DataSource dataSource;
 	private SimpleJdbcCall jdbcCall;
@@ -26,15 +24,18 @@ public class JdbcUnpaidCarersDAO implements UnpaidCarersDAO{
 	 
 		jdbcCall = new SimpleJdbcCall(dataSource)
 	    .withoutProcedureColumnMetaDataAccess()
-	    .withProcedureName("getUnpaidCareOutput")
-	    .returningResultSet("unpaidCarers", new EthnicityResponseMapper());
+	    .withProcedureName("getQualificationOutput")
+	    .returningResultSet("educationalAttainment", new EthnicityResponseMapper());
 	}
 
 	@Override 
 	public List<ResponseTuplePOJO> findData(String gender, Range range) {
     
+		jdbcCall.declareParameters(new SqlParameter("start_age", Types.INTEGER));
+		jdbcCall.declareParameters(new SqlParameter("end_age", Types.INTEGER));
+		jdbcCall.declareParameters(new SqlParameter("sexIn", Types.CHAR));
 		Map mapResult = jdbcCall.execute(range.getStartOfRange(),range.getEndOfRange(),gender);
-		List<ResponseTuplePOJO> result = (List<ResponseTuplePOJO>)mapResult.get("unpaidCarers");
+		List<ResponseTuplePOJO> result = (List<ResponseTuplePOJO>)mapResult.get("educationalAttainment");
 		return result;
 	}
 	

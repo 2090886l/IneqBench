@@ -1,4 +1,4 @@
-package me.ineqbench.customer.dao;
+package me.ineqbench.dao;
 
 import java.util.List;
 
