@@ -1,37 +1,36 @@
 var app = angular.module('IneqBench',[]);
 
-app.controller('TestController',["$http","$scope",function($http,$scope){
+app.controller('MainController',["$http","$scope",function($http,$scope){
     //System state
     $scope.showSelectSection = false;
+    $scope.showDeprivationCriteria = false;
     $scope.showPopulationVariables = false;
-    $scope.showDeprivationCriteriaParams = false;
     $scope.showOutputType = false;
     $scope.isVisualizing = false;
-    //Population variables
-    $scope.popVariables = {};
-    $scope.popVariables.mode = null;//this is either benchmark or predict
-    $scope.popVariables.isBenchmarkingCheckedPopVar = false;
-    $scope.popVariables.isPredictingCheckedPopVar = false;
-    $scope.popVariables.numberOfPeople = null;
-    $scope.popVariables.region=null;
-    $scope.popVariables.gender=null;
-    $scope.popVariables.ageRange=null;
-    //Population variables end
-    //Deprivation Criteria
-    $scope.popVariables.deprivationCriteria=null;
-    $scope.popVariables.deprivationCriteria=null;
-    //Deprivation Criteria end
-    //Ethincity Deprivation
-    $scope.ethincityDeprivationViewShow = false;
-    $scope.ineqParameters={};
+    $scope.wrapper = {}; // use one popVariable object wrapping all the data
+    // used because ng-if creates DOM dynamically and Angular cannot find assigned values
+    $scope.wrapper.mode = null;//this is either benchmark or predict
+    $scope.wrapper.isBenchmarkingCheckedPopVar = false;
+    $scope.wrapper.isPredictingCheckedPopVar = false;
+    $scope.wrapper.ageRange=null;
     $scope.isBenchmarkingCheckedIneq = false;
     $scope.isPredictingCheckedIneq = false;
+    //System state end
+    //Population variables
+    $scope.wrapper.numberOfPeople = null;
+    $scope.wrapper.region=null;
+    $scope.wrapper.gender=null;
     $scope.isAllGenderCheckedIneq = false;
     $scope.isMaleGenderCheckedIneq = false;
     $scope.isFemaleGenderChecked = false;
+    //Population variables end
+    //Deprivation Criteria
+    $scope.wrapper.deprivationCriteria=null;
+    //Deprivation Criteria end
+    //Ethincity Deprivation
+    $scope.ethincityDeprivationViewShow = false;
+    $scope.ethnicityParameters={};
     //Ethincity Deprivation end
-
-
     // Tax Band
     $scope.taxBandViewShow = false;
     $scope.taxBand = {};
@@ -89,32 +88,45 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
     // Mental Health and Wellbeing end
 
 
-    //Output type
+    //Output type Section Params
     $scope.visualization=null;
     $scope.isBenchmarkingCheckedOutput = false;
     $scope.isPredictingCheckedOutput = false;
-    //Output type end
     $scope.isAllGenderCheckedOutPut = false;
     $scope.isMaleGenderCheckedOutPut = false;
     $scope.isFemaleGenderCheckedOutPut = false;
-    //System state end
+    //Output type Section Params end
 
-    //Deprivation Criterias
+    //Mappings
+
+    //Deprivation Criterion params to names mapping
     $scope.deprivationCriteriaDisplayedName=null;
     var deprivationCriteriasNames={
-        ethicity:"Ethnicity",
+        ethnicity:"Ethnicity",
         taxBand:"Tax Band",
         unpaidCarers: "Unpaid Carers",
-        transport:"Transport"
+        learningDisabilities:"Learning Disabilities",
+        educationalAttainment:"Educational Attainment",
+        transport:"Transport",
+        unemployed:"Unemployed",
+        livingInDeprivedArea:"Living in a deprived area",
+        homeless:"Homeless",
+        lowPay:"Low Pay",
+        fuelPoverty:"Fuel Poverty",
+        offenders:"Offenders",
+        illnesses:"Long Term Life-limiting illness",
+        mentalHealthAndWellbeing:"Long Term Life-limiting illness Mental Health & Wellbeing"
+
+
     };
-    //Data
+
+    //Regions
     $scope.regions=[
-        {name:'AnnandaleEskdale'},
+        {name:'Annandale & Eskdale'},
         {name:'Nithsdale'},
         {name:'Stewartry'},
         {name:'Wigtownshire'},
-        {name:'DumfriesGalloway'},
-        {name:'Scotland'}
+        {name:'Dumfries & Galloway'}
     ];
     $scope.ranges=[
         {rangeStr:"0-10",rangeInt:[0,10]},
@@ -131,19 +143,12 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
     ];
     //Data end
 
-
-    //$http.post("http://localhost:8080/addCustomer", {name:"alex",age:"21"}).success(function(data) {
-    //    $scope.hello = data;
-    //    console.log(data);
-    //})
-    //$http.get('http://localhost:8080/getCustomerById?id=2').success(function(data){
-    //    console.log(data);
-    //});
+    //Mappings End
 
     //Miscellaneous
     function setResult(data){
         data= roundData(data);
-        $scope.deprivationCriteriaDisplayedName = deprivationCriteriasNames[$scope.popVariables.deprivationCriteria];
+        $scope.deprivationCriteriaDisplayedName = deprivationCriteriasNames[$scope.wrapper.deprivationCriteria];
         $scope.result=data;
     }
     function roundData(data){
@@ -153,9 +158,9 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
         data.lowerRange=Math.round(data.lowerRange);
         data.estimate=Math.round(data.estimate);
         data.totalDeprivedPercentage=Math.round((data.totalDeprived/data.totalPopulation)*100);
-        data.estimatePercentage=Math.round((data.estimate/$scope.popVariables.numberOfPeople)*100);
-        data.lowerRangePercentage=Math.round((data.lowerRange/$scope.popVariables.numberOfPeople)*10000)/100;
-        data.upperRangePercentage=Math.round((data.upperRange/$scope.popVariables.numberOfPeople)*10000)/100;
+        data.estimatePercentage=Math.round((data.estimate/$scope.wrapper.numberOfPeople)*100);
+        data.lowerRangePercentage=Math.round((data.lowerRange/$scope.wrapper.numberOfPeople)*10000)/100;
+        data.upperRangePercentage=Math.round((data.upperRange/$scope.wrapper.numberOfPeople)*10000)/100;
         return data;
     }
 
@@ -175,19 +180,19 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
         $scope.illnessViewShow = false;
     }
     //End Miscellaneous
-    //HTTP Restful Requests
-    function getEthicityData(numberOfPeople, ageGroup,gender){//numberOfPeople: int ageGroup:list<int>
-        //$http.post("http://localhost:8080/getEthnicity",
-        //    {numberOfPeople:numberOfPeople,ageGroup:ageGroup,gender:gender}).success(function(data){
-        //    console.log(data);
-        //})
 
-        $http.get('http://localhost:8080/getEthnicity?numberOfPeople='+numberOfPeople+"&ageGroup="+ageGroup+"&gender="+gender).success(function(data){
+    //HTTP Restful Requests
+    function getEthnicityData(numberOfPeople, ageGroup,gender){
+
+        $http.get('http://localhost:8080/getEthnicity?numberOfPeople='+numberOfPeople+
+            "&ageGroup="+ageGroup+
+            "&gender="+gender
+        ).success(function(data){
             setResult(data);
         });
     }
 
-    function getTaxBandData(numberOfPeople,ageGroup,gender,taxBands){
+    function getTaxBandData(numberOfPeople,ageGroup,gender){
 
         $http.get('http://localhost:8080/getTaxBand?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ ageGroup+
@@ -197,7 +202,8 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
         })
     }
 
-    function getLearningDisabilities(numberOfPeople, ageGroup,gender,learningDisabilities){//numberOfPeople: int ageGroup:list<int>
+    function getLearningDisabilities(numberOfPeople, ageGroup,gender){//numberOfPeople: int ageGroup:list<int>
+
         $http.get('http://localhost:8080/getLearningDisabilities?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
@@ -207,102 +213,113 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
         });
     }
 
-    ////////
-    function getUnpaidCarers(numberOfPeople, ageGroup,gender,unpaidCarers){
+
+    function getUnpaidCarers(numberOfPeople, ageGroup,gender){
+
         $http.get('http://localhost:8080/getUnpaidCarers?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
-            /////
+
         ).success(function(data){
             setResult(data);
         });
     }
-    function getEducationalAttainment(numberOfPeople, ageGroup,gender,educationalAttainment){
+    function getEducationalAttainment(numberOfPeople, ageGroup,gender){
+
         $http.get('http://localhost:8080/getEducationalAttainment?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
-            /////
+
         ).success(function(data){
             setResult(data);
         });
     }
-    function getTransport(numberOfPeople, ageGroup,gender,transport){
+    function getTransport(numberOfPeople, ageGroup,gender){
+
         $http.get('http://localhost:8080/getTransport?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
-            /////
+
         ).success(function(data){
             setResult(data);
         });
     }
-    function getUnemployed(numberOfPeople, ageGroup,gender,unemployed){
+    function getUnemployed(numberOfPeople, ageGroup,gender){
+
         $http.get('http://localhost:8080/getUnemployed?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
-            /////
+
         ).success(function(data){
             setResult(data);
         });
     }
-    function getLivingInDeprivedArea(numberOfPeople, ageGroup,gender,livingInDeprivatedArea){
+    function getLivingInDeprivedArea(numberOfPeople, ageGroup,gender){
+
         $http.get('http://localhost:8080/getLivingInDeprivedArea?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
-            /////
+
         ).success(function(data){
             setResult(data);
         });
     }
-    function getHomeless(numberOfPeople, ageGroup,gender,homeless){
+    function getHomeless(numberOfPeople, ageGroup,gender){
+
         $http.get('http://localhost:8080/getHomeless?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
-            /////
+
         ).success(function(data){
             setResult(data);
         });
     }
-    function getLowPay(numberOfPeople, ageGroup,gender,lowPay){
+    function getLowPay(numberOfPeople, ageGroup,gender){
+
         $http.get('http://localhost:8080/getLowPay?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
-            /////
+
         ).success(function(data){
             setResult(data);
         });
     }
-    function getFuelPoverty(numberOfPeople, ageGroup,gender,fuelPoverty){
+    function getFuelPoverty(numberOfPeople, ageGroup,gender){
+
         $http.get('http://localhost:8080/getFuelPoverty?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
-            /////
+
         ).success(function(data){
             setResult(data);
         });
     }
-    function getOffenders(numberOfPeople, ageGroup,gender,offenders){
+    function getOffenders(numberOfPeople, ageGroup,gender){
+
         $http.get('http://localhost:8080/getOffenders?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
-            /////
+
         ).success(function(data){
             setResult(data);
         });
     }
-    function getIllness(numberOfPeople, ageGroup,gender,illness){
+    function getIllness(numberOfPeople, ageGroup,gender){
+
         $http.get('http://localhost:8080/getIllness?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
-            /////
+
         ).success(function(data){
             setResult(data);
         });
     }
-    function getMentalHealthAndWellbeing(numberOfPeople, ageGroup,gender,mentalHealthAndWellbeing){
+    function getMentalHealthAndWellbeing(numberOfPeople, ageGroup,gender){
+
         $http.get('http://localhost:8080/getMentalHealthAndWellbeing?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
-            /////
+
         ).success(function(data){
             setResult(data);
         });
@@ -310,20 +327,25 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
     //HTTP Restful Requests End
 
     //Events
+
+    //if the benchmark button is clicked show/hide the correct sections
+    //for more info see parameter names
     $scope.benchmarkClicked = function(){
         $scope.showSelectSection = true;
+        $scope.showDeprivationCriteria = false;
         $scope.showPopulationVariables = false;
-        $scope.showDeprivationCriteriaParams = false;
         $scope.showOutputType = false;
-        $scope.showPopulationVariables = true;
-        $scope.popVariables.isBenchmarkingCheckedPopVar = true;
-        $scope.popVariables.mode = "benchmarking"; //needed to set the mode, it is not set automatically from ng-model as checked state
+        $scope.showDeprivationCriteria = true;
+        $scope.wrapper.isBenchmarkingCheckedPopVar = true;
+        $scope.wrapper.mode = "benchmarking"; //needed to set the mode, it is not set automatically from ng-model as checked state
         //set  programmatically
-    }
+    };
 
+    //if the back button is clicked show/hide the correct sections
+    //for more info see parameter names
     $scope.backToTop = function(){
+        $scope.showDeprivationCriteria = false;
         $scope.showPopulationVariables = false;
-        $scope.showDeprivationCriteriaParams = false;
         $scope.showOutputType = false;
         $scope.ethincityDeprivationViewShow = false;
         $scope.taxBandViewShow = false;
@@ -338,110 +360,115 @@ app.controller('TestController',["$http","$scope",function($http,$scope){
         $scope.mentalHealthAndWellbeingViewShow = false;
         $scope.fuelPovertyViewShow = false;
         $scope.illnessViewShow = false;
+        $scope.isVisualizing = false;
+        $scope.showSelectSection = false;
     };
-    $scope.doesProceedPopulationVariables = function(){
-        if ($scope.popVariables.deprivationCriteria!=null && $scope.popVariables.numberOfPeople!=null){
-            $scope.showPopulationVariables = false;
-            $scope.showDeprivationCriteriaParams = true;
 
-            $scope.popVariables.isBenchmarkingCheckedPopVar = false;
-            $scope.popVariables.isPredictingCheckedPopVar = false;
-        }
-    }
-
+    //if all fields in the Deprivation View are selected ->
+    //proceed with the Population View (hide Deprivation and show Population view)
     $scope.doesProceedDeprivationParameters = function(){
-        if ($scope.popVariables.region!=null && $scope.popVariables.ageRange!=null && $scope.popVariables.gender!=null && $scope.popVariables.numberOfPeople!=null &&
-            $scope.popVariables.deprivationCriteria!=null){//isEmpty($scope.ineqParameters)
-            $scope.showDeprivationCriteriaParams = false;
+        if ($scope.wrapper.deprivationCriteria!=null && $scope.wrapper.numberOfPeople!=null){
+            $scope.showDeprivationCriteria = false;
+            $scope.showPopulationVariables = true;
+
+            $scope.wrapper.isBenchmarkingCheckedPopVar = false;
+            $scope.wrapper.isPredictingCheckedPopVar = false;
+        }
+    };
+
+    //if all fields in the Population View are selected ->
+    //proceed with the Output Type View (hide Population and show Output Type view)
+    $scope.doesProceedPopulationVariables = function(){
+        if ($scope.wrapper.region!=null && $scope.wrapper.ageRange!=null && $scope.wrapper.gender!=null && $scope.wrapper.numberOfPeople!=null &&
+            $scope.wrapper.deprivationCriteria!=null){
+            $scope.showPopulationVariables = false;
             $scope.showOutputType = true;
             nullifyAllViewShowParams();
-            if ($scope.popVariables.deprivationCriteria=="ethicity")
+            if ($scope.wrapper.deprivationCriteria=="ethnicity")
                 $scope.ethincityDeprivationViewShow = true;
-            else if ($scope.popVariables.deprivationCriteria=="taxBand")
+            else if ($scope.wrapper.deprivationCriteria=="taxBand")
                 $scope.taxBandViewShow = true;
-            else if ($scope.popVariables.deprivationCriteria=="unpaidCarers")
+            else if ($scope.wrapper.deprivationCriteria=="unpaidCarers")
                 $scope.unpaidCarersViewShow = true;
-            else if ($scope.popVariables.deprivationCriteria=="learningDisabilities")
+            else if ($scope.wrapper.deprivationCriteria=="learningDisabilities")
                 $scope.learningDisabilitiesViewShow = true;
-            else if ($scope.popVariables.deprivationCriteria=="educationalAttainment")
+            else if ($scope.wrapper.deprivationCriteria=="educationalAttainment")
                 $scope.educationalAttainmentViewShow = true;
-            else if ($scope.popVariables.deprivationCriteria=="transport")
+            else if ($scope.wrapper.deprivationCriteria=="transport")
                 $scope.transportViewShow = true;
-            else if ($scope.popVariables.deprivationCriteria=="unemployed")
+            else if ($scope.wrapper.deprivationCriteria=="unemployed")
                 $scope.unemployedViewShow = true;
-            else if ($scope.popVariables.deprivationCriteria=="livingInDeprivedArea")
+            else if ($scope.wrapper.deprivationCriteria=="livingInDeprivedArea")
                 $scope.livingInDeprivatedAreaViewShow = true;
-            else if ($scope.popVariables.deprivationCriteria=="homeless")
+            else if ($scope.wrapper.deprivationCriteria=="homeless")
                 $scope.homelessViewShow = true;
-            else if ($scope.popVariables.deprivationCriteria=="lowPay")
+            else if ($scope.wrapper.deprivationCriteria=="lowPay")
                 $scope.lowPayViewShow = true;
-            else if ($scope.popVariables.deprivationCriteria=="fuelPoverty")
+            else if ($scope.wrapper.deprivationCriteria=="fuelPoverty")
                 $scope.fuelPovertyViewShow = true;
-            else if ($scope.popVariables.deprivationCriteria=="offenders")
+            else if ($scope.wrapper.deprivationCriteria=="offenders")
                 $scope.offendersViewShow = true;
-            else if ($scope.popVariables.deprivationCriteria=="illnesses")
+            else if ($scope.wrapper.deprivationCriteria=="illnesses")
                 $scope.illnessViewShow = true;
-            else if ($scope.popVariables.deprivationCriteria=="mentalHealthAndWellbeing")
+            else if ($scope.wrapper.deprivationCriteria=="mentalHealthAndWellbeing")
                 $scope.mentalHealthAndWellbeingViewShow = true;
         }
-    }
+    };
 
-    // TODO: for Alex - leave it currently not sure if it will be needed
-    //$scope.doesProceedOutputType = function(){
-    //    if ($scope.popVariables.region!=null && $scope.popVariables.gender!=null && $scope.popVariables.numberOfPeople!=null &&
-    //        !isEmpty($scope.ineqParameters)){
-    //
-    //    }
-    //}
 
+    // Visualize button event -> when button clicked, find which criterion is selected and call the corresponding HTTP GET Restful request
     $scope.visualize = function(){
         $scope.isVisualizing=true;
-        if ($scope.popVariables.deprivationCriteria=="ethicity")
-            getEthicityData($scope.popVariables.numberOfPeople, $scope.popVariables.ageRange.rangeInt,$scope.popVariables.gender);
-        else if ($scope.popVariables.deprivationCriteria=="taxBand")
-            getTaxBandData($scope.popVariables.numberOfPeople, $scope.popVariables.ageRange.rangeInt,$scope.popVariables.gender,$scope.taxBand);
-        else if ($scope.popVariables.deprivationCriteria=="unpaidCarers")
-            getUnpaidCarers($scope.popVariables.numberOfPeople, $scope.popVariables.ageRange.rangeInt,$scope.popVariables.gender,$scope.unpaidCarers);
-        else if ($scope.popVariables.deprivationCriteria=="learningDisabilities")
-            getLearningDisabilities($scope.popVariables.numberOfPeople, $scope.popVariables.ageRange.rangeInt,$scope.popVariables.gender,$scope.learningDisabilities);
-        else if ($scope.popVariables.deprivationCriteria=="educationalAttainment")
-            getEducationalAttainment($scope.popVariables.numberOfPeople, $scope.popVariables.ageRange.rangeInt,$scope.popVariables.gender,$scope.educationalAttainment);
-        else if ($scope.popVariables.deprivationCriteria=="transport")
-            getTransport($scope.popVariables.numberOfPeople, $scope.popVariables.ageRange.rangeInt,$scope.popVariables.gender,$scope.transport);
-        else if ($scope.popVariables.deprivationCriteria=="unemployed")
-            getUnemployed($scope.popVariables.numberOfPeople, $scope.popVariables.ageRange.rangeInt,$scope.popVariables.gender,$scope.unemployed);
-        else if ($scope.popVariables.deprivationCriteria=="livingInDeprivedArea")
-            getLivingInDeprivedArea($scope.popVariables.numberOfPeople, $scope.popVariables.ageRange.rangeInt,$scope.popVariables.gender,$scope.livingInDeprivatedArea);
-        else if ($scope.popVariables.deprivationCriteria=="homeless")
-            getHomeless($scope.popVariables.numberOfPeople, $scope.popVariables.ageRange.rangeInt,$scope.popVariables.gender,$scope.homeless);
-        else if ($scope.popVariables.deprivationCriteria=="lowPay")
-            getLowPay($scope.popVariables.numberOfPeople, $scope.popVariables.ageRange.rangeInt,$scope.popVariables.gender,$scope.lowPay);
-        else if ($scope.popVariables.deprivationCriteria=="fuelPoverty")
-            getFuelPoverty($scope.popVariables.numberOfPeople, $scope.popVariables.ageRange.rangeInt,$scope.popVariables.gender,$scope.fuelPoverty);
-        else if ($scope.popVariables.deprivationCriteria=="offenders")
-            getOffenders($scope.popVariables.numberOfPeople, $scope.popVariables.ageRange.rangeInt,$scope.popVariables.gender,$scope.offenders);
-        else if ($scope.popVariables.deprivationCriteria=="illnesses")
-            getIllness($scope.popVariables.numberOfPeople, $scope.popVariables.ageRange.rangeInt,$scope.popVariables.gender,$scope.illness);
-        else if ($scope.popVariables.deprivationCriteria=="mentalHealthAndWellbeing")
-            getMentalHealthAndWellbeing($scope.popVariables.numberOfPeople, $scope.popVariables.ageRange.rangeInt,$scope.popVariables.gender,$scope.mentalHealthAndWellbeing);
-    }
+        if ($scope.wrapper.deprivationCriteria=="ethnicity")
+            getEthnicityData($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender);
+        else if ($scope.wrapper.deprivationCriteria=="taxBand")
+            getTaxBandData($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender);
+        else if ($scope.wrapper.deprivationCriteria=="unpaidCarers")
+            getUnpaidCarers($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender);
+        else if ($scope.wrapper.deprivationCriteria=="learningDisabilities")
+            getLearningDisabilities($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender);
+        else if ($scope.wrapper.deprivationCriteria=="educationalAttainment")
+            getEducationalAttainment($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender);
+        else if ($scope.wrapper.deprivationCriteria=="transport")
+            getTransport($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender);
+        else if ($scope.wrapper.deprivationCriteria=="unemployed")
+            getUnemployed($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender);
+        else if ($scope.wrapper.deprivationCriteria=="livingInDeprivedArea")
+            getLivingInDeprivedArea($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender);
+        else if ($scope.wrapper.deprivationCriteria=="homeless")
+            getHomeless($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender);
+        else if ($scope.wrapper.deprivationCriteria=="lowPay")
+            getLowPay($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender);
+        else if ($scope.wrapper.deprivationCriteria=="fuelPoverty")
+            getFuelPoverty($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender);
+        else if ($scope.wrapper.deprivationCriteria=="offenders")
+            getOffenders($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender);
+        else if ($scope.wrapper.deprivationCriteria=="illnesses")
+            getIllness($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender);
+        else if ($scope.wrapper.deprivationCriteria=="mentalHealthAndWellbeing")
+            getMentalHealthAndWellbeing($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender);
+    };
 
-    //Setting params
+    //Setting params for gender mapping gender selected to gender param
     $scope.genderClicked = function (){
-        if ($scope.popVariables.gender=="All People:")
+        if ($scope.wrapper.gender=="All People:")
             $scope.isAllGenderCheckedIneq =true;
-        if ($scope.popVariables.gender=="Males:")
+        if ($scope.wrapper.gender=="Males:")
             $scope.isMaleGenderCheckedIneq=true;
-        if ($scope.popVariables.gender=="Females:")
+        if ($scope.wrapper.gender=="Females:")
             $scope.isFemaleGenderChecked =true;
-        $scope.doesProceedPopulationVariables();
-    }
+        $scope.doesProceedDeprivationParameters();
+    };
 
-    //Utils
-    function isEmpty(obj) {
-        return Object.keys(obj).length === 0;
-    }
+    // Post request and get request examples
 
-    //Pie Chart
+    //$http.post("http://localhost:8080/addCustomer", {name:"alex",age:"21"}).success(function(data) {
+    //    $scope.hello = data;
+    //    console.log(data);
+    //})
+    //$http.get('http://localhost:8080/getCustomerById?id=2').success(function(data){
+    //    console.log(data);
+    //});
+
 
 }]);
