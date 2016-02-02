@@ -12,17 +12,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import me.ineqbench.analyst.Analyser;
 import me.ineqbench.clientResponsePojos.ClientResponsePOJO;
-import me.ineqbench.customer.dao.FuelPovertyDAO;
-import me.ineqbench.customer.dao.LearningDisabilitiesDAO;
+import me.ineqbench.dao.FuelPovertyDAO;
+import me.ineqbench.dao.LearningDisabilitiesDAO;
 import me.ineqbench.dbRequestPOJOs.Range;
 import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
 
+//Provides the Learning Disabilities data to the front end (HTTP GET Restful Request)
 @RestController
 public class GetLearningDisabilitiesController {
 
     @CrossOrigin
     @RequestMapping(value="/getLearningDisabilities", method = RequestMethod.GET)
-    //Get LearningDisabilitiesClientResponsePOJO
+    //Get Learning Disabilities ClientResponsePOJO
     public  ClientResponsePOJO getLearningDisabilities(@RequestParam(value="numberOfPeople") int numberOfPeople, @RequestParam(value="ageGroup") int[] ageGroup,
     		@RequestParam(value="gender") String gender){
     	

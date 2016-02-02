@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import me.ineqbench.analyst.Analyser;
 import me.ineqbench.clientResponsePojos.ClientResponsePOJO;
-import me.ineqbench.customer.dao.FuelPovertyDAO;
+import me.ineqbench.dao.FuelPovertyDAO;
 import me.ineqbench.dbRequestPOJOs.Range;
 import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
 
+//Provides the Fuel Poverty data to the front end (HTTP GET Restful Request)
 @RestController
 public class GetFuelPovertyController {
 

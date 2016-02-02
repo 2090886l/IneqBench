@@ -5,6 +5,9 @@ import java.util.List;
 import me.ineqbench.clientResponsePojos.ClientResponsePOJO;
 import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
 
+//The class / component responsible for evaluation the probability equation
+//Component benefits: provide total population, total deprived, upper and lower range and expected deprived
+//Component obligations: provide number of people, and data received from procedure for total population and deprived
 public class Analyser {
 	private static double rate;
 	private static double expectedDeprived;

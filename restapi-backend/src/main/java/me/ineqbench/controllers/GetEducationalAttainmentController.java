@@ -12,16 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import me.ineqbench.analyst.Analyser;
 import me.ineqbench.clientResponsePojos.ClientResponsePOJO;
-import me.ineqbench.customer.dao.EducationalAttainmentDAO;
+import me.ineqbench.dao.EducationalAttainmentDAO;
 import me.ineqbench.dbRequestPOJOs.Range;
 import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
 
+// Provides the Educational Attainment data to the front end (HTTP GET Restful Request)
 @RestController
 public class GetEducationalAttainmentController {
 
     @CrossOrigin
     @RequestMapping(value="/getEducationalAttainment", method = RequestMethod.GET)
-    //Get EducationalAttainmentClientResponsePOJO
+  //Get Educational Attainment ClientResponsePOJO
     public  ClientResponsePOJO getEducationalAttainment(@RequestParam(value="numberOfPeople") int numberOfPeople, @RequestParam(value="ageGroup") int[] ageGroup,
     		@RequestParam(value="gender") String gender){
     	

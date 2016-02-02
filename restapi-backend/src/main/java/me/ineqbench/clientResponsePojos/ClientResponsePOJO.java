@@ -1,5 +1,6 @@
 package me.ineqbench.clientResponsePojos;
 
+//The POJO keeping the information being sent to the front end
 public class ClientResponsePOJO {
 	private int totalPopulation;
 	private int totalDeprived;

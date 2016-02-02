@@ -12,22 +12,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import me.ineqbench.analyst.Analyser;
 import me.ineqbench.clientResponsePojos.ClientResponsePOJO;
-import me.ineqbench.customer.dao.EthnicityDAO;
+import me.ineqbench.dao.EthnicityDAO;
 import me.ineqbench.dbRequestPOJOs.Range;
 import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
 
+//Provides the Ethnicity data to the front end (HTTP GET Restful Request)
 @RestController
 public class GetEthnicityController {
 
     @CrossOrigin
     @RequestMapping(value="/getEthnicity", method = RequestMethod.GET)
-    //EthnicityClientResponsePOJO
+    ////Get Ethnicity ClientResponsePOJO
     public  ClientResponsePOJO getEthnicityData(@RequestParam(value="numberOfPeople") int numberOfPeople, @RequestParam(value="ageGroup") int[] ageGroup,
     		@RequestParam(value="gender") String gender){
-    	System.out.println("in getEthnicity");
+    	
     	ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
     	EthnicityDAO ethnicityDAO = (EthnicityDAO)context.getBean("ethnicityDAO");
-    	//Temporary
+
     	List<ResponseTuplePOJO> ethnicityDBREsponse = ethnicityDAO.findData(gender, new Range(ageGroup[0],ageGroup[1]));
     	ClientResponsePOJO estimate = Analyser.getEstimate(ethnicityDBREsponse, numberOfPeople);
     	return estimate;
