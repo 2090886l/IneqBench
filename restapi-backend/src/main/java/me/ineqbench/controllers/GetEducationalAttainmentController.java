@@ -32,6 +32,6 @@ public class GetEducationalAttainmentController {
     	ClientResponsePOJO estimate = Analyser.getEstimate(educationalAttainmentDBResponse, numberOfPeople);
     	return estimate;
     }	
- 
+
 }
 
