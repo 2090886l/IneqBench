@@ -1,5 +1,0 @@
-algTest.class contains the algorithm used in IneqBench to calculate
-the range of expected participants from the deprived data collected.
-
-It can be used to calculate or check results using data directly 
-from the database without having to run it through the front end.
