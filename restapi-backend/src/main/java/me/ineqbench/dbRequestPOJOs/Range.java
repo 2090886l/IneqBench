@@ -1,5 +1,6 @@
 package me.ineqbench.dbRequestPOJOs;
 
+//Better abstraction for DAO DB Requests
 public class Range {
 	private int startOfRange;
 	private int endOfRange;

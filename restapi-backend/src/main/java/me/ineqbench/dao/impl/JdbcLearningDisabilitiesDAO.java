@@ -13,7 +13,16 @@ import me.ineqbench.dao.LearningDisabilitiesDAO;
 import me.ineqbench.dao.TransportDAO;
 import me.ineqbench.dbRequestPOJOs.Range;
 import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
-import me.ineqbench.mappers.EthnicityResponseMapper;
+import me.ineqbench.mappers.ResponseMapper;
+
+//Even though all DAOs implementations are essentially with the same signature 
+//Separate interfaces provided for each of them in case later
+//requirements are changed to provide easier and more flexible
+//maintenance
+
+//Component
+//Component Benefits: provide data for Learning Disabiities
+//Component Obligation: requires age range and sex
 
 public class JdbcLearningDisabilitiesDAO implements LearningDisabilitiesDAO{
 	
@@ -26,7 +35,7 @@ public class JdbcLearningDisabilitiesDAO implements LearningDisabilitiesDAO{
 		jdbcCall = new SimpleJdbcCall(dataSource)
 	    .withoutProcedureColumnMetaDataAccess()
 	    .withProcedureName("getLearningDisabilityOutput")
-	    .returningResultSet("learningDisabilities", new EthnicityResponseMapper());
+	    .returningResultSet("learningDisabilities", new ResponseMapper());
 	}
 
 	@Override 

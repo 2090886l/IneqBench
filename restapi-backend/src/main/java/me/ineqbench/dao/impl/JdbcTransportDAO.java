@@ -12,8 +12,16 @@ import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import me.ineqbench.dao.TransportDAO;
 import me.ineqbench.dbRequestPOJOs.Range;
 import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
-import me.ineqbench.mappers.EthnicityResponseMapper;
+import me.ineqbench.mappers.ResponseMapper;
 
+//Even though all DAOs implementations are essentially with the same signature 
+//Separate interfaces provided for each of them in case later
+//requirements are changed to provide easier and more flexible
+//maintenance
+
+//Component
+//Component Benefits: provide data for Transport
+//Component Obligation: requires age range and sex
 public class JdbcTransportDAO implements TransportDAO{
 	
 	private DataSource dataSource;
@@ -25,7 +33,7 @@ public class JdbcTransportDAO implements TransportDAO{
 		jdbcCall = new SimpleJdbcCall(dataSource)
 	    .withoutProcedureColumnMetaDataAccess()
 	    .withProcedureName("getCarOutput")
-	    .returningResultSet("carData", new EthnicityResponseMapper());
+	    .returningResultSet("carData", new ResponseMapper());
 	}
 
 	@Override 
@@ -34,6 +42,7 @@ public class JdbcTransportDAO implements TransportDAO{
 		jdbcCall.declareParameters(new SqlParameter("start_age", Types.INTEGER));
 		jdbcCall.declareParameters(new SqlParameter("end_age", Types.INTEGER));
 		jdbcCall.declareParameters(new SqlParameter("sexIn", Types.CHAR));
+		
 		Map mapResult = jdbcCall.execute(range.getStartOfRange(),range.getEndOfRange(),gender);
 		List<ResponseTuplePOJO> result = (List<ResponseTuplePOJO>)mapResult.get("carData");
 		return result;

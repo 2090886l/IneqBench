@@ -12,8 +12,17 @@ import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import me.ineqbench.dao.IllnessDAO;
 import me.ineqbench.dbRequestPOJOs.Range;
 import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
-import me.ineqbench.mappers.EthnicityResponseMapper;
+import me.ineqbench.mappers.ResponseMapper;
 
+//Even though all DAOs implementations are essentially with the same signature 
+//Separate interfaces provided for each of them in case later
+//requirements are changed to provide easier and more flexible
+//maintenance
+
+
+//Component
+//Component Benefits: provide data for Illnesses
+//Component Obligation: requires age range and sex
 public class JdbcIllnessDAO implements IllnessDAO{
 	
 	private DataSource dataSource;
@@ -25,7 +34,7 @@ public class JdbcIllnessDAO implements IllnessDAO{
 		jdbcCall = new SimpleJdbcCall(dataSource)
 	    .withoutProcedureColumnMetaDataAccess()
 	    .withProcedureName("getLTConditionOutput")
-	    .returningResultSet("illness", new EthnicityResponseMapper());
+	    .returningResultSet("illness", new ResponseMapper());
 	}
 
 	@Override 
