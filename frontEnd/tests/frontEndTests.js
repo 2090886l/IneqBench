@@ -2,18 +2,40 @@ describe('Hello World example', function() {
 
 	beforeEach(module('IneqBench'));
 
-	var HelloWorldController,
+	var MainController,
 	scope;
 
-	beforeEach(inject(function ($rootScope, $controller) {
+	beforeEach(inject(function ($rootScope, $controller, _$httpBackend_) {
 		scope = $rootScope.$new();
-		HelloWorldController = $controller('TestController', {
+		MainController = $controller('MainController', {
 			$scope: scope
 		});
+		$httpBackend = _$httpBackend_;
+
 	}));
 
-	it('works!', function () {
-		expect(scope.showSelectSection).toBeFalsy();
-	});
+	it('should return ethnicity correctly', inject(function ($http) {
+		var numberOfPeople = 100;
+		var ageGroup = "30-40";
+		var gender = "Males:";
+
+		$http.get('http://localhost:8080/getEthnicity?numberOfPeople='+numberOfPeople+
+            "&ageGroup="+ageGroup+
+            "&gender="+gender
+        ).success(function(data){
+            scope.data = data;
+        });
+
+		$httpBackend.whenGET('http://localhost:8080/getEthnicity?numberOfPeople='+numberOfPeople+
+            "&ageGroup="+ageGroup+
+            "&gender="+gender).respond({ 
+
+        	totalPopulation: 8076, totalDeprived: 41, upperRange: 8.056713981106709, lowerRange: 0.7936575231058619, estimate: 2.53838533927687
+   		});
+
+        $httpBackend.flush();
+		expect(scope.data).not.toBe(null);
+		expect(scope.data.totalDeprived).toEqual(41);
+	}));
 
 });
