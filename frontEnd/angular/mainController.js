@@ -87,6 +87,11 @@ app.controller('MainController',["$http","$scope",function($http,$scope){
     $scope.mentalHealthAndWellbeing = {};
     // Mental Health and Wellbeing end
 
+    // Function Declarations
+    $scope.roundData = roundData;
+    $scope.setResult = setResult;
+    // Function Declarations end
+
 
     //Output type Section Params
     $scope.visualization=null;
@@ -254,7 +259,7 @@ app.controller('MainController',["$http","$scope",function($http,$scope){
             setResult(data);
         });
     }
-    function getLivingInDeprivedArea(numberOfPeople, ageGroup,gender){
+    function getLivingInDeprivedArea(nullmberOfPeople, ageGroup,gender){
 
         $http.get('/api/getLivingInDeprivedArea?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
