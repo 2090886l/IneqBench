@@ -184,7 +184,7 @@ app.controller('MainController',["$http","$scope",function($http,$scope){
     //HTTP Restful Requests
     function getEthnicityData(numberOfPeople, ageGroup,gender){
 
-        $http.get('http://localhost:8080/getEthnicity?numberOfPeople='+numberOfPeople+
+        $http.get('/api/getEthnicity?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
         ).success(function(data){
@@ -194,7 +194,7 @@ app.controller('MainController',["$http","$scope",function($http,$scope){
 
     function getTaxBandData(numberOfPeople,ageGroup,gender){
 
-        $http.get('http://localhost:8080/getTaxBand?numberOfPeople='+numberOfPeople+
+        $http.get('/api/getTaxBand?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ ageGroup+
             "&gender="+gender
         ).success(function(data){
@@ -204,7 +204,7 @@ app.controller('MainController',["$http","$scope",function($http,$scope){
 
     function getLearningDisabilities(numberOfPeople, ageGroup,gender){//numberOfPeople: int ageGroup:list<int>
 
-        $http.get('http://localhost:8080/getLearningDisabilities?numberOfPeople='+numberOfPeople+
+        $http.get('/api/getLearningDisabilities?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
             ///
@@ -216,7 +216,7 @@ app.controller('MainController',["$http","$scope",function($http,$scope){
 
     function getUnpaidCarers(numberOfPeople, ageGroup,gender){
 
-        $http.get('http://localhost:8080/getUnpaidCarers?numberOfPeople='+numberOfPeople+
+        $http.get('/api/getUnpaidCarers?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
 
@@ -226,7 +226,7 @@ app.controller('MainController',["$http","$scope",function($http,$scope){
     }
     function getEducationalAttainment(numberOfPeople, ageGroup,gender){
 
-        $http.get('http://localhost:8080/getEducationalAttainment?numberOfPeople='+numberOfPeople+
+        $http.get('/api/getEducationalAttainment?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
 
@@ -236,7 +236,7 @@ app.controller('MainController',["$http","$scope",function($http,$scope){
     }
     function getTransport(numberOfPeople, ageGroup,gender){
 
-        $http.get('http://localhost:8080/getTransport?numberOfPeople='+numberOfPeople+
+        $http.get('/api/getTransport?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
 
@@ -246,7 +246,7 @@ app.controller('MainController',["$http","$scope",function($http,$scope){
     }
     function getUnemployed(numberOfPeople, ageGroup,gender){
 
-        $http.get('http://localhost:8080/getUnemployed?numberOfPeople='+numberOfPeople+
+        $http.get('/api/getUnemployed?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
 
@@ -256,7 +256,7 @@ app.controller('MainController',["$http","$scope",function($http,$scope){
     }
     function getLivingInDeprivedArea(numberOfPeople, ageGroup,gender){
 
-        $http.get('http://localhost:8080/getLivingInDeprivedArea?numberOfPeople='+numberOfPeople+
+        $http.get('/api/getLivingInDeprivedArea?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
 
@@ -266,7 +266,7 @@ app.controller('MainController',["$http","$scope",function($http,$scope){
     }
     function getHomeless(numberOfPeople, ageGroup,gender){
 
-        $http.get('http://localhost:8080/getHomeless?numberOfPeople='+numberOfPeople+
+        $http.get('/api/getHomeless?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
 
@@ -276,7 +276,7 @@ app.controller('MainController',["$http","$scope",function($http,$scope){
     }
     function getLowPay(numberOfPeople, ageGroup,gender){
 
-        $http.get('http://localhost:8080/getLowPay?numberOfPeople='+numberOfPeople+
+        $http.get('/api/getLowPay?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
 
@@ -286,7 +286,7 @@ app.controller('MainController',["$http","$scope",function($http,$scope){
     }
     function getFuelPoverty(numberOfPeople, ageGroup,gender){
 
-        $http.get('http://localhost:8080/getFuelPoverty?numberOfPeople='+numberOfPeople+
+        $http.get('/api/getFuelPoverty?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
 
@@ -296,7 +296,7 @@ app.controller('MainController',["$http","$scope",function($http,$scope){
     }
     function getOffenders(numberOfPeople, ageGroup,gender){
 
-        $http.get('http://localhost:8080/getOffenders?numberOfPeople='+numberOfPeople+
+        $http.get('/api/getOffenders?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
 
@@ -306,7 +306,7 @@ app.controller('MainController',["$http","$scope",function($http,$scope){
     }
     function getIllness(numberOfPeople, ageGroup,gender){
 
-        $http.get('http://localhost:8080/getIllness?numberOfPeople='+numberOfPeople+
+        $http.get('/api/getIllness?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
 
@@ -316,7 +316,7 @@ app.controller('MainController',["$http","$scope",function($http,$scope){
     }
     function getMentalHealthAndWellbeing(numberOfPeople, ageGroup,gender){
 
-        $http.get('http://localhost:8080/getMentalHealthAndWellbeing?numberOfPeople='+numberOfPeople+
+        $http.get('/api/getMentalHealthAndWellbeing?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
 
@@ -462,11 +462,11 @@ app.controller('MainController',["$http","$scope",function($http,$scope){
 
     // Post request and get request examples
 
-    //$http.post("http://localhost:8080/addCustomer", {name:"alex",age:"21"}).success(function(data) {
+    //$http.post("/api/addCustomer", {name:"alex",age:"21"}).success(function(data) {
     //    $scope.hello = data;
     //    console.log(data);
     //})
-    //$http.get('http://localhost:8080/getCustomerById?id=2').success(function(data){
+    //$http.get('/api/getCustomerById?id=2').success(function(data){
     //    console.log(data);
     //});
 
