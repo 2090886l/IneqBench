@@ -1,3 +1,4 @@
+DELIMITER ;;
 CREATE DEFINER=`ineqbench_user`@`%` PROCEDURE `getEthnicOutput`(IN start_age int(2), IN end_age int(2), IN sexIn VARCHAR(25))
 BEGIN
 SELECT (
@@ -16,4 +17,5 @@ WHERE AGE BETWEEN start_age AND end_age),0)
 FROM ETHNIC_GROUP
 WHERE SEX = sexIn
 AND AGE != 'Total') AS 'totalDeprived';
-END
+END ;;
+DELIMITER ;

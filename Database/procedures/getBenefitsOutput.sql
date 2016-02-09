@@ -1,3 +1,4 @@
+DELIMITER ;;
 CREATE DEFINER=`ineqbench_user`@`%` PROCEDURE `getBenefitsOutput`(IN start_age int(2), IN end_age int(2), IN sexIn VARCHAR(25))
 BEGIN
 SELECT (
@@ -12,4 +13,5 @@ SELECT (
 		REPLACE(FORMAT( BENEFITS *
         (SELECT SUM(PERCENT)/100 FROM POP_AGE_PERCENT WHERE AGE BETWEEN start_age AND end_age),0),',','')
 		FROM BENEFIT_TOTALS WHERE GENDER=sexIn) AS 'totalDeprived';
-END
+END ;;
+DELIMITER ;
