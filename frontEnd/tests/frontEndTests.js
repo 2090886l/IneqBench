@@ -29,6 +29,13 @@ describe('Front end tests', function() {
 
 		});
 
+		it('should set gender correctly', function() {
+			scope.wrapper.gender = "Males:";
+			scope.genderClicked();
+			expect(scope.isMaleGenderCheckedIneq).toBe(true);
+			expect(scope.isFemaleGenderChecked).toBe(false);
+		});
+
 	});
 	describe('http tests', function() {
 		beforeEach(inject(function (_$httpBackend_) {
