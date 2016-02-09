@@ -4,10 +4,9 @@
 
 ## Getting Started
 
-install npm : $sudo apt-get install npm
-install dependencies: $npm install
-install karma command line: $sudo npm install karma-cli
-to run the tests do : $karma start ineqbench.conf.js
+To use this theme, choose one of the following options to get started:
+* Download the latest release on Start Bootstrap
+* Fork this repository on GitHub
 
 ## Bugs and Issues
 

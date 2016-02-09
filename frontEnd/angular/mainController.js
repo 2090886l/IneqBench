@@ -1,6 +1,8 @@
 var app = angular.module('IneqBench',[]);
 
 app.controller('MainController',["$http","$scope",function($http,$scope){
+
+    var url = "http://localhost:8080";
     //System state
     $scope.showSelectSection = false;
     $scope.showDeprivationCriteria = false;
@@ -86,11 +88,6 @@ app.controller('MainController',["$http","$scope",function($http,$scope){
     $scope.mentalHealthAndWellbeingViewShow = false;
     $scope.mentalHealthAndWellbeing = {};
     // Mental Health and Wellbeing end
-
-    // Function Declarations
-    $scope.roundData = roundData;
-    $scope.setResult = setResult;
-    // Function Declarations end
 
 
     //Output type Section Params
@@ -187,131 +184,120 @@ app.controller('MainController',["$http","$scope",function($http,$scope){
     //End Miscellaneous
 
     //HTTP Restful Requests
-    function getEthnicityData(numberOfPeople, ageGroup,gender){
+    function getEthnicityData(numberOfPeople, ageGroup,gender,locality){
 
-        $http.get('/api/getEthnicity?numberOfPeople='+numberOfPeople+
+        $http.get(url+'/getEthnicity?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
-            "&gender="+gender
+            "&gender="+gender+
+            "&locality=" + locality
         ).success(function(data){
             setResult(data);
         });
     }
 
-    function getTaxBandData(numberOfPeople,ageGroup,gender){
+    function getTaxBandData(numberOfPeople,ageGroup,gender,locality){
 
-        $http.get('/api/getTaxBand?numberOfPeople='+numberOfPeople+
+        $http.get(url+'/getTax?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ ageGroup+
-            "&gender="+gender
+            "&gender="+gender +
+            "&locality=" + locality
         ).success(function(data){
             setResult(data);
         })
     }
 
-    function getLearningDisabilities(numberOfPeople, ageGroup,gender){//numberOfPeople: int ageGroup:list<int>
+    function getLearningDisabilities(numberOfPeople, ageGroup,gender,locality){
 
-        $http.get('/api/getLearningDisabilities?numberOfPeople='+numberOfPeople+
+        $http.get(url+'/getLearningDisabilities?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
-            "&gender="+gender
-            ///
+            "&gender="+gender+
+            "&locality=" + locality
         ).success(function(data){
             setResult(data);
         });
     }
 
 
-    function getUnpaidCarers(numberOfPeople, ageGroup,gender){
+    function getUnpaidCarers(numberOfPeople, ageGroup,gender,locality){
 
-        $http.get('/api/getUnpaidCarers?numberOfPeople='+numberOfPeople+
+        $http.get(url+'/getUnpaidCarers?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
-            "&gender="+gender
+            "&gender="+gender+
+            "&locality=" + locality
 
         ).success(function(data){
             setResult(data);
         });
     }
-    function getEducationalAttainment(numberOfPeople, ageGroup,gender){
+    function getEducationalAttainment(numberOfPeople, ageGroup,gender,locality){
 
-        $http.get('/api/getEducationalAttainment?numberOfPeople='+numberOfPeople+
+        $http.get(url+'/getEducationalAttainment?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
-            "&gender="+gender
+            "&gender="+gender+
+            "&locality=" + locality
 
         ).success(function(data){
             setResult(data);
         });
     }
-    function getTransport(numberOfPeople, ageGroup,gender){
+    function getTransport(numberOfPeople, ageGroup,gender,locality){
 
-        $http.get('/api/getTransport?numberOfPeople='+numberOfPeople+
+        $http.get(url+'/getTransport?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
-            "&gender="+gender
+            "&gender="+gender+
+            "&locality=" + locality
 
         ).success(function(data){
             setResult(data);
         });
     }
-    function getUnemployed(numberOfPeople, ageGroup,gender){
+    function getUnemployed(numberOfPeople, ageGroup,gender,locality){
 
-        $http.get('/api/getUnemployed?numberOfPeople='+numberOfPeople+
+        $http.get(url+'/getUnemployed?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
-            "&gender="+gender
+            "&gender="+gender+
+            "&locality=" + locality
 
         ).success(function(data){
             setResult(data);
         });
     }
-    function getLivingInDeprivedArea(nullmberOfPeople, ageGroup,gender){
+    function getLivingInDeprivedArea(numberOfPeople, ageGroup,gender,locality){
 
-        $http.get('/api/getLivingInDeprivedArea?numberOfPeople='+numberOfPeople+
+        $http.get(url+'/getLivingInDeprivedArea?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
-            "&gender="+gender
+            "&gender="+gender+
+            "&locality=" + locality
 
         ).success(function(data){
             setResult(data);
         });
     }
-    function getHomeless(numberOfPeople, ageGroup,gender){
+    function getHomeless(numberOfPeople, ageGroup,gender,locality){
 
-        $http.get('/api/getHomeless?numberOfPeople='+numberOfPeople+
+        $http.get(url+'/getHomeless?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
-            "&gender="+gender
+            "&gender="+gender+
+            "&locality=" + locality
 
         ).success(function(data){
             setResult(data);
         });
     }
-    function getLowPay(numberOfPeople, ageGroup,gender){
+    function getLowPay(numberOfPeople, ageGroup,gender,locality){
 
-        $http.get('/api/getLowPay?numberOfPeople='+numberOfPeople+
+        $http.get(url+'/getLowPay?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
-            "&gender="+gender
+            "&gender="+gender+
+            "&locality=" + locality
 
         ).success(function(data){
             setResult(data);
         });
     }
-    function getFuelPoverty(numberOfPeople, ageGroup,gender){
+    function getFuelPoverty(numberOfPeople, ageGroup,gender,locality){
 
-        $http.get('/api/getFuelPoverty?numberOfPeople='+numberOfPeople+
-            "&ageGroup="+ageGroup+
-            "&gender="+gender
-
-        ).success(function(data){
-            setResult(data);
-        });
-    }
-    function getOffenders(numberOfPeople, ageGroup,gender){
-
-        $http.get('/api/getOffenders?numberOfPeople='+numberOfPeople+
-            "&ageGroup="+ageGroup+
-            "&gender="+gender
-
-        ).success(function(data){
-            setResult(data);
-        });
-    }
-    function getIllness(numberOfPeople, ageGroup,gender){
-
-        $http.get('/api/getIllness?numberOfPeople='+numberOfPeople+
+        $http.get(url+'/getFuelPoverty?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
             "&gender="+gender
 
@@ -319,11 +305,34 @@ app.controller('MainController',["$http","$scope",function($http,$scope){
             setResult(data);
         });
     }
-    function getMentalHealthAndWellbeing(numberOfPeople, ageGroup,gender){
+    function getOffenders(numberOfPeople, ageGroup,gender,locality){
 
-        $http.get('/api/getMentalHealthAndWellbeing?numberOfPeople='+numberOfPeople+
+        $http.get(url+'/getOffenders?numberOfPeople='+numberOfPeople+
             "&ageGroup="+ageGroup+
-            "&gender="+gender
+            "&gender="+gender+
+            "&locality=" + locality
+
+        ).success(function(data){
+            setResult(data);
+        });
+    }
+    function getIllness(numberOfPeople, ageGroup,gender,locality){
+
+        $http.get(url+'/getIllness?numberOfPeople='+numberOfPeople+
+            "&ageGroup="+ageGroup+
+            "&gender="+gender+
+            "&locality=" + locality
+
+        ).success(function(data){
+            setResult(data);
+        });
+    }
+    function getMentalHealthAndWellbeing(numberOfPeople, ageGroup,gender,locality){
+
+        $http.get(url+'/getMentalHealthAndWellbeing?numberOfPeople='+numberOfPeople+
+            "&ageGroup="+ageGroup+
+            "&gender="+gender+
+            "&locality=" + locality
 
         ).success(function(data){
             setResult(data);
@@ -425,33 +434,33 @@ app.controller('MainController',["$http","$scope",function($http,$scope){
     $scope.visualize = function(){
         $scope.isVisualizing=true;
         if ($scope.wrapper.deprivationCriteria=="ethnicity")
-            getEthnicityData($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender);
+            getEthnicityData($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender,$scope.wrapper.region.name);
         else if ($scope.wrapper.deprivationCriteria=="taxBand")
-            getTaxBandData($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender);
+            getTaxBandData($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender,$scope.wrapper.region.name);
         else if ($scope.wrapper.deprivationCriteria=="unpaidCarers")
-            getUnpaidCarers($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender);
+            getUnpaidCarers($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender,$scope.wrapper.region.name);
         else if ($scope.wrapper.deprivationCriteria=="learningDisabilities")
-            getLearningDisabilities($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender);
+            getLearningDisabilities($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender,$scope.wrapper.region.name);
         else if ($scope.wrapper.deprivationCriteria=="educationalAttainment")
-            getEducationalAttainment($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender);
+            getEducationalAttainment($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender,$scope.wrapper.region.name);
         else if ($scope.wrapper.deprivationCriteria=="transport")
-            getTransport($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender);
+            getTransport($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender,$scope.wrapper.region,$scope.wrapper.region.name);
         else if ($scope.wrapper.deprivationCriteria=="unemployed")
-            getUnemployed($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender);
+            getUnemployed($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender,$scope.wrapper.region.name);
         else if ($scope.wrapper.deprivationCriteria=="livingInDeprivedArea")
-            getLivingInDeprivedArea($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender);
+            getLivingInDeprivedArea($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender,$scope.wrapper.region.name);
         else if ($scope.wrapper.deprivationCriteria=="homeless")
-            getHomeless($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender);
+            getHomeless($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender,$scope.wrapper.region.name);
         else if ($scope.wrapper.deprivationCriteria=="lowPay")
-            getLowPay($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender);
+            getLowPay($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender,$scope.wrapper.region.name);
         else if ($scope.wrapper.deprivationCriteria=="fuelPoverty")
-            getFuelPoverty($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender);
+            getFuelPoverty($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender,$scope.wrapper.region.name);
         else if ($scope.wrapper.deprivationCriteria=="offenders")
-            getOffenders($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender);
+            getOffenders($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender,$scope.wrapper.region.name);
         else if ($scope.wrapper.deprivationCriteria=="illnesses")
-            getIllness($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender);
+            getIllness($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender,$scope.wrapper.region.name);
         else if ($scope.wrapper.deprivationCriteria=="mentalHealthAndWellbeing")
-            getMentalHealthAndWellbeing($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender);
+            getMentalHealthAndWellbeing($scope.wrapper.numberOfPeople, $scope.wrapper.ageRange.rangeInt,$scope.wrapper.gender,$scope.wrapper.region.name);
     };
 
     //Setting params for gender mapping gender selected to gender param
