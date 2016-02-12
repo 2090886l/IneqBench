@@ -2,15 +2,29 @@ package me.ineqbench.dao;
 
 import java.util.List;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
+
 import me.ineqbench.dbRequestPOJOs.Gender;
 import me.ineqbench.dbRequestPOJOs.Range;
 import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
+import me.ineqbench.tests.util.ClientRequestPOJO;
 
 //Even though all DAOs are essentially with the same signature 
 //Separate interfaces provided for each of them in case later
 //requirements are changed to provide easier and more flexible
 //maintenance
+
+//Note: Initially ClientRequestPOJO object was used for storing client
+//request data but unfortunately (even though is a better system design
+//practice compared to the long list of parameters data clumps
+//is not possible to be implemented in this was as Mockite the 
+//framework testing the application creating mocks cannot identify
+//that both function calls are the same when it mocks the findData call
+//due to separate Application and Test application context - Spring MVC 
+//limitation - trade-off nothing can be done about it
 public interface EthnicityDAO {
-	public List<ResponseTuplePOJO> findData(String gender, Range range);
+	public ResponseTuplePOJO findData(int ageGroupStart, int ageGroupEnd,
+			String gender, String locality);
 }
 

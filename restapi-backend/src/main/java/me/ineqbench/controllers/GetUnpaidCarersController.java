@@ -29,7 +29,7 @@ public class GetUnpaidCarersController {
     	ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
     	UnpaidCarersDAO unpaidCarersDAO = (UnpaidCarersDAO)context.getBean("unpaidCarersDAO");
     
-    	List<ResponseTuplePOJO> unpaidCarersDBREsponse = unpaidCarersDAO.findData(gender, new Range(ageGroup[0],ageGroup[1]));
+    	ResponseTuplePOJO unpaidCarersDBREsponse = unpaidCarersDAO.findData(gender, new Range(ageGroup[0],ageGroup[1]));
     	
     	ClientResponsePOJO estimate = Analyser.getEstimate(unpaidCarersDBREsponse, numberOfPeople);
     	return estimate;

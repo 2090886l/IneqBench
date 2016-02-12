@@ -30,7 +30,7 @@ public class GetLearningDisabilitiesController {
     	ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
     	LearningDisabilitiesDAO learningDisabilitiesDAO = (LearningDisabilitiesDAO)context.getBean("learningDisabilitiesDAO");
     
-    	List<ResponseTuplePOJO> learningDisabilitiesDBResponse = learningDisabilitiesDAO.findData(gender, new Range(ageGroup[0],ageGroup[1]));
+    	ResponseTuplePOJO learningDisabilitiesDBResponse = learningDisabilitiesDAO.findData(gender, new Range(ageGroup[0],ageGroup[1]));
     	ClientResponsePOJO estimate = Analyser.getEstimate(learningDisabilitiesDBResponse, numberOfPeople);
     	return estimate;
     }	

@@ -30,7 +30,7 @@ public class GetTransportController {
     	ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
     	TransportDAO transportDAO = (TransportDAO)context.getBean("transportDAO");
 
-    	List<ResponseTuplePOJO> transportDBREsponse = transportDAO.findData(gender, new Range(ageGroup[0],ageGroup[1]));
+    	ResponseTuplePOJO transportDBREsponse = transportDAO.findData(gender, new Range(ageGroup[0],ageGroup[1]));
     	
     	ClientResponsePOJO estimate = Analyser.getEstimate(transportDBREsponse, numberOfPeople);
     	return estimate;

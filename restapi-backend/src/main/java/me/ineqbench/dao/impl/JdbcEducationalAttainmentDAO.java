@@ -6,8 +6,10 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
+import org.springframework.stereotype.Component;
 
 import me.ineqbench.dao.EducationalAttainmentDAO;
 import me.ineqbench.dbRequestPOJOs.Range;
@@ -22,6 +24,7 @@ import me.ineqbench.mappers.ResponseMapper;
 //Component
 //Component Benefits: provide data for educational attainment
 //Component Obligation: requires age range and sex
+
 public class JdbcEducationalAttainmentDAO implements EducationalAttainmentDAO{
 	
 	private DataSource dataSource;
@@ -36,7 +39,7 @@ public class JdbcEducationalAttainmentDAO implements EducationalAttainmentDAO{
 	}
 
 	@Override 
-	public List<ResponseTuplePOJO> findData(String gender, Range range) {
+	public ResponseTuplePOJO findData(String gender, Range range) {
     
 		jdbcCall.declareParameters(new SqlParameter("start_age", Types.INTEGER));
 		jdbcCall.declareParameters(new SqlParameter("end_age", Types.INTEGER));
@@ -44,7 +47,7 @@ public class JdbcEducationalAttainmentDAO implements EducationalAttainmentDAO{
 		
 		Map mapResult = jdbcCall.execute(range.getStartOfRange(),range.getEndOfRange(),gender);
 		List<ResponseTuplePOJO> result = (List<ResponseTuplePOJO>)mapResult.get("educationalAttainment");
-		return result;
+		return result.get(0);
 	}
 	
 }

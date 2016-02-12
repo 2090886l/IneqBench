@@ -4,10 +4,13 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-<!-- 	<bean id="ethnicityDAO" name="ethnicityDAO" class="me.ineqbench.dao.impl.JdbcEthnicityDAO">
+	
+	<!-- <bean id="ethnicityDAO" class="me.ineqbench.dao.impl.JdbcEthnicityDAO">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 	 -->
+	<bean id="getEthnicityController" class="me.ineqbench.controllers.GetEthnicityController">
+	</bean>
 	<bean id="transportDAO" class="me.ineqbench.dao.impl.JdbcTransportDAO">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>

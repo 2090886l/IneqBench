@@ -38,14 +38,14 @@ public class JdbcIllnessDAO implements IllnessDAO{
 	}
 
 	@Override 
-	public List<ResponseTuplePOJO> findData(String gender, Range range) {
+	public ResponseTuplePOJO findData(String gender, Range range) {
     
 		jdbcCall.declareParameters(new SqlParameter("start_age", Types.INTEGER));
 		jdbcCall.declareParameters(new SqlParameter("end_age", Types.INTEGER));
 		
 		Map mapResult = jdbcCall.execute(range.getStartOfRange(),range.getEndOfRange());
 		List<ResponseTuplePOJO> result = (List<ResponseTuplePOJO>)mapResult.get("illness");
-		return result;
+		return result.get(0);
 	}
 	
 }

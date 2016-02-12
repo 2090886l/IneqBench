@@ -36,7 +36,7 @@ public class JdbcTaxDAO implements TaxDAO{
 	}
 
 	@Override 
-	public List<ResponseTuplePOJO> findData(String gender, Range range, String locality) {
+	public ResponseTuplePOJO findData(String gender, Range range, String locality) {
     
 		jdbcCall.declareParameters(new SqlParameter("start_age", Types.INTEGER));
 		jdbcCall.declareParameters(new SqlParameter("end_age", Types.INTEGER));
@@ -45,7 +45,7 @@ public class JdbcTaxDAO implements TaxDAO{
 		
 		Map mapResult = jdbcCall.execute(range.getStartOfRange(),range.getEndOfRange(),gender,locality);
 		List<ResponseTuplePOJO> result = (List<ResponseTuplePOJO>)mapResult.get("taxOutput");
-		return result;
+		return result.get(0);
 	}
 	
 }

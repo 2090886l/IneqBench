@@ -37,7 +37,7 @@ public class JdbcTransportDAO implements TransportDAO{
 	}
 
 	@Override 
-	public List<ResponseTuplePOJO> findData(String gender, Range range) {
+	public ResponseTuplePOJO findData(String gender, Range range) {
     
 		jdbcCall.declareParameters(new SqlParameter("start_age", Types.INTEGER));
 		jdbcCall.declareParameters(new SqlParameter("end_age", Types.INTEGER));
@@ -45,7 +45,7 @@ public class JdbcTransportDAO implements TransportDAO{
 		
 		Map mapResult = jdbcCall.execute(range.getStartOfRange(),range.getEndOfRange(),gender);
 		List<ResponseTuplePOJO> result = (List<ResponseTuplePOJO>)mapResult.get("carData");
-		return result;
+		return result.get(0);
 	}
 	
 }

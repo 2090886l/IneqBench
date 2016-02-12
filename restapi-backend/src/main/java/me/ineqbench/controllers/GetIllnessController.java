@@ -29,7 +29,7 @@ public class GetIllnessController {
     	ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
     	IllnessDAO illnessDAO = (IllnessDAO)context.getBean("illnessDAO");
     
-    	List<ResponseTuplePOJO> illnessDBResponse = illnessDAO.findData(gender, new Range(ageGroup[0],ageGroup[1]));
+    	ResponseTuplePOJO illnessDBResponse = illnessDAO.findData(gender, new Range(ageGroup[0],ageGroup[1]));
     	ClientResponsePOJO estimate = Analyser.getEstimate(illnessDBResponse, numberOfPeople);
     	return estimate;
     }	
