@@ -5,38 +5,62 @@
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
 	
-	<!-- <bean id="ethnicityDAO" class="me.ineqbench.dao.impl.JdbcEthnicityDAO">
-		<property name="dataSource" ref="dataSource"/>
-	</bean>
-	 -->
+ 	<bean id="ethnicityDAO" name="ethnicityDAO" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="me.ineqbench.controllers.dao.JdbcEthnicityDAO"/>
+    </bean>
+     
+     <bean id="educationalAttainmentDAO" name="educationalAttainmentDAO" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="me.ineqbench.controllers.dao.JdbcEducationalAttainmentDAO"/>
+    </bean>
+    
+    <bean id="transportDAO" name="transportDAO" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="me.ineqbench.controllers.dao.JdbcTransportDAO"/>
+    </bean>
+    
+    <bean id="fuelPovertyDAO" name="fuelPovertyDAO" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="me.ineqbench.controllers.dao.JdbcFuelPovertyDAO"/>
+    </bean>
+    
+    <bean id="learningDisabilitiesDAO" name="learningDisabilitiesDAO" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="me.ineqbench.controllers.dao.JdbcLearningDisabilitiesDAO"/>
+    </bean>
+   
+    <bean id="unpaidCarersDAO" name="unpaidCarersDAO" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="me.ineqbench.controllers.dao.JdbcUnpaidCarersDAO"/>
+    </bean>
+    
+    <bean id="illnessDAO" name="illnessDAO" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="me.ineqbench.controllers.dao.JdbcIllnessDAO"/>
+    </bean>
+    
+    <bean id="taxDAO" name="taxDAO" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="me.ineqbench.controllers.dao.JdbcTaxDAO"/>
+    </bean>
+    
+    <!--  -->
 	<bean id="getEthnicityController" class="me.ineqbench.controllers.GetEthnicityController">
 	</bean>
-	<bean id="transportDAO" class="me.ineqbench.dao.impl.JdbcTransportDAO">
-		<property name="dataSource" ref="dataSource"/>
+	
+	<bean id="getEducationalAttainmentController" class="me.ineqbench.controllers.GetEducationalAttainmentController">
 	</bean>
 	
-	<bean id="fuelPovertyDAO" class="me.ineqbench.dao.impl.JdbcFuelPovertyDAO">
-		<property name="dataSource" ref="dataSource"/>
+	<bean id="GetFuelPovertyController" class="me.ineqbench.controllers.GetFuelPovertyController">
 	</bean>
 	
-	<bean id="learningDisabilitiesDAO" class="me.ineqbench.dao.impl.JdbcLearningDisabilitiesDAO">
-		<property name="dataSource" ref="dataSource"/>
+	<bean id="GetIllnessController" class="me.ineqbench.controllers.GetIllnessController">
 	</bean>
 	
-	<bean id="unpaidCarersDAO" class="me.ineqbench.dao.impl.JdbcUnpaidCarersDAO">
-		<property name="dataSource" ref="dataSource"/>
+	<bean id="GetLearningDisabilitiesController" class="me.ineqbench.controllers.GetLearningDisabilitiesController">
 	</bean>
 	
-	<bean id="educationalAttainmentDAO" class="me.ineqbench.dao.impl.JdbcEducationalAttainmentDAO">
-		<property name="dataSource" ref="dataSource"/>
+	<bean id="GetTaxController" class="me.ineqbench.controllers.GetTaxController">
 	</bean>
 	
-	<bean id="illnessDAO" class="me.ineqbench.dao.impl.JdbcIllnessDAO">
-		<property name="dataSource" ref="dataSource"/>
+	<bean id="GetTransportController" class="me.ineqbench.controllers.GetTransportController">
 	</bean>
 	
-	<bean id="taxDAO" class="me.ineqbench.dao.impl.JdbcTaxDAO">
-		<property name="dataSource" ref="dataSource"/>
+	<bean id="GetUnpaidCarersController" class="me.ineqbench.controllers.GetUnpaidCarersController">
 	</bean>
-
+	<!--  -->
+	
 </beans>

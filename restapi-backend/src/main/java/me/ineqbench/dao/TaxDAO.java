@@ -10,5 +10,6 @@ import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
 //requirements are changed to provide easier and more flexible
 //maintenance
 public interface TaxDAO {
-	public ResponseTuplePOJO findData(String gender, Range range, String locality);
+	public ResponseTuplePOJO findData(int ageGroupStart, int ageGroupEnd, 
+			String gender, String locality);
 }

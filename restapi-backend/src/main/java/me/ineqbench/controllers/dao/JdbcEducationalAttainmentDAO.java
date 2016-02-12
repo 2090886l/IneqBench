@@ -1,4 +1,4 @@
-package me.ineqbench.dao.impl;
+package me.ineqbench.controllers.dao;
 
 import java.sql.Types;
 import java.util.List;
@@ -7,6 +7,8 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Component;
@@ -24,14 +26,17 @@ import me.ineqbench.mappers.ResponseMapper;
 //Component
 //Component Benefits: provide data for educational attainment
 //Component Obligation: requires age range and sex
-
+@Component
 public class JdbcEducationalAttainmentDAO implements EducationalAttainmentDAO{
 	
-	private DataSource dataSource;
+
 	private SimpleJdbcCall jdbcCall;
-	
-	public void setDataSource(DataSource dataSource) {
-	 
+
+	private void setJdbcCall() {
+		//Get driver bean and inject in jdbc
+		ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
+		DataSource dataSource = (DataSource)context.getBean("dataSource");
+		
 		jdbcCall = new SimpleJdbcCall(dataSource)
 	    .withoutProcedureColumnMetaDataAccess()
 	    .withProcedureName("getQualificationOutput")
@@ -39,15 +44,23 @@ public class JdbcEducationalAttainmentDAO implements EducationalAttainmentDAO{
 	}
 
 	@Override 
-	public ResponseTuplePOJO findData(String gender, Range range) {
-    
+	public ResponseTuplePOJO findData(int ageGroupStart, int ageGroupEnd, 
+			String gender, String locality) {
+		setJdbcCall();
+		
 		jdbcCall.declareParameters(new SqlParameter("start_age", Types.INTEGER));
 		jdbcCall.declareParameters(new SqlParameter("end_age", Types.INTEGER));
 		jdbcCall.declareParameters(new SqlParameter("sexIn", Types.CHAR));
+		jdbcCall.declareParameters(new SqlParameter("locality", Types.CHAR));
 		
-		Map mapResult = jdbcCall.execute(range.getStartOfRange(),range.getEndOfRange(),gender);
+		Map mapResult = jdbcCall.execute(ageGroupStart,
+				ageGroupEnd,
+				gender,
+				locality);
+		
 		List<ResponseTuplePOJO> result = (List<ResponseTuplePOJO>)mapResult.get("educationalAttainment");
 		return result.get(0);
 	}
+
 	
 }

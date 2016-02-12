@@ -6,17 +6,17 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Component;
 
-import me.ineqbench.dao.EthnicityDAO;
+import me.ineqbench.dao.IllnessDAO;
+import me.ineqbench.dao.TaxDAO;
+import me.ineqbench.dbRequestPOJOs.Range;
 import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
 import me.ineqbench.mappers.ResponseMapper;
-import me.ineqbench.tests.util.ClientRequestPOJO;
 
 //Even though all DAOs implementations are essentially with the same signature 
 //Separate interfaces provided for each of them in case later
@@ -24,10 +24,10 @@ import me.ineqbench.tests.util.ClientRequestPOJO;
 //maintenance
 
 //Component
-//Component Benefits: provide data for Ethnicity
+//Component Benefits: provide data for tax bands
 //Component Obligation: requires age range and sex
 @Component
-public class JdbcEthnicityDAO implements EthnicityDAO{
+public class JdbcTaxDAO implements TaxDAO{
 
 	private SimpleJdbcCall jdbcCall;
 
@@ -38,8 +38,8 @@ public class JdbcEthnicityDAO implements EthnicityDAO{
 		
 		jdbcCall = new SimpleJdbcCall(dataSource)
 	    .withoutProcedureColumnMetaDataAccess()
-	    .withProcedureName("getEthnicOutput")
-	    .returningResultSet("ethnicityData", new ResponseMapper());
+	    .withProcedureName("getTaxOutput")
+	    .returningResultSet("taxOutput", new ResponseMapper());
 	}
 
 	@Override 
@@ -57,7 +57,7 @@ public class JdbcEthnicityDAO implements EthnicityDAO{
 				gender,
 				locality);
 		
-		List<ResponseTuplePOJO> result = (List<ResponseTuplePOJO>)mapResult.get("ethnicityData");
+		List<ResponseTuplePOJO> result = (List<ResponseTuplePOJO>)mapResult.get("taxOutput");
 		return result.get(0);
 	}
 	

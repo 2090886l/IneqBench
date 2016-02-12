@@ -2,9 +2,11 @@ package me.ineqbench.controllers;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import me.ineqbench.analyst.Analyser;
 import me.ineqbench.clientResponsePojos.ClientResponsePOJO;
+import me.ineqbench.controllers.dao.JdbcEthnicityDAO;
+import me.ineqbench.controllers.dao.JdbcFuelPovertyDAO;
 import me.ineqbench.dao.FuelPovertyDAO;
 import me.ineqbench.dbRequestPOJOs.Range;
 import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
@@ -20,17 +24,18 @@ import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
 @RestController
 public class GetFuelPovertyController {
 
-    @CrossOrigin
-    @RequestMapping(value="/getFuelPoverty", method = RequestMethod.GET)
-    //Get fuel poverty ClientResponsePOJO
-    public  ClientResponsePOJO getFuelPoverty(@RequestParam(value="numberOfPeople") int numberOfPeople, @RequestParam(value="ageGroup") int[] ageGroup,
-    		@RequestParam(value="gender") String gender){
-    	
-    	ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
-    	FuelPovertyDAO fuelPovertyDAO = (FuelPovertyDAO)context.getBean("fuelPovertyDAO");
-    
-    	ResponseTuplePOJO fuelPovertyDBResponse = fuelPovertyDAO.findData(gender, new Range(ageGroup[0],ageGroup[1]));
-    	ClientResponsePOJO estimate = Analyser.getEstimate(fuelPovertyDBResponse, numberOfPeople);
+	@Autowired
+	JdbcFuelPovertyDAO fuelPovertyDAO;
+
+	@CrossOrigin
+    @RequestMapping(value="/getFuelPoverty/{numberOfPeople}/{ageGroupStart}/{ageGroupEnd}/{gender}/{locality}", 
+    	method = RequestMethod.GET)
+    ////Get Ethnicity ClientResponsePOJO
+    public  ClientResponsePOJO getFuelPovertyData(@PathVariable(value="numberOfPeople") int numberOfPeople, @PathVariable(value="ageGroupStart") int ageGroupStart,
+    		 @PathVariable(value="ageGroupEnd") int ageGroupEnd,@PathVariable(value="gender") String gender, @PathVariable(value="locality") String locality){
+		
+		ResponseTuplePOJO fuelPoverrtDBREsponse = fuelPovertyDAO.findData(ageGroupStart, ageGroupEnd, gender, locality);
+    	ClientResponsePOJO estimate = Analyser.getEstimate(fuelPoverrtDBREsponse, numberOfPeople);
     	return estimate;
     }
  

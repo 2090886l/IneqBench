@@ -10,5 +10,6 @@ import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
 //requirements are changed to provide easier and more flexible
 //maintenance
 public interface UnpaidCarersDAO {
-	public ResponseTuplePOJO findData(String gender, Range range);
+	public ResponseTuplePOJO findData(int ageGroupStart, int ageGroupEnd, 
+			String gender, String locality);
 }

@@ -11,7 +11,4 @@
         <property name="useCodeAsDefaultMessage" value="true"/>
     </bean>
  
-     <bean id="ethnicityDAO" name="ethnicityDAO" class="org.mockito.Mockito" factory-method="mock">
-        <constructor-arg value="me.ineqbench.controllers.dao.JdbcEthnicityDAO"/>
-    </bean>
 </beans>

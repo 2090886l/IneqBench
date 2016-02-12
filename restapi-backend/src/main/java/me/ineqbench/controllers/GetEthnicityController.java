@@ -28,7 +28,6 @@ public class GetEthnicityController {
     ////Get Ethnicity ClientResponsePOJO
     public  ClientResponsePOJO getEthnicityData(@PathVariable(value="numberOfPeople") int numberOfPeople, @PathVariable(value="ageGroupStart") int ageGroupStart,
     		 @PathVariable(value="ageGroupEnd") int ageGroupEnd,@PathVariable(value="gender") String gender, @PathVariable(value="locality") String locality){
-		ClientRequestPOJO clientRequest = new ClientRequestPOJO(numberOfPeople, ageGroupStart, ageGroupEnd, gender, locality);
 		
 		ResponseTuplePOJO ethnicityDBREsponse = ethnicityDAO.findData(ageGroupStart, ageGroupEnd, gender, locality);
     	ClientResponsePOJO estimate = Analyser.getEstimate(ethnicityDBREsponse, numberOfPeople);
