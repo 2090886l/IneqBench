@@ -10,6 +10,12 @@ public class ResponseTuplePOJO {
 	private int totalDeprived;
 	
 	public ResponseTuplePOJO() {}
+	
+	public ResponseTuplePOJO(int totalPopulation, int totalDeprived) {
+		super();
+		this.totalPopulation = totalPopulation;
+		this.totalDeprived = totalDeprived;
+	}
 
 	public int getTotalPopulation() {
 		return totalPopulation;

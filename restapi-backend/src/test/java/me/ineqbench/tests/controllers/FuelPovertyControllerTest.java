@@ -1,4 +1,4 @@
-package me.ineqbench.tests;
+package me.ineqbench.tests.controllers;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -21,9 +21,9 @@ import org.springframework.web.context.WebApplicationContext;
 
 import me.ineqbench.controllers.dao.JdbcFuelPovertyDAO;
 import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
-import me.ineqbench.tests.util.ClientRequestBuilder;
+import me.ineqbench.tests.builders.ClientRequestBuilder;
+import me.ineqbench.tests.builders.DBResponseBuilder;
 import me.ineqbench.tests.util.ClientRequestPOJO;
-import me.ineqbench.tests.util.DBResponseBuilder;
 import me.ineqbench.tests.util.TestUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)

@@ -1,4 +1,4 @@
-package me.ineqbench.tests;
+package me.ineqbench.tests.controllers;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -19,12 +19,13 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import me.ineqbench.controllers.dao.JdbcEducationalAttainmentDAO;
-import me.ineqbench.controllers.dao.JdbcEthnicityDAO;
+import me.ineqbench.controllers.dao.JdbcIllnessDAO;
+import me.ineqbench.controllers.dao.JdbcLearningDisabilitiesDAO;
+import me.ineqbench.controllers.dao.JdbcTaxDAO;
 import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
-import me.ineqbench.tests.util.ClientRequestBuilder;
+import me.ineqbench.tests.builders.ClientRequestBuilder;
+import me.ineqbench.tests.builders.DBResponseBuilder;
 import me.ineqbench.tests.util.ClientRequestPOJO;
-import me.ineqbench.tests.util.DBResponseBuilder;
 import me.ineqbench.tests.util.TestUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -32,12 +33,12 @@ import me.ineqbench.tests.util.TestUtil;
 // used only for testing purposes 
 @ContextConfiguration(locations = {"classpath:Spring-Test-Module.xml"})
 @WebAppConfiguration
-public class EducationalAttainmentControllerTest {
+public class TaxControllerTest {
  
     private MockMvc mockMvc;
  
     @Autowired
-    private JdbcEducationalAttainmentDAO educationalDAO;
+    private JdbcTaxDAO taxDAO;
  
     @Autowired
     private WebApplicationContext webApplicationContext;
@@ -48,26 +49,26 @@ public class EducationalAttainmentControllerTest {
         //are managed by the Spring container. If we would not reset them,
         //stubbing and verified behavior would "leak" from one test to another.
     	
-    	Mockito.reset(educationalDAO);
+    	Mockito.reset(taxDAO);
     	
     	// Get the mock builder from the WebApplicationContext Spring container
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
     
     @Test
-    public void findEducationalAttainment__ShouldMapRequestToController() throws Exception {
+    public void findTax_ShouldMapRequestToController() throws Exception {
     	
     	ResponseTuplePOJO response = DBResponseBuilder.getDBMockResponse();
     	
-        //Avoid "data clumps", unfortunately EducationalAttainmentDAO interface method
-    	// findData gets only primitive params - explain why in interface doc 
+        //Avoid "data clumps", unfortunately Tax DAO interface method
+    	//findData gets only primitive params - explain why in interface doc 
        ClientRequestPOJO clientRequest = ClientRequestBuilder.getRequestObject();
        
        // Configure mockito to return "response" when findData called
-       when(educationalDAO.findData(clientRequest.getAgeGroupStart(),clientRequest.getAgeGroupEnd(),
+       when(taxDAO.findData(clientRequest.getAgeGroupStart(),clientRequest.getAgeGroupEnd(),
     		   clientRequest.getGender(),clientRequest.getLocality())).thenReturn(response);
        
-       mockMvc.perform(get("/getEducationalAttainment/{numberOfPeople}/{ageGroupStart}/{ageGroupEnd}/{gender}/{locality}",
+       mockMvc.perform(get("/getTax/{numberOfPeople}/{ageGroupStart}/{ageGroupEnd}/{gender}/{locality}",
         		clientRequest.getNumberOfPeople(),
         		clientRequest.getAgeGroupStart(),
         		clientRequest.getAgeGroupEnd(),
@@ -75,8 +76,11 @@ public class EducationalAttainmentControllerTest {
         		clientRequest.getLocality()).accept(TestUtil.APPLICATION_JSON_UTF8))
         		.andExpect(status().isOk());
  
-        verify(educationalDAO, times(1)).findData(clientRequest.getAgeGroupStart(),clientRequest.getAgeGroupEnd(),
+        verify(taxDAO, times(1)).findData(clientRequest.getAgeGroupStart(),clientRequest.getAgeGroupEnd(),
      		   clientRequest.getGender(),clientRequest.getLocality());
-        verifyNoMoreInteractions(educationalDAO);
+        verifyNoMoreInteractions(taxDAO);
     }
 }
+
+
+

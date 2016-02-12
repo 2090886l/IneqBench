@@ -1,4 +1,4 @@
-package me.ineqbench.tests.util;
+package me.ineqbench.tests.builders;
 
 import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
 

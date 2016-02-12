@@ -12,7 +12,7 @@ import me.ineqbench.analyst.Analyser;
 import me.ineqbench.clientResponsePojos.ClientResponsePOJO;
 import me.ineqbench.controllers.dao.JdbcEthnicityDAO;
 import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
-import me.ineqbench.tests.util.ClientRequestBuilder;
+import me.ineqbench.tests.builders.ClientRequestBuilder;
 import me.ineqbench.tests.util.ClientRequestPOJO;
 
 

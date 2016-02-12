@@ -8,7 +8,7 @@
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 	 -->
-	<bean id="transportDAO" class="me.ineqbench.dao.impl.JdbcTransportDAO">
+	<!--  <bean id="transportDAO" class="me.ineqbench.dao.impl.JdbcTransportDAO">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 	
@@ -35,5 +35,5 @@
 	<bean id="taxDAO" class="me.ineqbench.dao.impl.JdbcTaxDAO">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
-
+  -->
 </beans>

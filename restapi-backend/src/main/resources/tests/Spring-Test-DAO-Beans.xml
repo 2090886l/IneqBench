@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+ 	<bean id="ethnicityDAO" name="ethnicityDAO" class="me.ineqbench.controllers.dao.JdbcEthnicityDAO">
+	</bean>
+
+    <bean id="transportDAO" class="me.ineqbench.controllers.dao.JdbcTransportDAO">
+	</bean>
+	
+	<bean id="fuelPovertyDAO" class="me.ineqbench.controllers.dao.JdbcFuelPovertyDAO">
+	</bean>
+	
+	<bean id="learningDisabilitiesDAO" class="me.ineqbench.controllers.dao.JdbcLearningDisabilitiesDAO">
+	</bean>
+	
+	<bean id="unpaidCarersDAO" class="me.ineqbench.controllers.dao.JdbcUnpaidCarersDAO">
+	</bean>
+	
+	<bean id="illnessDAO" class="me.ineqbench.controllers.dao.JdbcIllnessDAO">
+	</bean>
+	
+	<bean id="taxDAO" class="me.ineqbench.controllers.dao.JdbcTaxDAO">
+	</bean>
+	 
+	<bean id="educationalAttainmentDAO" class="me.ineqbench.controllers.dao.JdbcEducationalAttainmentDAO">
+	</bean>
+	
+</beans>
