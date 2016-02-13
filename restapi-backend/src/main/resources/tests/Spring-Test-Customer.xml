@@ -37,6 +37,17 @@
         <constructor-arg value="me.ineqbench.controllers.dao.JdbcTaxDAO"/>
     </bean>
     
+    <bean id="lowPayDAO" name="lowPayDAO" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="me.ineqbench.controllers.dao.JdbcLowPayDAO"/>
+    </bean>
+    
+    <bean id="unemployedDAO" name="unemployedDAO" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="me.ineqbench.controllers.dao.JdbcUnemployedDAO"/>
+    </bean>
+    
+    <bean id="livingInDeprivedAreaDAO" name="livingInDeprivedArea" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="me.ineqbench.controllers.dao.JdbcLivingInDeprivedAreaDAO"/>
+    </bean>
     <!--  -->
 	<bean id="getEthnicityController" class="me.ineqbench.controllers.GetEthnicityController">
 	</bean>
@@ -60,6 +71,15 @@
 	</bean>
 	
 	<bean id="GetUnpaidCarersController" class="me.ineqbench.controllers.GetUnpaidCarersController">
+	</bean>
+	
+	<bean id="getLowPayController" class="me.ineqbench.controllers.GetLowPayController">
+	</bean>
+	
+	<bean id="GetUnemployedController" class="me.ineqbench.controllers.GetUnemployedController">
+	</bean>
+	
+	<bean id="GetLivingInDeprivedAreaController" class="me.ineqbench.controllers.GetLivingInDeprivedAreaController">
 	</bean>
 	<!--  -->
 	
