@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> NHS Benchmarking Tool</title>
+    <title>  Benchmarking Tool</title>
 
     <!-- Pie Chart -->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -64,7 +64,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">NHS Benchmarking Tool</a>
+                <a class="navbar-brand page-scroll" href="#page-top"> Benchmarking Tool</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -90,12 +90,24 @@
         <section id="top">
             <div class="header-content">
                 <div class="header-content-inner">
-                    <h1>NHS Benchmarking Tool</h1>
+                    <h1> Benchmarking Tool</h1>
                     <hr class="light">
                     <p>
-                        Please select a search option. If are currently a business, which would like to bench its data with our
-                        expectations, please select the "Benchmark" button. For filtered predictions without benchmarking
-                        click the "Predict" button.
+
+                        This website estimates the number of people from different population groups that live in Dumfries & Galloway.  It uses publically available, national sources of data (such as the Census and Scottish Neighbourhood Statistics) to generate the estimates.  There are 2 ways to use this website: 
+                    </p>
+                    <p>
+                        1. Use the filters to specify the population you are interested in and this website will estimate the total number of people in that population;
+                    </p>
+                    <p>
+                        2. Enter a sample number (such as the number of people who have used your service, or taken part in your survey) and use the filters to describe your sample.  This website will then estimate the number of people from different population groups that you would expect to be included in your sample.  You can use these estimates to compare benchmark) against the actual number of people in your sample and see if there are more or fewer people than expected.
+                    </p>
+                    <p>
+
+                        For more information go to About or Method, otherwise...
+
+                        Click the button below to get started! 
+                    </p>
                     </p>
                     <a href="#estimates" class="btn btn-primary btn-xl" ng-click="benchmarkClicked()">Benchmark</a><!--page-scroll - > removed because it does not position page correctly-->
                     <!--<a href="#estimates" class="btn btn-primary btn-xl page-scroll">Predict</a>-->
@@ -292,7 +304,7 @@
                             <br>
                             <div class="alignLeft halfDiv">
                                 <span class="blockDisplay">
-                                    <input type="radio" name="genderIneq" ng-model="wrapper.gender" ng-checked="isAllGenderCheckedIneq" ng-click="doesProceedPopulationVariables()" value="All People:">All Gender
+                                    <input type="radio" name="genderIneq" ng-model="wrapper.gender" ng-checked="isAllGenderCheckedIneq" ng-click="doesProceedPopulationVariables()" value="All People:">All sexes
                                 </span>
                                 <span class="blockDisplay">
                                     <input type="radio" name="genderIneq" ng-model="wrapper.gender" ng-checked="isMaleGenderCheckedIneq" ng-click="doesProceedPopulationVariables()" value="Males:">Male
@@ -352,7 +364,7 @@
                             <div class="alignLeft halfDiv">
                                 <span class="blockDisplay">
                                     <input type="radio" name="genderOutput" ng-model="wrapper
-                                    .gender" ng-checked="isAllGenderCheckedOutPut" value="All People:">All Gender
+                                    .gender" ng-checked="isAllGenderCheckedOutPut" value="All People:">All sexes
                                 </span>
                                 <span class="blockDisplay">
                                     <input type="radio" name="genderOutput" ng-model="wrapper
@@ -614,25 +626,25 @@
         <div class="container fullSizeContainer">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h1 class="section-heading">Estimates</h1>
+                    <h1 class="section-heading">Results</h1>
                     <br>
                     <br>
                     <div class="estimate">
                         <table class="table table-hover table-bordered">
                             <tr>
                                 <th>Inequalities Indicator</th>
-                                <th>Total Population In Locality</th>
-                                <th class="center">Estimates</th>
+                                <th>Estimated total population in selected area</th>
+                                <th class="center">Estimated number of people in the sample</th>
                             </tr>
                             <tr>
                                 <th></th>
-                                <th>Total | Percentage</th>
+                                <th></th>
                                 <th>
                                     <table class="table">
                                         <tr>
-                                            <th>Estimate | Percentage</th>
-                                            <th>Lower Range | Percentage</th>
-                                            <th>Upper Range | Percentage</th>
+                                            <th>Estimate | Number</th>
+                                            <th>Lower Range | Minimum</th>
+                                            <th>Upper Range | Maximum</th>
                                         </tr>
                                     </table>
                                 </th>
