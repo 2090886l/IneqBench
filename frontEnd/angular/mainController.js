@@ -33,7 +33,7 @@ app.controller('MainController',["$http","$scope",function($http,$scope){
     $scope.showDeprivationCriteria = false;
     $scope.showPopulationVariables = false;
     $scope.showOutputType = false;
-    $scope.isVisualizing = true;
+    $scope.isVisualizing = false;
     $scope.wrapper = {}; // use one popVariable object wrapping all the data
     // used because ng-if creates DOM dynamically and Angular cannot find assigned values
     $scope.wrapper.mode = null;//this is either benchmark or predict
