@@ -1,5 +1,30 @@
 var app = angular.module('IneqBench',[]);
 
+app.factory('authInterceptor', function($rootScope,  $q, $injector) {
+  return {
+    request: function(config) {
+        console.log("request");
+      $rootScope.isLoading = true;
+      return config;
+    },
+    response: function(response) {
+        console.log("response");
+      $rootScope.isLoading = false;
+      return response;
+    },
+    responseError: function(response) {
+        console.log("error");
+      $rootScope.isLoading = false;
+      return $q.reject(response);
+    }
+  };
+})
+
+.config(function($httpProvider) {
+  $httpProvider.interceptors.push('authInterceptor');
+
+});
+
 app.controller('MainController',["$http","$scope",function($http,$scope){
 
     var url = "http://localhost:8080";
@@ -8,7 +33,7 @@ app.controller('MainController',["$http","$scope",function($http,$scope){
     $scope.showDeprivationCriteria = false;
     $scope.showPopulationVariables = false;
     $scope.showOutputType = false;
-    $scope.isVisualizing = false;
+    $scope.isVisualizing = true;
     $scope.wrapper = {}; // use one popVariable object wrapping all the data
     // used because ng-if creates DOM dynamically and Angular cannot find assigned values
     $scope.wrapper.mode = null;//this is either benchmark or predict
