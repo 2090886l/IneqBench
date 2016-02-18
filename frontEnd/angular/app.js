@@ -1,4 +1,4 @@
-var app = angular.module('IneqBench',[]);
+var app = angular.module('IneqBench',['IneqBenchControllers']);
 
 app.factory('authInterceptor', function($rootScope,  $q, $injector) {
   return {
@@ -20,25 +20,26 @@ app.factory('authInterceptor', function($rootScope,  $q, $injector) {
   };
 })
 
-.config(function($httpProvider, $routeProvider) {
+.config(function($httpProvider) {
+  console.log("asda");
   $httpProvider.interceptors.push('authInterceptor');
-   $routeProvider
-            // route for the home page
-            .when('/', {
-                templateUrl : '/templates/index.html',
-                controller  : 'MainController'
-            })
+   // $routeProvider
+   //          // route for the home page
+   //          .when('/', {
+   //              templateUrl : '/templates/index.html',
+   //              controller  : 'MainController'
+   //          })
 
-            // route for the about page
-            .when('/about', {
-                templateUrl : 'pages/about.html',
-                controller  : 'aboutController'
-            })
+   //          // route for the about page
+   //          .when('/about', {
+   //              templateUrl : 'pages/about.html',
+   //              controller  : 'aboutController'
+   //          })
 
-            // route for the contact page
-            .when('/contact', {
-                templateUrl : 'pages/contact.html',
-                controller e : 'contactController'
-            });
-    });
+   //          // route for the contact page
+   //          .when('/contact', {
+   //              templateUrl : 'pages/contact.html',
+   //              controller e : 'contactController'
+   //          });
+   //  });
 });

@@ -51,13 +51,58 @@
     <script src="./angular/angular-route.js"></script>
     <script src="./angular/angular.soap.js"></script>
     <script src="./angular/mainController.js"></script>
+    <script src="./angular/app.js"></script>
 </head>
 
 <body id="page-top" ng-app="IneqBench"  ng-controller="MainController">
+
+
+
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Instructions</h4>
+          </div>
+          <div class="modal-body">
+
+                                <p>
+
+                        This website estimates the number of people from different population groups that live in Dumfries & Galloway.  It uses publically available, national sources of data (such as the Census and Scottish Neighbourhood Statistics) to generate the estimates.  There are 2 ways to use this website: 
+                    </p>
+                    <p>
+                        1. Use the filters to specify the population you are interested in and this website will estimate the total number of people in that population;
+                    </p>
+                    <p>
+                        2. Enter a sample number (such as the number of people who have used your service, or taken part in your survey) and use the filters to describe your sample.  This website will then estimate the number of people from different population groups that you would expect to be included in your sample.  You can use these estimates to compare benchmark) against the actual number of people in your sample and see if there are more or fewer people than expected.
+                    </p>
+                    <p>
+
+                        For more information go to About or Method, otherwise...
+
+                        Click the button below to get started! 
+                    </p>
+                    </p>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
+
+
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -89,24 +134,11 @@
                 <div class="header-content-inner">
                     <h1> Benchmarking Tool</h1>
                     <hr class="light">
-                    <p>
-
-                        This website estimates the number of people from different population groups that live in Dumfries & Galloway.  It uses publically available, national sources of data (such as the Census and Scottish Neighbourhood Statistics) to generate the estimates.  There are 2 ways to use this website: 
-                    </p>
-                    <p>
-                        1. Use the filters to specify the population you are interested in and this website will estimate the total number of people in that population;
-                    </p>
-                    <p>
-                        2. Enter a sample number (such as the number of people who have used your service, or taken part in your survey) and use the filters to describe your sample.  This website will then estimate the number of people from different population groups that you would expect to be included in your sample.  You can use these estimates to compare benchmark) against the actual number of people in your sample and see if there are more or fewer people than expected.
-                    </p>
-                    <p>
-
-                        For more information go to About or Method, otherwise...
-
-                        Click the button below to get started! 
-                    </p>
-                    </p>
-                    <a href="#estimates" class="btn btn-primary btn-xl" ng-click="benchmarkClicked()">Benchmark</a><!--page-scroll - > removed because it does not position page correctly-->
+                    <div>
+                    <button type="button" class="btn btn-primary btn-xl btn-long" data-toggle="modal" data-target="#myModal">Instructions</button>
+                    </div>
+                    </br>
+                    <a href="#estimates" class="btn btn-primary btn-xl btn-long" ng-click="benchmarkClicked()">Benchmark</a><!--page-scroll - > removed because it does not position page correctly-->
                     <!--<a href="#estimates" class="btn btn-primary btn-xl page-scroll">Predict</a>-->
                 </div>
             </div>

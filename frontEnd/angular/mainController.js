@@ -1,4 +1,4 @@
-var app = angular.module('IneqBench',[]);
+var app = angular.module('IneqBenchControllers',[]);
 
 
 app.controller('MainController',["$http","$scope",function($http,$scope){
