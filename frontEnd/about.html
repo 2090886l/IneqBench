@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>  Benchmarking Tool</title>
+
+    <!-- Pie Chart -->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+    //visualizationPieChart.js taken from here
+    </script>
+
+    <!-- Line Graph -->
+    <script type="text/javascript">
+        //visualizationLineChart.js taken from here
+    </script>
+
+    <!-- Buble Graph -->
+    <script type="text/javascript">
+        //visualizationBubbleGraph.js taken from here
+    </script>
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+
+    <!-- Custom Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="css/animate.min.css" type="text/css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/creative.css" type="text/css">
+    <link rel="stylesheet" href="css/index.css" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="./angular/angular.js"></script>
+    <script src="./angular/angular-route.js"></script>
+    <script src="./angular/angular.soap.js"></script>
+    <script src="./angular/aboutController.js"></script>
+</head>
+
+<body id="page-top" ng-app="IneqBench"  ng-controller="AboutController" >
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="./index.html"> Benchmarking Tool</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="./index.html">Benchmark</a>
+                    </li>
+                    <li>
+                        <a href="./method.html">Method</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+        <header>
+        <section id="top">
+            <div class="header-content">
+                <div class="header-content-inner">
+                    <h1> About</h1>
+                    <hr class="light">
+
+                    <!--<a href="#estimates" class="btn btn-primary btn-xl page-scroll">Predict</a>-->
+                </div>
+            </div>
+        </section>
+    </header>
+
+    <section id="about" >
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">About this tool</h2>
+                    <hr class="primary">
+                </div>
+                <div class="col-lg-8 col-lg-offset-2 text-center" >
+                        <p>
+
+                       Everyone should be treated fairly and with dignity however, this doesn’t always happen and examples of disadvantage and discrimination can still be seen across the population of Scotland1.  The unequal opportunities people face in living the lives they wish to lead is often referred to as “inequalities”.   People can face barriers because of their race, gender, age, disability, sexual orientation, religion or belief, income, employment, education, and local environment2.  A report by the Equality and Human Rights Commission highlighted 7 areas where inequalities exist in Scottish society:
+                       </p>
+
+                        <p>
+                        Poverty & low income
+                        Access to services
+                        Employment
+                        Education
+                        Health
+                        Discrimination
+                        Targeted violence and safety
+                        </p>
+
+
+                        <p>
+                        It is important that organisations and businesses, both public and private, make sure people from all backgrounds can use their services and are not being further disadvantaged. 
+                        </p>
+                        <p>
+                        In summer 2015 an opportunity arose for NHS Dumfries & Galloway’s Health Intelligence Unit to work with the Crichton Institute and Computing Science 3rd year students from the University of Glasgow to create innovative solutions that would enable people, services and organisations to access information about the population of Dumfries & Galloway using large, publically available sources of data such as the Census 2011.  It was decided a website that estimated the number of people from different population groups, including the 9 protected characteristics and different deprived backgrounds, would be most useful.  This would allow organisations to compare (benchmark) the number of people from different population groups who had used their services with the proportion in the wider population.  The tool would also provide estimates for the total number of people from different population groups who live in Dumfries & Galloway that could be used to inform the future planning of services in the area.
+                        </p>
+                        <p>
+                        Initially there were 4 student teams working in competition to develop prototype websites.  Each team was supported by the teaching staff at the University of Glasgow and by the NHS Dumfries & Galloway’s Health Intelligence Unit.  The development work started in October 2015.  In February 2016 testing of the 4 prototypes, one from each team, was carried out with people who were likely to use the final website.  The testers represented Dumfries & Galloway Council, NHS Dumfries & Galloway, Loreburn Housing Association (a housing association local to Dumfries & Galloway), and the Crichton Institute.   The feedback from this testing was used by the students to refine and improve their prototypes.
+                        </p>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+
+
+      <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Let's Get In Touch!</h2>
+                    <hr class="primary">
+                    <p>Ready to start your next project with us? That's great! Give us a call or send us an email and we will get back to you as soon as possible!</p>
+                </div>
+                <div class="col-lg-4 col-lg-offset-2 text-center">
+                    <!--<i class="fa fa-phone fa-3x wow bounceIn"></i>-->
+                    <br>
+                    <br>
+                    <p>Akos Szente</p>
+                    <p>Alex Chilikov</p>
+                    <p>Ivaylo Lafchiev</p>
+                    <p>Jacob Ford</p>
+                    <p>Mike Harling</p>
+                    <p>Mindaugas Ribakauskas</p>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i>
+                    <p><a href="mailto:2094613s@student.gla.ac.uk">2094613s@student.gla.ac.uk</a></p>
+                    <p><a href="mailto:2087690c@student.gla.ac.uk">2087690c@student.gla.ac.uk </a></p>
+                    <p><a href="mailto:2090886l@student.gla.ac.uk">2090886l@student.gla.ac.uk </a></p>
+                    <p><a href="mailto:2091723f@student.gla.ac.uk">2091723f@student.gla.ac.uk </a></p>
+                    <p><a href="mailto:2147621h@student.gla.ac.uk">2147621h@student.gla.ac.uk </a></p>
+                    <p><a href="mailto:2093693r@student.gla.ac.uk">2093693r@student.gla.ac.uk </a></p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/jquery.fittext.js"></script>
+    <script src="js/wow.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/creative.js"></script>      
+</body>
+
+</html>

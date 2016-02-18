@@ -1,29 +1,5 @@
 var app = angular.module('IneqBench',[]);
 
-app.factory('authInterceptor', function($rootScope,  $q, $injector) {
-  return {
-    request: function(config) {
-        console.log("request");
-      $rootScope.isLoading = true;
-      return config;
-    },
-    response: function(response) {
-        console.log("response");
-      $rootScope.isLoading = false;
-      return response;
-    },
-    responseError: function(response) {
-        console.log("error");
-      $rootScope.isLoading = false;
-      return $q.reject(response);
-    }
-  };
-})
-
-.config(function($httpProvider) {
-  $httpProvider.interceptors.push('authInterceptor');
-
-});
 
 app.controller('MainController',["$http","$scope",function($http,$scope){
 
