@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>  Benchmarking Tool</title>
+
+    <!-- Pie Chart -->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+    //visualizationPieChart.js taken from here
+    </script>
+
+    <!-- Line Graph -->
+    <script type="text/javascript">
+        //visualizationLineChart.js taken from here
+    </script>
+
+    <!-- Buble Graph -->
+    <script type="text/javascript">
+        //visualizationBubbleGraph.js taken from here
+    </script>
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+
+    <!-- Custom Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="css/animate.min.css" type="text/css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/creative.css" type="text/css">
+    <link rel="stylesheet" href="css/index.css" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="./angular/angular.js"></script>
+    <script src="./angular/angular-route.js"></script>
+    <script src="./angular/angular.soap.js"></script>
+    <script src="./angular/aboutController.js"></script>
+</head>
+
+<body id="page-top" >
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="./index.html"> Benchmarking Tool</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="./index.html">Benchmark</a>
+                    </li>
+                    <li>
+                        <a href="./about.html">About</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+        <header>
+        <section id="top">
+            <div class="header-content">
+                <div class="header-content-inner">
+                    <h1> Methodology</h1>
+                    <hr class="light">
+                        <p>
+                        This page outlines the general principles by which the estimates produced by this website are calculated.
+                        </p>
+                    <!--<a href="#estimates" class="btn btn-primary btn-xl page-scroll">Predict</a>-->
+                </div>
+            </div>
+        </section>
+    </header>
+
+    <section id="about" >
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Estimating the total number of people in a population group</h2>
+                    <hr class="primary">
+        
+
+                </div>
+                <div class="col-lg-8 col-lg-offset-2 text-center" >
+                        <p>
+
+                        1.   Data from a relevant data source is identified.  This is determined by the population group of interest. 
+                        </p>
+
+                        <p>
+                        2.   The data is filtered by sex, age group and geography depending upon the options selected by the website user.  Where the filters available for the data do not match the options selected by the website user, the closest available filters are applied.  For example, the website user selects the age group 30-40 years old but the age-band filters on the data are for 16-25, 26-35, 36-45, 46-55; the age band selected would be 26-35 and 36-45 as they are the fewest age-bands that cover the age group requested.  This data produces a numerator (x).
+                        </p>
+
+
+                        <p>
+                        3.  The data filters that are used to produce the numerator (x) are applied to the whole population of Dumfries & Galloway.  Usually, the total population is supplied by the same data source as the numerator.  However, if this data is not included; the total population may be sourced from National Records Scotland Mid-Year Population Estimates or from Small Area Population Estimates.  This produces a denominator (y).
+
+                        </p>
+                        <p>
+                        4.  The numerator (x) and the denominator (y) are used to calculate a rate expressed as a percentage (%): 
+                        Rate (%) = x/y*100
+                        <p>
+                        5.  As the data filters use those available that match closest to the options selected by the website user, the numerator (x) will not be the estimated value the website user is looking for.  Also, for some population groups only a rate based on survey data is available.  To obtain the estimate, the total population (∑pop) that satisfies all the options selected by the website user is calculated using National Records Scotland Mid-Year Population Estimates or Small Area Population Estimates as appropriate.  The estimated total number of people in the population group of interest (Xpop) is given by:
+
+                        Xpop = x/y* ∑pop
+                        </p>
+                        <p>
+                        6.   The data output from this website details the estimated total number of people in the population group of interest (Xpop) and the rate (%).
+                        </p>
+                </div>
+
+
+                <div class="col-lg-8 col-lg-offset-2 text-center" style="margin-top:50px">
+                    <h2 class="section-heading">Estimating the number of people in a sample from different population groups</h2>
+                    <hr class="primary">
+    
+                </div>
+                <div class="col-lg-8 col-lg-offset-2 text-center" >
+                        <p>
+
+                        Steps 1 to 4 as outlined previously are carried out.
+                        </p>
+
+                        <p>
+                        7.  The website user specifies the total number of people in the sample (∑smpl).  The estimated number of people from a population group in the sample (Xsmpl) is given by:
+
+                        Xsmpl = x/y*∑smpl
+                        </p>
+
+
+                        <p>
+                        8.  95% confidence intervals are calculated to give a range for natural variation.  These are calculated using the Wilson Method1:
+
+                        Plower = (2Xsmpl + z2 - z(z2 + 4Xsmplq))
+                                2(∑smpl + z2)
+
+                        Pupper = (2Xsmpl + z2 +z(z2 + 4Xsmplq))
+                                2(∑smpl + z2)
+
+                        Where q = 1/(x/y) and z=1.96 (this is 95% confidence intervals)
+
+                        </p>
+                        <p>
+                        9.  The data output from this website gives the estimated number of people in a sample from a population group (Xsmpl) and the 95% confidence intervals as a range (Plower and Pupper).
+                        <p>
+                        5.  As the data filters use those available that match closest to the options selected by the website user, the numerator (x) will not be the estimated value the website user is looking for.  Also, for some population groups only a rate based on survey data is available.  To obtain the estimate, the total population (∑pop) that satisfies all the options selected by the website user is calculated using National Records Scotland Mid-Year Population Estimates or Small Area Population Estimates as appropriate.  The estimated total number of people in the population group of interest (Xpop) is given by:
+
+                        Xpop = x/y* ∑pop
+                        </p>
+                        <p>
+                        6.   The data output from this website details the estimated total number of people in the population group of interest (Xpop) and the rate (%).
+                        </p>
+                </div>
+
+                <div class="col-lg-8 col-lg-offset-2 text-center" style="margin-top:50px">
+                    <h2 class="section-heading">Interpreting the results</h2>
+                    <hr class="primary">
+    
+                </div>
+                <div class="col-lg-8 col-lg-offset-2 text-center" >
+                        <p>
+
+                        The estimated number of people from a population group within a sample (Xsmpl) and the range for natural variation (95% confidence intervals) can be compared, or benchmarked, against data you have already collected about the sample (referred to as actual results).
+
+                        </p>
+
+                        <p>
+                        If the actual result is similar to the estimate and falls within the range, the number of people from a population group within the sample is as expected and the proportion is similar to the wider population.
+                        </p>
+
+
+                        <p>
+                        If the actual result is smaller than the estimate and below the minimum value in the range, there are fewer people from a population group in the sample than expected.  The composition of your sample is different to that of the wider population.
+
+                        </p>
+                        <p>
+                        If the actual result is higher than the estimate above the maximum value in the range, there are more people from a population group in the sample than expected.  The composition of your sample is different to that of the wider population.
+                        <p>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/jquery.fittext.js"></script>
+    <script src="js/wow.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/creative.js"></script>      
+</body>
+
+</html>
