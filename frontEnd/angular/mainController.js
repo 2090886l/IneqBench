@@ -343,6 +343,47 @@ app.controller('MainController',["$http","$scope",function($http,$scope){
 
     //Events
 
+    //downlaod the data as a CSV file
+
+    $scope.downloadAsCSV = function() {
+        // test data
+        // $scope.result = [{ 
+        //     totalPopulation: 8076, totalDeprived: 41, upperRange: 8.056713981106709, lowerRange: 0.7936575231058619, estimate: 2.53838533927687
+        //     }, { 
+        //     totalPopulation: 3513, totalDeprived: 46, upperRange: 12.056713981106709, lowerRange: 34.7936575231058619, estimate: 5.53838533927687
+        //     }]
+
+        var array = [['Total Population','Total Deprived', 'Upper Range', 'Lower Range', 'Estimate']]; // headers
+        var csvRows = [];
+
+
+        // for every indicator, push the content into an array
+        for (var indicator in $scope.result) {
+            console.log($scope.result);
+            var temp = [];
+            for(var value in $scope.result[indicator]){
+                temp.push($scope.result[indicator][value]);
+            }
+            array.push(temp);
+        }
+
+
+        for(var i=0, l=array.length; i<l; ++i){
+            csvRows.push(array[i].join(','));
+        };
+
+        // create a fake button and click it to initiate download
+        var csvString = csvRows.join("\r\n");
+        var a         = document.createElement('a');
+        a.href        = 'data:attachment/csv,' +  encodeURIComponent(csvString);
+        a.target      = '_blank';
+        a.download    = 'myFile.csv';
+
+        document.body.appendChild(a);
+        a.click();
+
+    }
+
     //if the benchmark button is clicked show/hide the correct sections
     //for more info see parameter names
     $scope.benchmarkClicked = function(){

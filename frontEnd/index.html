@@ -708,8 +708,11 @@
                         </table>
                     </div>
                     <hr class="primary">
+                    <button id="csv" ng-show="!isLoading" type="button" class="btn btn-primary btn-xl btn-long" ng-click="downloadAsCSV()">Download as .csv</button>
                 </div>
+
             </div>
+
             <h3 ng-show="isLoading" class= "text-center">LOADING...</h3>
         </div>
         <br>

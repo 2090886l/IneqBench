@@ -21,7 +21,7 @@ app.factory('authInterceptor', function($rootScope,  $q, $injector) {
 })
 
 .config(function($httpProvider) {
-  console.log("asda");
+  console.log("Config Loaded");
   $httpProvider.interceptors.push('authInterceptor');
    // $routeProvider
    //          // route for the home page
