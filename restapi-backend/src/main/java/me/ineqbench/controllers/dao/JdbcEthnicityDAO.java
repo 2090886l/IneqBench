@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
 import me.ineqbench.dao.EthnicityDAO;
 import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
 import me.ineqbench.mappers.ResponseMapper;
-import me.ineqbench.tests.util.ClientRequestPOJO;
 
 //Even though all DAOs implementations are essentially with the same signature 
 //Separate interfaces provided for each of them in case later

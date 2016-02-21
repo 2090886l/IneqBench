@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import me.ineqbench.dbRequestPOJOs.Gender;
 import me.ineqbench.dbRequestPOJOs.Range;
 import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
-import me.ineqbench.tests.util.ClientRequestPOJO;
 
 //Even though all DAOs are essentially with the same signature 
 //Separate interfaces provided for each of them in case later
