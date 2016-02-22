@@ -2,14 +2,13 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>  Benchmarking Tool</title>
+    <title>Benchmarking Tool</title>
 
     <!-- Pie Chart -->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -56,13 +55,9 @@
 
 <body id="page-top" ng-app="IneqBench"  ng-controller="MainController">
 
-
-
-
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
       <div class="modal-dialog">
-
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
@@ -70,39 +65,38 @@
             <h4 class="modal-title">Instructions</h4>
           </div>
           <div class="modal-body">
-
-                                <p>
-
-                        This website estimates the number of people from different population groups that live in Dumfries & Galloway.  It uses publically available, national sources of data (such as the Census and Scottish Neighbourhood Statistics) to generate the estimates.  There are 2 ways to use this website: 
-                    </p>
-                    <p>
-                        1. Use the filters to specify the population you are interested in and this website will estimate the total number of people in that population;
-                    </p>
-                    <p>
-                        2. Enter a sample number (such as the number of people who have used your service, or taken part in your survey) and use the filters to describe your sample.  This website will then estimate the number of people from different population groups that you would expect to be included in your sample.  You can use these estimates to compare benchmark) against the actual number of people in your sample and see if there are more or fewer people than expected.
-                    </p>
-                    <p>
-
-                        For more information go to About or Method, otherwise...
-
-                        Click the button below to get started! 
-                    </p>
-                    </p>
-
+            <p>
+                This website estimates the number of people from different population groups that live in Dumfries & Galloway.
+                It uses publically available, national sources of data (such as the Census and Scottish Neighbourhood Statistics)
+                to generate the estimates.  There are 2 ways to use this website:
+            </p>
+            <p>
+                1. Use the filters to specify the population you are interested in and this website will estimate the total
+                number of people in that population;
+            </p>
+            <p>
+                2. Enter a sample number (such as the number of people who have used your service, or taken part in your survey)
+                and use the filters to describe your sample.  This website will then estimate the number of people from different
+                population groups that you would expect to be included in your sample.  You can use these estimates to compare
+                benchmark) against the actual number of people in your sample and see if there are more or fewer people than expected.
+            </p>
+            <p>
+                For more information go to About or Method, otherwise...
+                Click the button below to get started!
+            </p>
+            </p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>
-
       </div>
     </div>
+
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-
-
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -132,208 +126,49 @@
         <section id="top">
             <div class="header-content">
                 <div class="header-content-inner">
-                    <h1> Benchmarking Tool</h1>
+                    <h1>Benchmarking Tool</h1>
                     <hr class="light">
                     <div>
                     <button type="button" class="btn btn-primary btn-xl btn-long" data-toggle="modal" data-target="#myModal">Instructions</button>
                     </div>
                     </br>
                     <a href="#estimates" class="btn btn-primary btn-xl btn-long" ng-click="benchmarkClicked()">Benchmark</a><!--page-scroll - > removed because it does not position page correctly-->
-                    <!--<a href="#estimates" class="btn btn-primary btn-xl page-scroll">Predict</a>-->
                 </div>
             </div>
         </section>
     </header>
-    <!--for testing mode:{{wrapper.mode}},numberOfPeople:{{wrapper.numberOfPeople}},gender:{{wrapper.gender}},region:{{wrapper.region}},ageRange:{{wrapper.ageRange}},ethnicityParameters:{{ethnicityParameters}}, deprivationCriteria:{{wrapper.deprivationCriteria}}-->
-    <section class="bg-primary" id="estimates" ng-show="showSelectSection"><!--ng-show="showSelectSection"-->
+
+    <section class="bg-primary" id="estimates" ng-show="showSelectSection">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center" ng-if="showDeprivationCriteria">
-                    <h1 class="section-heading">Search Criterias</h1>
+                    <h1 class="section-heading">Search</h1>
                     <hr class="light">
                     <br>
                     <div class="row borderStyle">
                         <!-- Population Variables Part -->
-                        <div class="col-lg-6 text-center">
-                            <h3>Search Type</h3>
+                        <div class="col-lg-4 text-center">
+                            <h3>Search Parameters</h3>
                             <br>
-                            <div class="alignLeft thirdDiv">
-                                <span class="blockDisplay">
-                                    <input type="radio" name="wrapper
-                                    .mode" ng-model="wrapper
-                                    .mode" ng-checked="wrapper.isBenchmarkingCheckedPopVar" value="benchmarking">Benchmark
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="radio" name="wrapper
-                                    .mode" ng-model="wrapper
-                                    .mode" ng-checked="wrapper.isPredictingCheckedPopVar" value="predicting">Predict
-                                </span>
+                            <div class="alignCenter">
                                 <span class="blockDisplay">
                                     <input type="number" name="numberOfPeople" ng-model="wrapper
                                     .numberOfPeople" ng-change="doesProceedDeprivationParameters()" class="blackText" placeholder="Number of people...">
                                 </span>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 text-center">
-                            <h3>Deprivation Criteria</h3>
-                            <br>
-                            <div class="alignLeft halfDiv noWrap">
+                                Locality
+                                <div class="btn-group">
+                                    <select class="form-control" ng-model="wrapper.region" ng-options="r as r.name for r in regions" ng-change="doesProceedPopulationVariables()">
+                                    </select>
+                                </div><br>
+                                Age Group
+                                <div class="btn-group">
+                                    <select class="form-control" ng-model="wrapper.ageRange" ng-options="r as r.rangeStr for r in ranges"  ng-change="doesProceedPopulationVariables()">
+                                        <option selected disabled>Choose here</option>
+                                    </select>
+                                </div><br>
+                                Gender
                                 <span class="blockDisplay">
-                                    <input type="radio" name="deprivationCriteria" ng-model="wrapper
-                                    .deprivationCriteria" ng-change="doesProceedDeprivationParameters()" value="ethnicity">Ethnicity
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="radio" name="deprivationCriteria" ng-model="wrapper
-                                    .deprivationCriteria" ng-change="doesProceedDeprivationParameters()" value="taxBand">Tax Bands
-                                </span>
-                                 <span class="blockDisplay">
-                                    <input type="radio" name="deprivationCriteria" ng-model="wrapper
-                                    .deprivationCriteria" ng-change="doesProceedDeprivationParameters()" value="unpaidCarers">Unpaid Carers
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="radio" name="deprivationCriteria" ng-model="wrapper
-                                    .deprivationCriteria" ng-change="doesProceedDeprivationParameters()" value="learningDisabilities">Learning Disabilities
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="radio" name="deprivationCriteria" ng-model="wrapper
-                                    .deprivationCriteria" ng-change="doesProceedDeprivationParameters()" value="educationalAttainment">Educational Attainment
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="radio" name="deprivationCriteria" ng-model="wrapper
-                                    .deprivationCriteria" ng-change="doesProceedDeprivationParameters()" value="transport">Transport
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="radio" name="deprivationCriteria" ng-model="wrapper
-                                    .deprivationCriteria" ng-change="doesProceedDeprivationParameters()" value="unemployed">Unemployed
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="radio" name="deprivationCriteria" ng-model="wrapper
-                                    .deprivationCriteria" ng-change="doesProceedDeprivationParameters()" value="livingInDeprivedArea">Living in a deprived area
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="radio" name="deprivationCriteria" ng-model="wrapper
-                                    .deprivationCriteria" ng-change="doesProceedDeprivationParameters()" value="homeless">Homeless
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="radio" name="deprivationCriteria" ng-model="wrapper
-                                    .deprivationCriteria" ng-click="doesProceedDeprivationParameters()" value="lowPay">Low Pay
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="radio" name="deprivationCriteria" ng-model="wrapper
-                                    .deprivationCriteria" ng-click="doesProceedDeprivationParameters()" value="fuelPoverty">Fuel Poverty
-                                </span>
-                                <span class="blockDisplay">
-                                     <input type="radio" name="deprivationCriteria" ng-model="wrapper
-                                     .deprivationCriteria" ng-click="doesProceedDeprivationParameters()" value="offenders">Offenders
-                                </span>
-                                <span class="blockDisplay">
-                                     <input type="radio" name="deprivationCriteria" ng-model="wrapper
-                                     .deprivationCriteria" ng-click="doesProceedDeprivationParameters()" value="illnesses">Long Term Life-limiting illness
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="radio" name="deprivationCriteria" ng-model="wrapper
-                                    .deprivationCriteria" ng-click="doesProceedDeprivationParameters()" value="mentalHealthAndWellbeing">Mental Health & Wellbeing
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <br>
-                    <br>
-                    <a href="#top" class="btn btn-default btn-xl btn-long page-scroll-visualization" ng-click="backToTop()">Back</a>
-                </div>
-                <div class="col-lg-10 col-lg-offset-1 text-center" ng-if="showPopulationVariables">
-                    <h1 class="section-heading">Search Criterias</h1>
-                    <hr class="light">
-                    <br>
-                    <br>
-                    <div class="row borderStyle">
-                        <div class="col-lg-4 text-center">
-                            <h3>Search Type</h3>
-                            <br>
-                            <div class="alignLeft halfDiv">
-                                <span class="blockDisplay">
-                                   <input type="radio" name="modeIneq" ng-model="wrapper
-                                   .mode" value="benchmarking" ng-checked="isBenchmarkingCheckedIneq">Benchmark
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="radio" name="modeIneq" ng-model="wrapper
-                                    .mode" ng-checked="isPredictingCheckedIneq" value="predicting">Predict
-                                </span>
-                                <span class="blockDisplay">
-                                     <input type="number" name="numberOfPeople" ng-model="wrapper
-                                     .numberOfPeople" class="blackText" ng-change="doesProceedPopulationVariables()" placeholder="Number of people...">
-                                 </span>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 text-center">
-                            <h3>Deprivation Criteria</h3>
-                            <br>
-                            <div class="alignLeft halfDiv noWrap">
-                                <span class="blockDisplay">
-                                    <input type="radio" name="deprivationCriteria" ng-model="wrapper
-                                    .deprivationCriteria" ng-click="doesProceedPopulationVariables()" value="ethnicity">Ethnicity
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="radio" name="deprivationCriteria" ng-model="wrapper
-                                    .deprivationCriteria" ng-click="doesProceedPopulationVariables()" value="taxBand">Tax Bands
-                                </span>
-                                 <span class="blockDisplay">
-                                    <input type="radio" name="deprivationCriteria" ng-model="wrapper
-                                    .deprivationCriteria" ng-click="doesProceedPopulationVariables()" value="unpaidCarers">Unpaid Carers
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="radio" name="deprivationCriteria" ng-model="wrapper
-                                    .deprivationCriteria" ng-click="doesProceedPopulationVariables()" value="learningDisabilities">Learning Disabilities
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="radio" name="deprivationCriteria" ng-model="wrapper
-                                    .deprivationCriteria" ng-click="doesProceedPopulationVariables()" value="educationalAttainment">Educational Attainment
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="radio" name="deprivationCriteria" ng-model="wrapper
-                                    .deprivationCriteria" ng-click="doesProceedPopulationVariables()" value="transport">Transport
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="radio" name="deprivationCriteria" ng-model="wrapper
-                                    .deprivationCriteria" ng-click="doesProceedPopulationVariables()" value="unemployed">Unemployed
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="radio" name="deprivationCriteria" ng-model="wrapper
-                                    .deprivationCriteria" ng-click="doesProceedPopulationVariables()" value="livingInDeprivedArea">Living in a deprived area
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="radio" name="deprivationCriteria" ng-model="wrapper
-                                    .deprivationCriteria" ng-click="doesProceedPopulationVariables()" value="homeless">Homeless
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="radio" name="deprivationCriteria" ng-model="wrapper
-                                    .deprivationCriteria" ng-click="doesProceedPopulationVariables()" value="lowPay">Low Pay
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="radio" name="deprivationCriteria" ng-model="wrapper
-                                    .deprivationCriteria" ng-click="doesProceedPopulationVariables()" value="fuelPoverty">Fuel Poverty
-                                </span>
-                                <span class="blockDisplay">
-                                     <input type="radio" name="deprivationCriteria" ng-model="wrapper
-                                     .deprivationCriteria" ng-click="doesProceedPopulationVariables()" value="offenders">Offenders
-                                </span>
-                                <span class="blockDisplay">
-                                     <input type="radio" name="deprivationCriteria" ng-model="wrapper
-                                     .deprivationCriteria" ng-click="doesProceedPopulationVariables()" value="illnesses">Long Term Life-limiting illness
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="radio" name="deprivationCriteria" ng-model="wrapper
-                                    .deprivationCriteria" ng-click="doesProceedPopulationVariables()" value="mentalHealthAndWellbeing">Mental Health & Wellbeing
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 text-center">
-                            <h3>Population Variables</h3>
-                            <br>
-                            <div class="alignLeft halfDiv">
-                                <span class="blockDisplay">
-                                    <input type="radio" name="genderIneq" ng-model="wrapper.gender" ng-checked="isAllGenderCheckedIneq" ng-click="doesProceedPopulationVariables()" value="All People:">All sexes
+                                    <input type="radio" name="genderIneq" ng-model="wrapper.gender" ng-checked="isAllGenderCheckedIneq" ng-click="doesProceedPopulationVariables()" value="All People:">All
                                 </span>
                                 <span class="blockDisplay">
                                     <input type="radio" name="genderIneq" ng-model="wrapper.gender" ng-checked="isMaleGenderCheckedIneq" ng-click="doesProceedPopulationVariables()" value="Males:">Male
@@ -341,302 +176,100 @@
                                 <span class="blockDisplay">
                                     <input type="radio" name="genderIneq" ng-model="wrapper.gender" ng-checked="isFemaleGenderChecked" ng-click="doesProceedPopulationVariables()" value="Females:">Female
                                 </span>
-                                Locality
-                                <div class="btn-group">
-                                    <select class="form-control" ng-model="wrapper.region" ng-options="r as r.name for r in regions" ng-change="doesProceedPopulationVariables()">
-                                    </select>
-                                </div>
-                                Age Group
-                                <div class="btn-group">
-                                    <select class="form-control" ng-model="wrapper.ageRange" ng-options="r as r.rangeStr for r in ranges"  ng-change="doesProceedPopulationVariables()">
-                                        <option selected disabled>Choose here</option>
-                                    </select>
-                                </div>
                             </div>
                         </div>
-                    </div>
-                    <br>
-                    <br>
-                    <br>
-                    <a href="#top" class="btn btn-default btn-xl btn-long page-scroll-visualization" ng-click="backToTop()">Back</a>
-                </div>
+                        <div class="col-lg-8 text-center">
+                            <h3>Deprivation Criteria</h3>
+                            <br>
+                            <div class="alignLeft halfDiv noWrap">
+                                <span class="blockDisplay">
+                                    <input type="checkbox" ng-checked="selectedDeprivations.getEthnicity"
+                                    ng-click="updateSelectedDeprivations('getEthnicity')">Ethnicity
+                                </span>
+                                  <!-- Sub-parameters. Displayed when the criterion is selected.  -->
+                                  <div class="halfDiv" ng-show="selectedDeprivations.getEthnicity.displayPars">
+                                    <input type="checkbox" ng-checked="selectedDeprivations.getEthnicity.subPars.all"
+                                    ng-click="updateSelectedSubPars('getEthnicity', 'all')"> All </br>
+                                    <input type="checkbox" ng-checked="selectedDeprivations.getEthnicity.subPars.southAsian"
+                                    ng-click="updateSelectedSubPars('getEthnicity', 'southAsian')"> South Asian </br>
+                                    <input type="checkbox" ng-checked="selectedDeprivations.getEthnicity.subPars.blackAfroCarribean"
+                                    ng-click="updateSelectedSubPars('getEthnicity', 'blackAfroCarribean')"> Black/Afro-Carribean </br>
+                                    <input type="checkbox" ng-checked="selectedDeprivations.getEthnicity.subPars.gipsyTraveller"
+                                    ng-click="updateSelectedSubPars('getEthnicity', 'gipsyTraveller')"> Gipsy/Traveller </br>
+                                  </div>
 
+                                <span class="blockDisplay">
+                                    <input type="checkbox" ng-checked="selectedDeprivations.getTax"
+                                    ng-click="updateSelectedDeprivations('getTax')">Tax Bands
+                                </span>
+                                  <!-- Sub-parameters. Displayed when the criterion is selected.  -->
+                                    <div class="halfDiv" ng-show="selectedDeprivations.getTax.displayPars">
+                                        <input type="checkbox" ng-checked="selectedDeprivations.getTax.subPars.all"
+                                        ng-click="updateSelectedSubPars('getTax', 'all')">All </br>
+                                        <input type="checkbox" ng-checked="selectedDeprivations.getTax.subPars.a"
+                                        ng-click="updateSelectedSubPars('getTax', 'a')">A </br>
+                                        <input type="checkbox" ng-checked="selectedDeprivations.getTax.subPars.b"
+                                        ng-click="updateSelectedSubPars('getTax', 'b')">B </br>
+                                        <input type="checkbox" ng-checked="selectedDeprivations.getTax.subPars.c"
+                                        ng-click="updateSelectedSubPars('getTax', 'c')">C </br>
+                                        <input type="checkbox" ng-checked="selectedDeprivations.getTax.subPars.d"
+                                        ng-click="updateSelectedSubPars('getTax', 'd')">D </br>
+                                    </div>
 
-                <div class="col-lg-10 col-lg-offset-1 text-center" ng-if="showOutputType">
-                    <h1 class="section-heading">Search Criterias</h1>
-                    <hr class="light">
-                    <br>
-                    <br>
-                    <div class="row borderStyle">
-                        <div class="col-lg-3 text-center">
-                            <h3>Search Type</h3>
-                            <br>
-                            <br>
-                            <div class="alignLeft halfDiv">
                                 <span class="blockDisplay">
-                                    <input type="radio" name="modeOutputType" ng-model="wrapper
-                                    .mode" ng-checked="isBenchmarkingCheckedOutput" value="benchmarking">Benchmark
+                                    <input type="checkbox" ng-checked="selectedDeprivations.getUnpaidCarers"
+                                    ng-click="updateSelectedDeprivations('getUnpaidCarers')">Unpaid Carers
                                 </span>
+
                                 <span class="blockDisplay">
-                                    <input type="radio" name="modeOutputType" ng-model="wrapper
-                                    .mode" ng-checked="isPredictingCheckedOutput" value="predicting">Predict
+                                    <input type="checkbox" ng-checked="selectedDeprivations.getLearningDisabilities"
+                                    ng-click="updateSelectedDeprivations('getLearningDisabilities')">Learning Disabilities
                                 </span>
+
                                 <span class="blockDisplay">
-                                     <input type="number" name="numberOfPeople" ng-model="wrapper
-                                     .numberOfPeople" class="blackText" placeholder="Number of people...">
-                                 </span>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 text-center">
-                            <h3>Population Variables</h3>
-                            <br>
-                            <div class="alignLeft halfDiv">
-                                <span class="blockDisplay">
-                                    <input type="radio" name="genderOutput" ng-model="wrapper
-                                    .gender" ng-checked="isAllGenderCheckedOutPut" value="All People:">All sexes
+                                    <input type="checkbox" ng-checked="selectedDeprivations.getEducationalAttainment"
+                                    ng-click="updateSelectedDeprivations('getEducationalAttainment')">Educational Attainment
                                 </span>
+
                                 <span class="blockDisplay">
-                                    <input type="radio" name="genderOutput" ng-model="wrapper
-                                    .gender" ng-checked="isMaleGenderCheckedOutPut" value="Males:">Male
+                                    <input type="checkbox" ng-checked="selectedDeprivations.getTransport"
+                                    ng-click="updateSelectedDeprivations('getTransport')">Transport
                                 </span>
+                                    <!-- Sub-parameters. Displayed when the criterion is selected.  -->
+                                    <div class="halfDiv" ng-show="selectedDeprivations.getTransport.displayPars">
+                                        <input type="checkbox" ng-checked="selectedDeprivations.getTransport.subPars.all"
+                                        ng-click="updateSelectedSubPars('getTransport', 'all')">All </br>
+                                        <input type="checkbox" ng-checked="selectedDeprivations.getTransport.subPars.noCar"
+                                        ng-click="updateSelectedSubPars('getTransport', 'noCar')">No Car </br>
+                                        <input type="checkbox" ng-checked="selectedDeprivations.getTransport.subPars.oneCar"
+                                        ng-click="updateSelectedSubPars('getTransport', 'oneCar')">One Car </br>
+                                        <input type="checkbox" ng-checked="selectedDeprivations.getTransport.subPars.twoOrMoreCars"
+                                        ng-click="updateSelectedSubPars('getTransport', 'twoOrMoreCars')">Two or More Cars
+                                    </div>
+
                                 <span class="blockDisplay">
-                                    <input type="radio" name="genderOutput" ng-model="wrapper
-                                    .gender" ng-checked="isFemaleGenderCheckedOutPut" value="Females:">Female
+                                    <input type="checkbox" ng-checked="selectedDeprivations.getUnemployed"
+                                    ng-click="updateSelectedDeprivations('getUnemployed')">Unemployed
                                 </span>
-                                Locality
-                                <div class="btn-group">
-                                    <select class="form-control" ng-model="wrapper
-                                    .region" ng-options="r as r.name for r in regions">
-                                    </select>
-                                </div>
-                                Age Group
-                                <div class="btn-group">
-                                    <select class="form-control" ng-model="wrapper
-                                    .ageRange" ng-options="r as r.rangeStr for r in ranges">
-                                        <option selected disabled>Choose here</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 text-center" ng-if="ethincityDeprivationViewShow">
-                            <h3>Ethnicity</h3>
-                            <br>
-                            <br>
-                            <div class="alignLeft halfDiv noWrap">
+
                                 <span class="blockDisplay">
-                                    <input type="checkbox" name="all" ng-model="ethnicityParameters.all" value="all"> All
+                                    <input type="checkbox" ng-checked="selectedDeprivations.getLivingInDeprivedArea"
+                                    ng-click="updateSelectedDeprivations('getLivingInDeprivedArea')">Living in a deprived area
                                 </span>
+
                                 <span class="blockDisplay">
-                                    <input type="checkbox" name="SouthAsian"  ng-model="ethnicityParameters.southAsian" value="SouthAsian"> South Asian
+                                    <input type="checkbox" ng-checked="selectedDeprivations.getHomeless"
+                                    ng-click="updateSelectedDeprivations('getHomeless')">Homeless
                                 </span>
+
                                 <span class="blockDisplay">
-                                    <input type="checkbox" name="Black-Afro-Carribean" ng-model="ethnicityParameters.BlackAfroCarribean" value="Black-Afro-Carribean"> Black-Afro-Carribean
+                                    <input type="checkbox" ng-checked="selectedDeprivations.getLowPay"
+                                    ng-click="updateSelectedDeprivations('getLowPay')">Low Pay
                                 </span>
+
                                 <span class="blockDisplay">
-                                    <input type="checkbox" name="Gypsy/Traveller" ng-model="ethnicityParameters.GypsyTraveller" value="GypsyTraveller"> Gypsy/Traveller
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 text-center" ng-if="taxBandViewShow">
-                            <h3>Tax Band</h3>
-                            <br>
-                            <div class="alignLeft halfDiv noWrap">
-                                <span class="blockDisplay">
-                                    <input type="checkbox" name="taxBandA" ng-model="taxBand.a" value="a"> Tax Band A
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="checkbox" name="taxBandB"  ng-model="taxBand.b" value="b"> Tax Band B
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="checkbox" name="taxBandC" ng-model="taxBand.c" value="c"> Tax Band C
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="checkbox" name="taxBandD" ng-model="taxBand.d" value="d"> Tax Band D
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 text-center" ng-show="unpaidCarersViewShow">
-                            <h3>Unpaid Carers</h3>
-                            <br>
-                            <h5> No relevant subparameters to be selected </h5>
-                            <!--<div class="alignLeft halfDiv noWrap">
-                                <span class="blockDisplay">
-                                    <input type="checkbox" name="unpaidCarers1" ng-model="unpaidCarers.a" value="."> ....
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="checkbox" name="unpaidCarers"2 ng-model="unpaidCarers.b" value="."> ...
-                                </span>
-                            </div>-->
-                        </div>
-                        <div class="col-lg-3 text-center" ng-show="learningDisabilitiesViewShow">
-                            <h3>Learning Disabilities</h3>
-                            <br>
-                            <h5> No relevant subparameters to be selected </h5>
-                            <!--<div class="alignLeft halfDiv noWrap">
-                                <span class="blockDisplay">
-                                    <input type="checkbox" name="learningDisabilities1" ng-model="learningDisabilities.a" value="."> ....
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="checkbox" name="learningDisabilities2" ng-model="learningDisabilities.b" value="."> ...
-                                </span>
-                            </div>-->
-                        </div>
-                        <div class="col-lg-3 text-center" ng-show="educationalAttainmentViewShow">
-                            <h3>Educational Attainment</h3>
-                            <br>
-                            <h5> No relevant subparameters to be selected </h5>
-                            <!--    <span class="blockDisplay">
-                                    <input type="checkbox" name="educationalAttainment1" ng-model="educationalAttainment.a" value="."> ....
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="checkbox" name="educationalAttainment2" ng-model="educationalAttainment.b" value="."> ...
-                                </span>
-                            </div>-->
-                        </div>
-                        <div class="col-lg-3 text-center" ng-show="transportViewShow">
-                            <h3>Transport</h3>
-                            <br>
-                            <br>
-                            <div class="alignLeft halfDiv noWrap">
-                                <span class="blockDisplay">
-                                    <input type="checkbox" name="noCar" ng-model="transport.noCar" value="true"> No car
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="checkbox" name="oneCar" ng-model="transport.oneCar" value="true"> One car
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="checkbox" name="twoOrMoreCars" ng-model="transport.twoOrMoreCars" value="true"> Two or more
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 text-center" ng-show="unemployedViewShow">
-                            <h3>Unemployment</h3>
-                            <br>
-                            <br>
-                            <h5> No relevant subparameters to be selected </h5>
-                            <!--<div class="alignLeft halfDiv noWrap">
-                                <span class="blockDisplay">
-                                    <input type="checkbox" name="unemployed1" ng-model="unemployed.a" value="."> ....
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="checkbox" name="unemployed2" ng-model="unemployed.b" value="."> ...
-                                </span>
-                            </div>-->
-                        </div>
-                        <div class="col-lg-3 text-center" ng-show="livingInDeprivatedAreaViewShow">
-                            <h3>Deprived Area</h3>
-                            <br>
-                            <br>
-                            <h5> No relevant subparameters to be selected </h5>
-                            <!--<div class="alignLeft halfDiv noWrap">
-                                <span class="blockDisplay">
-                                    <input type="checkbox" name="livingInDeprivatedArea1" ng-model="livingInDeprivatedArea.a" value="."> ....
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="checkbox" name="livingInDeprivatedArea2" ng-model="livingInDeprivatedArea.b" value="."> ...
-                                </span>
-                            </div>-->
-                        </div>
-                        <div class="col-lg-3 text-center" ng-show="homelessViewShow">
-                            <h3>Homeless</h3>
-                            <br>
-                            <br>
-                            <h5> No relevant subparameters to be selected </h5>
-                            <!--<div class="alignLeft halfDiv noWrap">-->
-                                <!--<span class="blockDisplay">-->
-                                    <!--<input type="checkbox" name="homeless1" ng-model="homeless.a" value="."> ....-->
-                                <!--</span>-->
-                                <!--<span class="blockDisplay">-->
-                                    <!--<input type="checkbox" name="homeless2" ng-model="homeless.b" value="."> ...-->
-                                <!--</span>-->
-                            <!--</div>-->
-                        </div>
-                        <div class="col-lg-3 text-center" ng-show="lowPayViewShow">
-                            <h3>Low Pay</h3>
-                            <br>
-                            <br>
-                            <h5> No relevant subparameters to be selected </h5>
-                            <!--<div class="alignLeft halfDiv noWrap">-->
-                                <!--<span class="blockDisplay">-->
-                                    <!--<input type="checkbox" name="lowPay1" ng-model="lowPay.a" value="."> ....-->
-                                <!--</span>-->
-                                <!--<span class="blockDisplay">-->
-                                    <!--<input type="checkbox" name="lowPay2" ng-model="lowPay.b" value="."> ...-->
-                                <!--</span>-->
-                            <!--</div>-->
-                        </div>
-                        <div class="col-lg-3 text-center" ng-show="fuelPovertyViewShow">
-                            <h3>Fuel Poverty</h3>
-                            <br>
-                            <br>
-                            <h5> No relevant subparameters to be selected </h5>
-                            <!--<h3>Fuel Poverty</h3>
-                            <br>
-                            <br>
-                            <div class="alignLeft halfDiv noWrap">
-                                <span class="blockDisplay">
-                                    <input type="checkbox" name="fuelPoverty1" ng-model="fuelPoverty.a" value="."> ....
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="checkbox" name="fuelPoverty2" ng-model="fuelPoverty.b" value="."> ...
-                                </span>
-                            </div>-->
-                        </div>
-                        <div class="col-lg-3 text-center" ng-show="offendersViewShow">
-                            <h3>Offenders</h3>
-                            <br>
-                            <br>
-                            <h5> No relevant subparameters to be selected </h5>
-                            <!--<div class="alignLeft halfDiv noWrap">-->
-                                <!--<span class="blockDisplay">-->
-                                    <!--<input type="checkbox" name="offenders1" ng-model="offenders.a" value="."> ....-->
-                                <!--</span>-->
-                                <!--<span class="blockDisplay">-->
-                                    <!--<input type="checkbox" name="offenders2" ng-model="offenders.b" value="."> ...-->
-                                <!--</span>-->
-                            <!--</div>-->
-                        </div>
-                        <div class="col-lg-3 text-center" ng-show="illnessViewShow">
-                            <h3>Illness</h3>
-                            <br>
-                            <br>
-                            <h5> No relevant subparameters to be selected </h5>
-                            <!--<div class="alignLeft halfDiv noWrap">
-                                <span class="blockDisplay">
-                                    <input type="checkbox" name="illness1" ng-model="illness.a" value="."> ....
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="checkbox" name="illness2" ng-model="illness.b" value="."> ...
-                                </span>
-                            </div>-->
-                        </div>
-                        <div class="col-lg-3 text-center" ng-show="mentalHealthAndWellbeingViewShow">
-                            <h3>Illness</h3>
-                            <br>
-                            <br>
-                            <h5> No relevant subparameters to be selected </h5>
-                            <!--<div class="alignLeft halfDiv noWrap">-->
-                                <!--<span class="blockDisplay">-->
-                                    <!--<input type="checkbox" name="mentalHealthAndWellbeing1" ng-model="mentalHealthAndWellbeing.a" value="."> ....-->
-                                <!--</span>-->
-                                <!--<span class="blockDisplay">-->
-                                    <!--<input type="checkbox" name="mentalHealthAndWellbeing2" ng-model="mentalHealthAndWellbeing.b" value="."> ...-->
-                                <!--</span>-->
-                            <!--</div>-->
-                        </div>
-                        <div class="col-lg-3 text-center">
-                            <h3>Output Type</h3>
-                            <br>
-                            <br>
-                            <div class="alignLeft halfDiv">
-                                <span class="blockDisplay">
-                                    <input type="radio" name="visualization" ng-model="visualization" value="table"> Table
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="radio" name="visualization" ng-model="visualization" value="boxPlot"> Box Plot
-                                </span>
-                                <span class="blockDisplay">
-                                    <input type="radio" name="visualization" ng-model="visualization" value="lineGraph"> Line Graph
+                                    <input type="checkbox" ng-checked="selectedDeprivations.getFuelPoverty"
+                                    ng-click="updateSelectedDeprivations('getFuelPoverty')">Fuel Poverty
                                 </span>
                             </div>
                         </div>
