@@ -132,53 +132,52 @@
                     <button type="button" class="btn btn-primary btn-xl btn-long" data-toggle="modal" data-target="#myModal">Instructions</button>
                     </div>
                     </br>
-                    <a href="#estimates" class="btn btn-primary btn-xl btn-long" ng-click="benchmarkClicked()">Benchmark</a><!--page-scroll - > removed because it does not position page correctly-->
+                    <a href="#estimates" class="btn btn-primary btn-xl btn-long" ng-click="benchmark()">Benchmark</a>
                 </div>
             </div>
         </section>
     </header>
 
-    <section class="bg-primary" id="estimates" ng-show="showSelectSection">
+    <section class="bg-primary" id="estimates" ng-show="showBenchmarking">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center" ng-if="showDeprivationCriteria">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
                     <h1 class="section-heading">Search</h1>
                     <hr class="light">
                     <br>
                     <div class="row borderStyle">
                         <!-- Population Variables Part -->
-                        <div class="col-lg-4 text-center">
+                        <div class="col-lg-5 text-center">
                             <h3>Search Parameters</h3>
                             <br>
                             <div class="alignCenter">
                                 <span class="blockDisplay">
-                                    <input type="number" name="numberOfPeople" ng-model="wrapper
-                                    .numberOfPeople" ng-change="doesProceedDeprivationParameters()" class="blackText" placeholder="Number of people...">
+                                    <input type="number" name="numberOfPeople" ng-model="numberOfPeople" class="blackText" placeholder="Number of people...">
                                 </span>
-                                Locality
+                                Locality <br>
                                 <div class="btn-group">
-                                    <select class="form-control" ng-model="wrapper.region" ng-options="r as r.name for r in regions" ng-change="doesProceedPopulationVariables()">
+                                    <select class="form-control" ng-model="region" ng-options="r as r.name for r in regions">
                                     </select>
                                 </div><br>
-                                Age Group
+                                Age Group <br>
                                 <div class="btn-group">
-                                    <select class="form-control" ng-model="wrapper.ageRange" ng-options="r as r.rangeStr for r in ranges"  ng-change="doesProceedPopulationVariables()">
+                                    <select class="form-control" ng-model="ageRange" ng-options="r as r.rangeStr for r in ranges">
                                         <option selected disabled>Choose here</option>
                                     </select>
                                 </div><br>
-                                Gender
+                                Gender <br>
                                 <span class="blockDisplay">
-                                    <input type="radio" name="genderIneq" ng-model="wrapper.gender" ng-checked="isAllGenderCheckedIneq" ng-click="doesProceedPopulationVariables()" value="All People:">All
+                                    <input type="radio" name="genderIneq" ng-model="gender" value="All People:">All
                                 </span>
                                 <span class="blockDisplay">
-                                    <input type="radio" name="genderIneq" ng-model="wrapper.gender" ng-checked="isMaleGenderCheckedIneq" ng-click="doesProceedPopulationVariables()" value="Males:">Male
+                                    <input type="radio" name="genderIneq" ng-model="gender" value="Males:">Male
                                 </span>
                                 <span class="blockDisplay">
-                                    <input type="radio" name="genderIneq" ng-model="wrapper.gender" ng-checked="isFemaleGenderChecked" ng-click="doesProceedPopulationVariables()" value="Females:">Female
+                                    <input type="radio" name="genderIneq" ng-model="gender" value="Females:">Female
                                 </span>
                             </div>
                         </div>
-                        <div class="col-lg-8 text-center">
+                        <div class="col-lg-7 text-center">
                             <h3>Deprivation Criteria</h3>
                             <br>
                             <div class="alignLeft halfDiv noWrap">
@@ -277,14 +276,14 @@
                     <br>
                     <br>
                     <br>
-                    <a href="#visualization" class="btn btn-default btn-xl btn-long page-scroll-visualization" ng-click="visualize()">Visualize</a>
-                    <a href="#top" class="btn btn-default btn-xl btn-long page-scroll-visualization" ng-click="backToTop()">Back</a>
+                    <a href="#visualization" class="btn btn-default btn-xl btn-long" ng-click="visualize()">Visualize</a>
+                    <a href="#top" class="btn btn-default btn-xl btn-long">Back</a> <!--page-scroll-visualization-->
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="visualization" ng-show="isVisualizing">
+    <section id="visualization" ng-show="showVisualizing">
         <div class="container fullSizeContainer">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -342,6 +341,7 @@
                     </div>
                     <hr class="primary">
                     <button id="csv" ng-show="!isLoading" type="button" class="btn btn-primary btn-xl btn-long" ng-click="downloadAsCSV()">Download as .csv</button>
+                    <a href="#estimates" class="btn btn-primary btn-xl btn-long" ng-click="clearSearch()">New Search</a>
                 </div>
 
             </div>
