@@ -20,24 +20,23 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
 
 
     $scope.downloadAsCSV = function() {
-        // test data
-        // $scope.result = [{
-        //     totalPopulation: 8076, totalDeprived: 41, upperRange: 8.056713981106709, lowerRange: 0.7936575231058619, estimate: 2.53838533927687
-        //     }, {
-        //     totalPopulation: 3513, totalDeprived: 46, upperRange: 12.056713981106709, lowerRange: 34.7936575231058619, estimate: 5.53838533927687
-        //     }]
-
-        var array = [['Total Population','Total Deprived', 'Upper Range', 'Lower Range', 'Estimate']]; // headers
+        var array = [['Indicator', 'Total Population','Total Deprived', 'Upper Range', 'Estimate', 'Estimate', 'Total Deprived %', 'Estimte %', 'Lower Range %', 'Upper Range %']]; // headers
         var csvRows = [];
 
 
         // for every indicator, push the content into an array
-        for (var indicator in $scope.result) {
-            console.log($scope.result);
+        for (var indicator in $scope.results) {
+            console.log(indicator);
             var temp = [];
-            for(var value in $scope.result[indicator]){
-                temp.push($scope.result[indicator][value]);
+            temp.push($scope.results[indicator].name);
+            console.log($scope.results[indicator].name);
+            console.log($scope.results[indicator].data);
+            for(var value in $scope.results[indicator].data){
+                console.log(value);
+                console.log($scope.results[indicator].data[value]);
+                temp.push($scope.results[indicator].data[value]);
             }
+            console.log(temp);
             array.push(temp);
         }
 
