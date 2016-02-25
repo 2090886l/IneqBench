@@ -5,7 +5,8 @@ folders = [('schema',False),('data',False),('functions',True),('procedures',True
 print('USE ineq_bench;\n')
 
 for eachfolder in folders: 
-	for each in os.listdir(eachfolder[0]): 
+	filesinfolder = [f for f in os.listdir(eachfolder[0]) if os.path.isfile(os.path.join(eachfolder[0], f))]
+	for each in filesinfolder:
 		if(eachfolder[1]): 
 			print('DELIMITER $$\nUSE \'ineq_bench\'$$\n')
 		with open(os.path.join(eachfolder[0],each), 'r') as content_file:
