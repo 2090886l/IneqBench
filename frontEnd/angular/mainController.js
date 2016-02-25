@@ -149,9 +149,10 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
     ];
 
     //Miscellaneous
-    function setResult(data, daprivation){
+    function setResult(data, deprivation){
       data = roundData(data);
       $scope.results[deprivation] = {data: data, name: deprivationCriteriasNames[deprivation]};
+      console.log($scope.results);
     }
     function roundData(data){
       data.totalPopulation=Math.round(data.totalPopulation);
@@ -160,9 +161,9 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
       data.lowerRange=Math.round(data.lowerRange);
       data.estimate=Math.round(data.estimate);
       data.totalDeprivedPercentage=Math.round((data.totalDeprived/data.totalPopulation)*100);
-      data.estimatePercentage=Math.round((data.estimate/$scope.wrapper.numberOfPeople)*100);
-      data.lowerRangePercentage=Math.round((data.lowerRange/$scope.wrapper.numberOfPeople)*10000)/100;
-      data.upperRangePercentage=Math.round((data.upperRange/$scope.wrapper.numberOfPeople)*10000)/100;
+      data.estimatePercentage=Math.round((data.estimate/$scope.numberOfPeople)*100);
+      data.lowerRangePercentage=Math.round((data.lowerRange/$scope.numberOfPeople)*10000)/100;
+      data.upperRangePercentage=Math.round((data.upperRange/$scope.numberOfPeople)*10000)/100;
       return data;
     }
 }]);

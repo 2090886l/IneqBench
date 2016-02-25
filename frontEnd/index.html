@@ -162,8 +162,9 @@
                                     <select class="form-control" ng-model="region" ng-options="r as r.name for r in regions">
                                     </select>
                                 </div><br>
-                                Age <br>
+                                Age </br>
                                 <input type="number" name="ageFrom" ng-model="ageFrom" class="blackText" placeholder="From"> <br>
+                                
                                 <input type="number" name="ageTo" ng-model="ageTo" class="blackText" placeholder="To">
                                 <br>
                                 Sex <br>
@@ -324,19 +325,19 @@
                                     </table>
                                  </td>
                             </tr>
-                            <tr>
-                                <td>{{deprivationCriteriaDisplayedName}}</td>
-                                <td>{{result.totalDeprived}} | {{result.totalDeprivedPercentage}}%</td>
+
+                            <tr ng-repeat="indicator in results track by $index">
+                                <td>{{indicator.name}}</td>
+                                <td>{{indicator.data.totalDeprived}} | {{indicator.data.totalDeprivedPercentage}}%</td>
                                 <td>
                                     <table class="table">
                                         <tr>
-                                            <td>{{result.estimate}} | {{result.estimatePercentage}}%</td>
-                                            <td>{{result.lowerRange}} | {{result.lowerRangePercentage}}%</td>
-                                            <td>{{result.upperRange}} | {{result.upperRangePercentage}}%</td>
+                                            <td>{{indicator.data.estimate}} | {{indicator.data.estimatePercentage}}%</td>
+                                            <td>{{indicator.data.lowerRange}} | {{indicator.data.lowerRangePercentage}}%</td>
+                                            <td>{{indicator.data.upperRange}} | {{indicator.data.upperRangePercentage}}%</td>
                                         </tr>
                                     </table>
                                 </td>
-                            </tr>
                             </tr>
                         </table>
                     </div>
