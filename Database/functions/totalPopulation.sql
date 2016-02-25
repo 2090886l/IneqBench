@@ -1,3 +1,4 @@
+DROP FUNCTION IF EXISTS totalPopulation;
 CREATE DEFINER=`root`@`localhost` FUNCTION `totalPopulation`(start_age int(2),
 								end_age int(2),
 								sexIn VARCHAR(25),

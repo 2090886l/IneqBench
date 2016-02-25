@@ -1,3 +1,4 @@
+DROP PROCEDURE IF EXISTS getCarOutput;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getCarOutput`(IN start_age int(2), IN end_age int(2), IN sexIn VARCHAR(25), IN locality VARCHAR(25))
 BEGIN
 SELECT (

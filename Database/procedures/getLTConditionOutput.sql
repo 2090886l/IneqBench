@@ -1,3 +1,4 @@
+DROP PROCEDURE IF EXISTS getLTConditionOutput;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getLTConditionOutput`(IN start_age int(2), IN end_age int(2), IN sexIn VARCHAR(25), IN locality VARCHAR(25))
 BEGIN SELECT (
 	SELECT totalPopulation(start_age,end_age,sexIn,locality)) AS 'totalPopulation',

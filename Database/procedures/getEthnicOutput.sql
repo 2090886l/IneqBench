@@ -1,3 +1,4 @@
+DROP PROCEDURE IF EXISTS getEthnicOutput;
 CREATE DEFINER=`ineqbench_user`@`%` PROCEDURE `getEthnicOutput`(IN start_age int(2), IN end_age int(2), IN sexIn VARCHAR(25), IN locality VARCHAR(25))
 BEGIN
 SELECT (

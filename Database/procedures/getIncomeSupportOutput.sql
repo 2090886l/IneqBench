@@ -1,3 +1,4 @@
+DROP PROCEDURE IF EXISTS getIncomeSupportOutput;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getIncomeSupportOutput`(IN start_age int(2),
 										   IN end_age int(2),
                                            IN sexIn VARCHAR(25),
