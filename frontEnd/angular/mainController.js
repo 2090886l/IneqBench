@@ -10,7 +10,8 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
     // count for loading indicator
     $rootScope.loadingCount = 0;
     $scope.numberOfPeople = null;
-    $scope.ageRange = null;
+    $scope.ageFrom = null;
+    $scope.ageTo = null;
     $scope.region = null;
     $scope.gender = null;
 
@@ -75,7 +76,8 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
     $scope.clearSearch = function() {
       $scope.results = null;
       $scope.selectedDeprivations = null;
-      $scope.ageRange = null;
+      $scope.ageFrom = null;
+      $scope.ageTo = null;
       $scope.numberOfPeople = null;
       $scope.region = null;
       $scope.gender = null;
@@ -144,20 +146,6 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
         {name:'Stewartry'},
         {name:'Wigtownshire'},
         {name:'Dumfries & Galloway'}
-    ];
-
-    $scope.ranges=[
-        {rangeStr:"0-10",rangeInt:[0,10]},
-        {rangeStr:"10-20",rangeInt:[10,20]},
-        {rangeStr:"20-30",rangeInt:[20,30]},
-        {rangeStr:"30-40",rangeInt:[30,40]},
-        {rangeStr:"40-50",rangeInt:[40,50]},
-        {rangeStr:"50-60",rangeInt:[50,60]},
-        {rangeStr:"60-70",rangeInt:[60,70]},
-        {rangeStr:"70-80",rangeInt:[70,80]},
-        {rangeStr:"80-90",rangeInt:[80,90]},
-        {rangeStr:"90-100",rangeInt:[90,100]},
-        {rangeStr:"100-110",rangeInt:[100,110]}
     ];
 
 

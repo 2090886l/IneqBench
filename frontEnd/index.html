@@ -141,6 +141,8 @@
         </section>
     </header>
 
+From: {{ageFrom}} <br>
+To: {{ageTo}}
     <section class="bg-primary" id="estimates" ng-show="showBenchmarking">
         <div class="container">
             <div class="row">
@@ -162,12 +164,22 @@
                                     <select class="form-control" ng-model="region" ng-options="r as r.name for r in regions">
                                     </select>
                                 </div><br>
-                                Age Group <br>
-                                <div class="btn-group">
+                                Age <br>
+                                <input type="number" name="ageFrom" ng-model="ageFrom" class="blackText" placeholder="From">
+                                <input type="number" name="ageTo" ng-model="ageTo" class="blackText" placeholder="To">
+                                <!-- <span class="blockDisplay">
+                                    From: <input type="number" name="ageFrom" ng-model="z">
+                                </span>
+                                <span class="blockDisplay">
+                                    To: <input type="number" name="ageFrom" ng-model="z">
+                                </span> -->
+
+                                <!-- <div class="btn-group">
                                     <select class="form-control" ng-model="ageRange" ng-options="r as r.rangeStr for r in ranges">
                                         <option selected disabled>Choose here</option>
                                     </select>
-                                </div><br>
+                                </div><br> -->
+                                <br>
                                 Gender <br>
                                 <span class="blockDisplay">
                                     <input type="radio" name="genderIneq" ng-model="gender" value="All People:">All
