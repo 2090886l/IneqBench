@@ -36,7 +36,7 @@ public class JdbcUnemployedDAO implements UnemployedDAO{
 		
 		jdbcCall = new SimpleJdbcCall(dataSource)
 	    .withoutProcedureColumnMetaDataAccess()
-	    .withProcedureName("getUnemployed")
+	    .withProcedureName("getUnemployedOutput")
 	    .returningResultSet("unemployed", new ResponseMapper());
 	}
 	

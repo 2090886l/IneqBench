@@ -41,12 +41,12 @@ public class JdbcEthinicityDAOTest {
        ClientRequestPOJO clientRequest = ClientRequestBuilder.getRequestObject();
        
        ResponseTuplePOJO dbResponse = ethnicityDAO.findData(clientRequest.getAgeGroupStart(), clientRequest.getAgeGroupEnd(),
-    		   clientRequest.getGender(), clientRequest.getGender());
+    		   clientRequest.getGender(), clientRequest.getLocality());
        
-       ResponseTuplePOJO dbResponseExpected = new ResponseTuplePOJO(0,0);
+       ResponseTuplePOJO dbResponseExpected = new ResponseTuplePOJO(24870,69);
        
-       assertEquals("Expect 0 for total deprived",dbResponseExpected.getTotalDeprived(),dbResponse.getTotalDeprived());
-       assertEquals("Expect 0 for total population",dbResponseExpected.getTotalPopulation(),dbResponse.getTotalPopulation());
+       assertEquals("Expects total deprived",dbResponseExpected.getTotalDeprived(),dbResponse.getTotalDeprived());
+       assertEquals("Expects for total population",dbResponseExpected.getTotalPopulation(),dbResponse.getTotalPopulation());
     }
 }
 

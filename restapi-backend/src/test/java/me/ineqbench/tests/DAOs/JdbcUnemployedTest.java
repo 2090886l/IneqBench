@@ -39,9 +39,9 @@ public class JdbcUnemployedTest {
     	//findData gets only primitive params - explain why in interface doc 
        ClientRequestPOJO clientRequest = ClientRequestBuilder.getRequestObject();
        ResponseTuplePOJO dbResponse = unemployedDAO.findData(clientRequest.getAgeGroupStart(), clientRequest.getAgeGroupEnd(),
-    		   clientRequest.getGender(), clientRequest.getGender());
+    		   clientRequest.getGender(), clientRequest.getLocality());
        
-       ResponseTuplePOJO dbResponseExpected = new ResponseTuplePOJO(0,0);
+       ResponseTuplePOJO dbResponseExpected = new ResponseTuplePOJO(24870,866);
        
        assertEquals("Expect 0 for total deprived",dbResponseExpected.getTotalDeprived(),dbResponse.getTotalDeprived());
        assertEquals("Expect 0 for total population",dbResponseExpected.getTotalPopulation(),dbResponse.getTotalPopulation());

@@ -28,4 +28,12 @@
 	<bean id="educationalAttainmentDAO" class="me.ineqbench.controllers.dao.JdbcEducationalAttainmentDAO">
 	</bean>
 	
+	<bean id="livingInDeprivedAreaDAO" class="me.ineqbench.controllers.dao.JdbcLivingInDeprivedAreaDAO">
+	</bean>
+	
+	<bean id="lowPayDAO" class="me.ineqbench.controllers.dao.JdbcLowPayDAO">
+	</bean>
+	
+	<bean id="unemployedDAO" class="me.ineqbench.controllers.dao.JdbcUnemployedDAO">
+	</bean>
 </beans>

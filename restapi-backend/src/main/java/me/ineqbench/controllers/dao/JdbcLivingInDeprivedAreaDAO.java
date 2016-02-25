@@ -37,7 +37,7 @@ public class JdbcLivingInDeprivedAreaDAO implements LivingInDeprivedAreaDAO{
 		
 		jdbcCall = new SimpleJdbcCall(dataSource)
 	    .withoutProcedureColumnMetaDataAccess()
-	    .withProcedureName("getDeprivedArea")
+	    .withProcedureName("getLivingAreaOutput")
 	    .returningResultSet("livingInDeprivedArea", new ResponseMapper());
 	}
 	

@@ -37,7 +37,7 @@ public class JdbcLowPayDAO implements LowPayDAO{
 		
 		jdbcCall = new SimpleJdbcCall(dataSource)
 	    .withoutProcedureColumnMetaDataAccess()
-	    .withProcedureName("getLowPay")
+	    .withProcedureName("getIncomeSupportOutput")
 	    .returningResultSet("lowPay", new ResponseMapper());
 	}
 	
@@ -56,7 +56,7 @@ public class JdbcLowPayDAO implements LowPayDAO{
 				gender,
 				locality);
 		
-		List<ResponseTuplePOJO> result = (List<ResponseTuplePOJO>)mapResult.get("getLowPay");
+		List<ResponseTuplePOJO> result = (List<ResponseTuplePOJO>)mapResult.get("lowPay");
 		return result.get(0);
 }
 
