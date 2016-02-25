@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 5.5.47, for debian-linux-gnu (x86_64)
 --
--- Host: mikeharling.co.uk    Database: ineq_bench
+-- Host: alpha.ineqbench.me    Database: ineq_bench
 -- ------------------------------------------------------
--- Server version	5.5.45-cll-lve
+-- Server version	5.5.46-0ubuntu0.14.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -54,9 +54,9 @@ DROP TABLE IF EXISTS `ETHNIC_GROUP`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ETHNIC_GROUP` (
-  `POSTCODE` text,
-  `SEX` text,
-  `AGE` text,
+  `POSTCODE` varchar(25) DEFAULT NULL,
+  `SEX` varchar(25) DEFAULT NULL,
+  `AGE` varchar(25) DEFAULT NULL,
   `ALL_PEOPLE` int(11) DEFAULT NULL,
   `WHITE_TOTAL` int(11) DEFAULT NULL,
   `WHITE_SCOTTISH` int(11) DEFAULT NULL,
@@ -81,7 +81,8 @@ CREATE TABLE `ETHNIC_GROUP` (
   `CARIBBEAN_OTHER` int(11) DEFAULT NULL,
   `OTHER_TOTAL` int(11) DEFAULT NULL,
   `OTHER_ARAB` int(11) DEFAULT NULL,
-  `OTHER_OTHER` int(11) DEFAULT NULL
+  `OTHER_OTHER` int(11) DEFAULT NULL,
+  KEY `ETHNIC_GROUP_POSTCODE_INDEX` (`POSTCODE`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -126,8 +127,25 @@ CREATE TABLE `GEOGRAPHY_LOOKUP` (
   `HB_Code` varchar(11) DEFAULT NULL,
   `HB_Name` varchar(45) DEFAULT NULL,
   `Locality` varchar(45) DEFAULT NULL,
-  `LHP_Code` int(11) DEFAULT NULL
+  `LHP_Code` int(11) DEFAULT NULL,
+  KEY `GEOGRAPHY_INDEX` (`Locality`),
+  KEY `GEOGRAPHY_LOOKUP_POSTCODE_INDEX` (`Postcode`),
+  KEY `GEOGRAPHY_LOOKUP_DATAZONE_INDEX` (`Datazone`),
+  KEY `LOOKUP_POSTCODE_INDEX` (`Postcode`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `INCOME_SUPPORT`
+--
+
+DROP TABLE IF EXISTS `INCOME_SUPPORT`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `INCOME_SUPPORT` (
+  `SEX` varchar(15) DEFAULT NULL,
+  `TOTAL` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -143,6 +161,19 @@ CREATE TABLE `IN_WORK_BENEFITS` (
   `Females:` int(11) DEFAULT NULL,
   `All People:` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `LOCALITY_POPULATION`
+--
+
+DROP TABLE IF EXISTS `LOCALITY_POPULATION`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `LOCALITY_POPULATION` (
+  `AREA` varchar(25) DEFAULT NULL,
+  `POPULATION` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -276,11 +307,11 @@ DROP TABLE IF EXISTS `SIMD_LOCAL_QUINTILES`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `SIMD_LOCAL_QUINTILES` (
   `QUINTILE` int(11) DEFAULT NULL,
-  `Annandale & Eskdale` varchar(45) DEFAULT NULL,
+  `AnnandaleEskdale` varchar(45) DEFAULT NULL,
   `Nithsdale` varchar(45) DEFAULT NULL,
   `Stewartry` varchar(45) DEFAULT NULL,
   `Wigtownshire` varchar(45) DEFAULT NULL,
-  `Dumfries & Galloway` varchar(45) DEFAULT NULL
+  `DumfriesGalloway` varchar(45) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -322,6 +353,33 @@ CREATE TABLE `TAX_BAND` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `UNEMPLOYED`
+--
+
+DROP TABLE IF EXISTS `UNEMPLOYED`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `UNEMPLOYED` (
+  `DATA_ZONE` varchar(11) DEFAULT NULL,
+  `TOTAL` int(11) DEFAULT NULL,
+  `PART_TIME` int(11) DEFAULT NULL,
+  `FULL_TIME` int(11) DEFAULT NULL,
+  `SELF_EMPLOYED` int(11) DEFAULT NULL,
+  `UNEMPLOYED` int(11) DEFAULT NULL,
+  `STUDENT` int(11) DEFAULT NULL,
+  `RETIRED` int(11) DEFAULT NULL,
+  `INACTIVE_STUDENT` int(11) DEFAULT NULL,
+  `HOMEMAKER` int(11) DEFAULT NULL,
+  `SICK` int(11) DEFAULT NULL,
+  `OTHER` int(11) DEFAULT NULL,
+  `16_24` int(11) DEFAULT NULL,
+  `50-74` int(11) DEFAULT NULL,
+  `NEVER_WORKED` int(11) DEFAULT NULL,
+  `LONG_TERM_UNEMPLOYED` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `UNPAID_CARE`
 --
 
@@ -358,4 +416,4 @@ CREATE TABLE `UNPAID_CARE` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-02-09 13:51:29
+-- Dump completed on 2016-02-25 13:36:33
