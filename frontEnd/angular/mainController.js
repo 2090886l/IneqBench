@@ -1,13 +1,14 @@
 var app = angular.module('IneqBenchControllers', []);
 
 
-app.controller('MainController', ["$http", "$scope", function($http, $scope) {
+app.controller('MainController', ["$http", "$scope", "$rootScope", function($http, $scope, $rootScope) {
 
     var url = "http://localhost:8080";
 
     $scope.showBenchmarking = false;
     $scope.showVisualizing = false;
-
+    // count for loading indicator
+    $rootScope.loadingCount = 0;
     $scope.numberOfPeople = null;
     $scope.ageRange = null;
     $scope.region = null;

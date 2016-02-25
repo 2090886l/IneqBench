@@ -3,18 +3,18 @@ var app = angular.module('IneqBench',['IneqBenchControllers']);
 app.factory('authInterceptor', function($rootScope,  $q, $injector) {
   return {
     request: function(config) {
-        console.log("request");
-      $rootScope.isLoading = true;
+      $rootScope.loadingCount++;
+      console.log("request loading count:" + $rootScope.loadingCount);
       return config;
     },
     response: function(response) {
-        console.log("response");
-      $rootScope.isLoading = false;
+      $rootScope.loadingCount--;
+      console.log("response loading count:" + $rootScope.loadingCount);
       return response;
     },
     responseError: function(response) {
-        console.log("error");
-      $rootScope.isLoading = false;
+      $rootScope.loadingCount--;
+      console.log("error loading count:" + $rootScope.loadingCount);
       return $q.reject(response);
     }
   };
