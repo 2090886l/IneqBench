@@ -1,4 +1,4 @@
-package me.ineqbench.tests.DAOs;
+package me.ineqbench.tests.IntegrationTests;
 
 import static org.junit.Assert.assertEquals;
 
@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import me.ineqbench.controllers.dao.JdbcEducationalAttainmentDAO;
+import me.ineqbench.controllers.dao.JdbcTransportDAO;
 import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
 import me.ineqbench.tests.builders.ClientRequestBuilder;
 import me.ineqbench.tests.builders.DBResponseBuilder;
@@ -20,10 +21,10 @@ import me.ineqbench.tests.util.ClientRequestPOJO;
 // used only for testing purposes 
 @ContextConfiguration(locations = {"classpath:Spring-Test-DAO-Module.xml"})
 @WebAppConfiguration
-public class JdbcEducationalAttainmentDAOTest {
+public class JdbcTransportDAOTest {
  
     @Autowired
-    private JdbcEducationalAttainmentDAO educationalAttainmentDAO;
+    private JdbcTransportDAO transportDAO;
     
  
     @Before
@@ -35,20 +36,16 @@ public class JdbcEducationalAttainmentDAOTest {
     	
     	ResponseTuplePOJO response = DBResponseBuilder.getDBMockResponse();
     	
-        //Avoid "data clumps", unfortunately Unpaid Carer DAO interface method
+        //Avoid "data clumps", unfortunately Transport DAO interface method
     	//findData gets only primitive params - explain why in interface doc 
        ClientRequestPOJO clientRequest = ClientRequestBuilder.getRequestObject();
-       ResponseTuplePOJO dbResponse = educationalAttainmentDAO.findData(clientRequest.getAgeGroupStart(), clientRequest.getAgeGroupEnd(),
+       ResponseTuplePOJO dbResponse = transportDAO.findData(clientRequest.getAgeGroupStart(), clientRequest.getAgeGroupEnd(),
     		   clientRequest.getGender(), clientRequest.getLocality());
        
-       ResponseTuplePOJO dbResponseExpected = new ResponseTuplePOJO(24870,7706);
+       ResponseTuplePOJO dbResponseExpected = new ResponseTuplePOJO(24870,4138);
        
        assertEquals("Expects total deprived",dbResponseExpected.getTotalDeprived(),dbResponse.getTotalDeprived());
        assertEquals("Expects for total population",dbResponseExpected.getTotalPopulation(),dbResponse.getTotalPopulation());
     }
 }
-
-
-
-
 

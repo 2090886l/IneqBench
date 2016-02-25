@@ -1,4 +1,4 @@
-package me.ineqbench.tests.analyser;
+package me.ineqbench.tests.springMVCUnitTests.analyser;
 
 import org.junit.Before;
 import org.junit.Test;

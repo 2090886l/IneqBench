@@ -1,4 +1,4 @@
-package me.ineqbench.tests.controllers;
+package me.ineqbench.tests.springMVCUnitTests.controllers;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -19,8 +19,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import me.ineqbench.controllers.dao.JdbcLowPayDAO;
-import me.ineqbench.controllers.dao.JdbcUnpaidCarersDAO;
+import me.ineqbench.controllers.dao.JdbcIllnessDAO;
+import me.ineqbench.controllers.dao.JdbcLearningDisabilitiesDAO;
 import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
 import me.ineqbench.tests.builders.ClientRequestBuilder;
 import me.ineqbench.tests.builders.DBResponseBuilder;
@@ -32,12 +32,12 @@ import me.ineqbench.tests.util.TestUtil;
 // used only for testing purposes 
 @ContextConfiguration(locations = {"classpath:Spring-Test-Module.xml"})
 @WebAppConfiguration
-public class LowPayControllerTest {
+public class LearningDisabilitiesControllerTest {
  
     private MockMvc mockMvc;
  
     @Autowired
-    private JdbcLowPayDAO lowPayDAO;
+    private JdbcLearningDisabilitiesDAO learningDisabilitiesDAO;
  
     @Autowired
     private WebApplicationContext webApplicationContext;
@@ -48,26 +48,26 @@ public class LowPayControllerTest {
         //are managed by the Spring container. If we would not reset them,
         //stubbing and verified behavior would "leak" from one test to another.
     	
-    	Mockito.reset(lowPayDAO);
+    	Mockito.reset(learningDisabilitiesDAO);
     	
     	// Get the mock builder from the WebApplicationContext Spring container
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
     
     @Test
-    public void findUnpaidCarers_ShouldMapRequestToController() throws Exception {
+    public void findLearningDisabilities_ShouldMapRequestToController() throws Exception {
     	
     	ResponseTuplePOJO response = DBResponseBuilder.getDBMockResponse();
     	
-        //Avoid "data clumps", unfortunately Low Pay DAO interface method
+        //Avoid "data clumps", unfortunately Learning Disabilities interface method
     	//findData gets only primitive params - explain why in interface doc 
        ClientRequestPOJO clientRequest = ClientRequestBuilder.getRequestObject();
        
        // Configure mockito to return "response" when findData called
-       when(lowPayDAO.findData(clientRequest.getAgeGroupStart(),clientRequest.getAgeGroupEnd(),
+       when(learningDisabilitiesDAO.findData(clientRequest.getAgeGroupStart(),clientRequest.getAgeGroupEnd(),
     		   clientRequest.getGender(),clientRequest.getLocality())).thenReturn(response);
        
-       mockMvc.perform(get("/getLowPay/{numberOfPeople}/{ageGroupStart}/{ageGroupEnd}/{gender}/{locality}",
+       mockMvc.perform(get("/getLearningDisabilities/{numberOfPeople}/{ageGroupStart}/{ageGroupEnd}/{gender}/{locality}",
         		clientRequest.getNumberOfPeople(),
         		clientRequest.getAgeGroupStart(),
         		clientRequest.getAgeGroupEnd(),
@@ -75,14 +75,10 @@ public class LowPayControllerTest {
         		clientRequest.getLocality()).accept(TestUtil.APPLICATION_JSON_UTF8))
         		.andExpect(status().isOk());
  
-        verify(lowPayDAO, times(1)).findData(clientRequest.getAgeGroupStart(),clientRequest.getAgeGroupEnd(),
+        verify(learningDisabilitiesDAO, times(1)).findData(clientRequest.getAgeGroupStart(),clientRequest.getAgeGroupEnd(),
      		   clientRequest.getGender(),clientRequest.getLocality());
-        verifyNoMoreInteractions(lowPayDAO);
+        verifyNoMoreInteractions(learningDisabilitiesDAO);
     }
 }
-
-
-
-
 
 

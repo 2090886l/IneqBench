@@ -1,4 +1,4 @@
-package me.ineqbench.tests.controllers;
+package me.ineqbench.tests.springMVCUnitTests.controllers;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -19,7 +19,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import me.ineqbench.controllers.dao.JdbcFuelPovertyDAO;
+import me.ineqbench.controllers.dao.JdbcTransportDAO;
 import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
 import me.ineqbench.tests.builders.ClientRequestBuilder;
 import me.ineqbench.tests.builders.DBResponseBuilder;
@@ -31,12 +31,12 @@ import me.ineqbench.tests.util.TestUtil;
 // used only for testing purposes 
 @ContextConfiguration(locations = {"classpath:Spring-Test-Module.xml"})
 @WebAppConfiguration
-public class FuelPovertyControllerTest {
+public class TransportControllerTest {
  
     private MockMvc mockMvc;
  
     @Autowired
-    private JdbcFuelPovertyDAO fuelPovertyDAO;
+    private JdbcTransportDAO transportDAO;
  
     @Autowired
     private WebApplicationContext webApplicationContext;
@@ -47,26 +47,26 @@ public class FuelPovertyControllerTest {
         //are managed by the Spring container. If we would not reset them,
         //stubbing and verified behavior would "leak" from one test to another.
     	
-    	Mockito.reset(fuelPovertyDAO);
+    	Mockito.reset(transportDAO);
     	
     	// Get the mock builder from the WebApplicationContext Spring container
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
     
     @Test
-    public void findFuelPoverty_ShouldMapRequestToController() throws Exception {
+    public void findTransport_ShouldMapRequestToController() throws Exception {
     	
     	ResponseTuplePOJO response = DBResponseBuilder.getDBMockResponse();
     	
-        //Avoid "data clumps", unfortunately Fuel Poverty interface method
+        //Avoid "data clumps", unfortunately Transport DAO interface method
     	//findData gets only primitive params - explain why in interface doc 
        ClientRequestPOJO clientRequest = ClientRequestBuilder.getRequestObject();
        
        // Configure mockito to return "response" when findData called
-       when(fuelPovertyDAO.findData(clientRequest.getAgeGroupStart(),clientRequest.getAgeGroupEnd(),
+       when(transportDAO.findData(clientRequest.getAgeGroupStart(),clientRequest.getAgeGroupEnd(),
     		   clientRequest.getGender(),clientRequest.getLocality())).thenReturn(response);
        
-       mockMvc.perform(get("/getFuelPoverty/{numberOfPeople}/{ageGroupStart}/{ageGroupEnd}/{gender}/{locality}",
+       mockMvc.perform(get("/getTransport/{numberOfPeople}/{ageGroupStart}/{ageGroupEnd}/{gender}/{locality}",
         		clientRequest.getNumberOfPeople(),
         		clientRequest.getAgeGroupStart(),
         		clientRequest.getAgeGroupEnd(),
@@ -74,8 +74,12 @@ public class FuelPovertyControllerTest {
         		clientRequest.getLocality()).accept(TestUtil.APPLICATION_JSON_UTF8))
         		.andExpect(status().isOk());
  
-        verify(fuelPovertyDAO, times(1)).findData(clientRequest.getAgeGroupStart(),clientRequest.getAgeGroupEnd(),
+        verify(transportDAO, times(1)).findData(clientRequest.getAgeGroupStart(),clientRequest.getAgeGroupEnd(),
      		   clientRequest.getGender(),clientRequest.getLocality());
-        verifyNoMoreInteractions(fuelPovertyDAO);
+        verifyNoMoreInteractions(transportDAO);
     }
 }
+
+
+
+

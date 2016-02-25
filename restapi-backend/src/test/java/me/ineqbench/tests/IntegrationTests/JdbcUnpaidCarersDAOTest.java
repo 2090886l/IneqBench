@@ -1,4 +1,5 @@
-package me.ineqbench.tests.DAOs;
+package me.ineqbench.tests.IntegrationTests;
+
 
 import static org.junit.Assert.assertEquals;
 
@@ -10,7 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import me.ineqbench.controllers.dao.JdbcLearningDisabilitiesDAO;
+import me.ineqbench.controllers.dao.JdbcUnpaidCarersDAO;
 import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
 import me.ineqbench.tests.builders.ClientRequestBuilder;
 import me.ineqbench.tests.builders.DBResponseBuilder;
@@ -20,10 +21,10 @@ import me.ineqbench.tests.util.ClientRequestPOJO;
 // used only for testing purposes 
 @ContextConfiguration(locations = {"classpath:Spring-Test-DAO-Module.xml"})
 @WebAppConfiguration
-public class JdbcLearningDisabilitiesDAOTest {
+public class JdbcUnpaidCarersDAOTest {
  
     @Autowired
-    private JdbcLearningDisabilitiesDAO learningDisabilitiesDAO;
+    private JdbcUnpaidCarersDAO unpaidCarersDAO;
     
  
     @Before
@@ -35,13 +36,13 @@ public class JdbcLearningDisabilitiesDAOTest {
     	
     	ResponseTuplePOJO response = DBResponseBuilder.getDBMockResponse();
     	
-        //Avoid "data clumps", unfortunately LearningDisabilitiesDAO interface method
+        //Avoid "data clumps", unfortunately Unpaid Carer DAO interface method
     	//findData gets only primitive params - explain why in interface doc 
        ClientRequestPOJO clientRequest = ClientRequestBuilder.getRequestObject();
-       ResponseTuplePOJO dbResponse = learningDisabilitiesDAO.findData(clientRequest.getAgeGroupStart(), clientRequest.getAgeGroupEnd(),
+       ResponseTuplePOJO dbResponse = unpaidCarersDAO.findData(clientRequest.getAgeGroupStart(), clientRequest.getAgeGroupEnd(),
     		   clientRequest.getGender(), clientRequest.getLocality());
        
-       ResponseTuplePOJO dbResponseExpected = new ResponseTuplePOJO(24870,119);
+       ResponseTuplePOJO dbResponseExpected = new ResponseTuplePOJO(24870,2408);
        
        assertEquals("Expects for total deprived",dbResponseExpected.getTotalDeprived(),dbResponse.getTotalDeprived());
        assertEquals("Expects for total population",dbResponseExpected.getTotalPopulation(),dbResponse.getTotalPopulation());
