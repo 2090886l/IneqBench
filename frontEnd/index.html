@@ -111,7 +111,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="./index.html">Home</a>
-                    </li>                
+                    </li>
                     <li>
                         <a href="./about.html">About</a>
                     </li>
@@ -141,8 +141,6 @@
         </section>
     </header>
 
-From: {{ageFrom}} <br>
-To: {{ageTo}}
     <section class="bg-primary" id="estimates" ng-show="showBenchmarking">
         <div class="container">
             <div class="row">
@@ -165,22 +163,10 @@ To: {{ageTo}}
                                     </select>
                                 </div><br>
                                 Age <br>
-                                <input type="number" name="ageFrom" ng-model="ageFrom" class="blackText" placeholder="From">
+                                <input type="number" name="ageFrom" ng-model="ageFrom" class="blackText" placeholder="From"> <br>
                                 <input type="number" name="ageTo" ng-model="ageTo" class="blackText" placeholder="To">
-                                <!-- <span class="blockDisplay">
-                                    From: <input type="number" name="ageFrom" ng-model="z">
-                                </span>
-                                <span class="blockDisplay">
-                                    To: <input type="number" name="ageFrom" ng-model="z">
-                                </span> -->
-
-                                <!-- <div class="btn-group">
-                                    <select class="form-control" ng-model="ageRange" ng-options="r as r.rangeStr for r in ranges">
-                                        <option selected disabled>Choose here</option>
-                                    </select>
-                                </div><br> -->
                                 <br>
-                                Gender <br>
+                                Sex <br>
                                 <span class="blockDisplay">
                                     <input type="radio" name="genderIneq" ng-model="gender" value="All People:">All
                                 </span>

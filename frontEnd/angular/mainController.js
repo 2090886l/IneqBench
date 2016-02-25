@@ -21,9 +21,9 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
 
     $scope.downloadAsCSV = function() {
         // test data
-        // $scope.result = [{ 
+        // $scope.result = [{
         //     totalPopulation: 8076, totalDeprived: 41, upperRange: 8.056713981106709, lowerRange: 0.7936575231058619, estimate: 2.53838533927687
-        //     }, { 
+        //     }, {
         //     totalPopulation: 3513, totalDeprived: 46, upperRange: 12.056713981106709, lowerRange: 34.7936575231058619, estimate: 5.53838533927687
         //     }]
 
@@ -67,7 +67,7 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
       $scope.showVisualizing = true;
       for (deprivation in $scope.selectedDeprivations) {
         getData($scope.selectedDeprivations[deprivation]['str'],
-                $scope.numberOfPeople, $scope.ageRange.rangeInt,
+                $scope.numberOfPeople, $scope.ageFrom, $scope.ageTo,
                 $scope.gender, $scope.region.name
         );
       }
@@ -108,12 +108,12 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
     };
 
     // Send a http request to the api and retrieve the data.
-    function getData(deprivation, numberOfPeople, ageGroup, gender, locality) {
-      urlStr = url+ '/' + deprivation + '?numberOfPeople=' + numberOfPeople +
-          "&ageGroup=" + ageGroup +
-          "&gender=" + gender +
-          "&locality=" + locality;
-      $scope.url = urlStr;
+    function getData(deprivation, numberOfPeople, ageFrom, ageTo, gender, locality) {
+      urlStr = url+ '/' + deprivation + '/' + numberOfPeople +
+          "/" + ageFrom +
+          "/" + ageTo +
+          "/" + gender +
+          "/" + locality;
       $http.get(urlStr).success(function(data){
         setResult(data, deprivation);
       });
@@ -147,8 +147,6 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
         {name:'Wigtownshire'},
         {name:'Dumfries & Galloway'}
     ];
-
-
 
     //Miscellaneous
     function setResult(data, daprivation){
