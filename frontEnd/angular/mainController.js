@@ -18,7 +18,6 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
     $scope.selectedDeprivations = {};
     $scope.results = {};
 
-
     $scope.downloadAsCSV = function() {
         var array = [['Indicator', 'Total Population','Total Deprived', 'Upper Range', 'Estimate', 'Estimate', 'Total Deprived %', 'Estimte %', 'Lower Range %', 'Upper Range %']]; // headers
         var csvRows = [];
@@ -73,8 +72,8 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
     };
 
     $scope.clearSearch = function() {
-      $scope.results = null;
-      $scope.selectedDeprivations = null;
+      $scope.results = {};
+      $scope.selectedDeprivations = {};
       $scope.ageFrom = null;
       $scope.ageTo = null;
       $scope.numberOfPeople = null;
