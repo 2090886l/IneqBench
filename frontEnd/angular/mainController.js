@@ -20,7 +20,14 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
     $scope.results = {};
 
     $scope.downloadAsCSV = function() {
-        var array = [['Indicator', 'Total Population','Total Deprived', 'Upper Range', 'Estimate', 'Estimate', 'Total Deprived %', 'Estimte %', 'Lower Range %', 'Upper Range %']]; // headers
+      var currentdate = new Date(); 
+      var datetime =  currentdate.getDate() + "/"
+                      + (currentdate.getMonth()+1)  + "/" 
+                      + currentdate.getFullYear() + " @ "  
+                      + currentdate.getHours() + ":"  
+                      + currentdate.getMinutes() + ":" 
+                      + currentdate.getSeconds();
+        var array = [['Generated on: ', datetime],['Indicator', 'Total Population','Total Deprived', 'Upper Range', 'Lower Range', 'Estimate', 'Total Deprived %', 'Estimate %', 'Lower Range %', 'Upper Range %']]; // headers
         var csvRows = [];
 
 
