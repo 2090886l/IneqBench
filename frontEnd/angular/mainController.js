@@ -65,6 +65,10 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
     $scope.visualize = function() {
       $scope.showVisualizing = true;
       for (deprivation in $scope.selectedDeprivations) {
+        if ($scope.ageFrom == null && $scope.ageTo == null) {
+          $scope.ageFrom = 0;
+          $scope.ageTo = 90;
+        }
         getData($scope.selectedDeprivations[deprivation]['str'],
                 $scope.numberOfPeople, $scope.ageFrom, $scope.ageTo,
                 $scope.gender, $scope.region.name
@@ -108,6 +112,7 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
 
     // Send a http request to the api and retrieve the data.
     function getData(deprivation, numberOfPeople, ageFrom, ageTo, gender, locality) {
+      console.log(ageFrom, ageTo);
       urlStr = url+ '/' + deprivation + '/' + numberOfPeople +
           "/" + ageFrom +
           "/" + ageTo +
