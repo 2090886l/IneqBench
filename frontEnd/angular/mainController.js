@@ -6,10 +6,11 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
     var url = "http://localhost:8080";
 
     $scope.showBenchmarking = false;
-    $scope.showVisualizing = false;
+    $scope.showVisualizing = true;
     // count for loading indicator
     $rootScope.loadingCount = 0;
     $scope.numberOfPeople = null;
+    $scope.totalPopulation = null;
     $scope.ageFrom = null;
     $scope.ageTo = null;
     $scope.region = null;
@@ -125,16 +126,15 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
         getTax:"Tax Band",
         getUnpaidCarers: "Unpaid Carers",
         getLearningDisabilities:"Learning Disabilities",
-        getEducationalAttainment:"Educational Attainment",
+        getEducationalAttainment:"Low Educational Attainment",
         getTransport:"Transport",
         getUnemployed:"Unemployed",
         getLivingInDeprivedArea:"Living in a deprived area",
         getHomeless:"Homeless",
-        getLowPay:"Low Pay",
+        getLowPay:"Low Pay (Income support)",
         getFuelPoverty:"Fuel Poverty",
         getOffenders:"Offenders",
         getIllness:"Long Term Life-limiting illness",
-        getMentalHealthAndWellbeing:"Long Term Life-limiting illness Mental Health & Wellbeing"
     };
 
     //Regions
@@ -149,6 +149,7 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
     //Miscellaneous
     function setResult(data, deprivation){
       data = roundData(data);
+      $scope.totalPopulation = data.totalPopulation;
       $scope.results[deprivation] = {data: data, name: deprivationCriteriasNames[deprivation]};
       console.log($scope.results);
     }

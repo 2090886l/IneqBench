@@ -191,11 +191,11 @@
                                   <div class="halfDiv" ng-show="selectedDeprivations.getEthnicity.displayPars">
                                     <input type="checkbox" ng-checked="selectedDeprivations.getEthnicity.subPars.all"
                                     ng-click="updateSelectedSubPars('getEthnicity', 'all')"> All </br>
-                                    <input type="checkbox" ng-checked="selectedDeprivations.getEthnicity.subPars.southAsian"
+                                    <input type="checkbox" ng-disabled="true" ng-checked="selectedDeprivations.getEthnicity.subPars.southAsian"
                                     ng-click="updateSelectedSubPars('getEthnicity', 'southAsian')"> South Asian </br>
-                                    <input type="checkbox" ng-checked="selectedDeprivations.getEthnicity.subPars.blackAfroCarribean"
+                                    <input type="checkbox" ng-disabled="true" ng-checked="selectedDeprivations.getEthnicity.subPars.blackAfroCarribean"
                                     ng-click="updateSelectedSubPars('getEthnicity', 'blackAfroCarribean')"> Black/Afro-Carribean </br>
-                                    <input type="checkbox" ng-checked="selectedDeprivations.getEthnicity.subPars.gipsyTraveller"
+                                    <input type="checkbox" ng-disabled="true" ng-checked="selectedDeprivations.getEthnicity.subPars.gipsyTraveller"
                                     ng-click="updateSelectedSubPars('getEthnicity', 'gipsyTraveller')"> Gipsy/Traveller </br>
                                   </div>
 
@@ -207,13 +207,13 @@
                                     <div class="halfDiv" ng-show="selectedDeprivations.getTax.displayPars">
                                         <input type="checkbox" ng-checked="selectedDeprivations.getTax.subPars.all"
                                         ng-click="updateSelectedSubPars('getTax', 'all')">All </br>
-                                        <input type="checkbox" ng-checked="selectedDeprivations.getTax.subPars.a"
+                                        <input type="checkbox" ng-disabled="true" ng-checked="selectedDeprivations.getTax.subPars.a"
                                         ng-click="updateSelectedSubPars('getTax', 'a')">A </br>
-                                        <input type="checkbox" ng-checked="selectedDeprivations.getTax.subPars.b"
+                                        <input type="checkbox" ng-disabled="true" ng-checked="selectedDeprivations.getTax.subPars.b"
                                         ng-click="updateSelectedSubPars('getTax', 'b')">B </br>
-                                        <input type="checkbox" ng-checked="selectedDeprivations.getTax.subPars.c"
+                                        <input type="checkbox" ng-disabled="true" ng-checked="selectedDeprivations.getTax.subPars.c"
                                         ng-click="updateSelectedSubPars('getTax', 'c')">C </br>
-                                        <input type="checkbox" ng-checked="selectedDeprivations.getTax.subPars.d"
+                                        <input type="checkbox" ng-disabled="true" ng-checked="selectedDeprivations.getTax.subPars.d"
                                         ng-click="updateSelectedSubPars('getTax', 'd')">D </br>
                                     </div>
 
@@ -229,7 +229,7 @@
 
                                 <span class="blockDisplay">
                                     <input type="checkbox" ng-checked="selectedDeprivations.getEducationalAttainment"
-                                    ng-click="updateSelectedDeprivations('getEducationalAttainment')">Educational Attainment
+                                    ng-click="updateSelectedDeprivations('getEducationalAttainment')">Low Educational Attainment
                                 </span>
 
                                 <span class="blockDisplay">
@@ -240,11 +240,11 @@
                                     <div class="halfDiv" ng-show="selectedDeprivations.getTransport.displayPars">
                                         <input type="checkbox" ng-checked="selectedDeprivations.getTransport.subPars.all"
                                         ng-click="updateSelectedSubPars('getTransport', 'all')">All </br>
-                                        <input type="checkbox" ng-checked="selectedDeprivations.getTransport.subPars.noCar"
+                                        <input type="checkbox" ng-disabled="true" ng-checked="selectedDeprivations.getTransport.subPars.noCar"
                                         ng-click="updateSelectedSubPars('getTransport', 'noCar')">No Car </br>
-                                        <input type="checkbox" ng-checked="selectedDeprivations.getTransport.subPars.oneCar"
+                                        <input type="checkbox" ng-disabled="true" ng-checked="selectedDeprivations.getTransport.subPars.oneCar"
                                         ng-click="updateSelectedSubPars('getTransport', 'oneCar')">One Car </br>
-                                        <input type="checkbox" ng-checked="selectedDeprivations.getTransport.subPars.twoOrMoreCars"
+                                        <input type="checkbox" ng-disabled="true" ng-checked="selectedDeprivations.getTransport.subPars.twoOrMoreCars"
                                         ng-click="updateSelectedSubPars('getTransport', 'twoOrMoreCars')">Two or More Cars
                                     </div>
 
@@ -260,13 +260,18 @@
 
                                 <span class="blockDisplay">
                                     <input type="checkbox" ng-checked="selectedDeprivations.getLowPay"
-                                    ng-click="updateSelectedDeprivations('getLowPay')">Low Pay
+                                    ng-click="updateSelectedDeprivations('getLowPay')">Low Pay (Income support)
                                 </span>
 
                                 <span class="blockDisplay">
                                     <input type="checkbox" ng-checked="selectedDeprivations.getFuelPoverty"
                                     ng-click="updateSelectedDeprivations('getFuelPoverty')">Fuel Poverty
                                 </span>
+
+                                <span class="blockDisplay">
+                                    <input type="checkbox" ng-checked="selectedDeprivations.getFuelPoverty"
+                                    ng-click="updateSelectedDeprivations('getIllness')">Long Term Life-limiting illness
+                                </span>                                
                             </div>
                         </div>
                     </div>
@@ -290,9 +295,17 @@
                     <div class="estimate">
                         <table class="table table-hover table-bordered">
                             <tr>
-                                <th>Inequalities Indicator</th>
-                                <th>Estimated total population in selected area</th>
-                                <th class="center">Estimated number of people in the sample</th>
+                                <th class="center" >Total population in selected area</th>
+                            </tr>
+                            <tr>
+                                <td class="center">{{totalPopulation}}</td>
+                            </tr>
+                        </table>
+                        <table class="table table-hover table-bordered">
+                            <tr>
+                                <th class="center">Inequalities Indicator</th>
+                                <th class="center">Estimated total population/housholds in selected area</th>
+                                <th class="center">Estimated number of people/households in the sample</th>
                             </tr>
                             <tr>
                                 <th></th>
@@ -300,26 +313,14 @@
                                 <th>
                                     <table class="table">
                                         <tr>
-                                            <th>Estimate | Number</th>
-                                            <th>Lower Range | Minimum</th>
-                                            <th>Upper Range | Maximum</th>
+                                            <th class="center">Estimate </th>
+                                            <th class="center">Lower Range </th>
+                                            <th class="center">Upper Range </th>
                                         </tr>
                                     </table>
                                 </th>
                             </tr>
-                            <tr>
-                                <td>Total Population</td>
-                                <td>{{result.totalPopulation}} | 100%</td>
-                                <td>
-                                    <table class="table">
-                                        <tr>
-                                            <td> -, -%</td>
-                                            <td> -, -%</td>
-                                            <td> -, -%</td>
-                                        </tr>
-                                    </table>
-                                 </td>
-                            </tr>
+
 
                             <tr ng-repeat="indicator in results track by $index">
                                 <td>{{indicator.name}}</td>
@@ -327,9 +328,9 @@
                                 <td>
                                     <table class="table">
                                         <tr>
-                                            <td>{{indicator.data.estimate}} | {{indicator.data.estimatePercentage}}%</td>
-                                            <td>{{indicator.data.lowerRange}} | {{indicator.data.lowerRangePercentage}}%</td>
-                                            <td>{{indicator.data.upperRange}} | {{indicator.data.upperRangePercentage}}%</td>
+                                            <td>{{indicator.data.estimate}} </td>
+                                            <td>{{indicator.data.lowerRange}} </td>
+                                            <td>{{indicator.data.upperRange}} </td>
                                         </tr>
                                     </table>
                                 </td>
