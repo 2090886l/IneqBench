@@ -84,7 +84,6 @@
                 For more information go to About or Method, otherwise...
                 Click the button below to get started!
             </p>
-            </p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -134,7 +133,7 @@
                     <div>
                     <button type="button" class="btn btn-primary btn-xl btn-long" data-toggle="modal" data-target="#myModal">Instructions</button>
                     </div>
-                    </br>
+                    <br>
                     <a href="#estimates" class="btn btn-primary btn-xl btn-long" ng-click="benchmark()">Benchmark</a>
                 </div>
             </div>
@@ -162,7 +161,7 @@
                                     <select class="form-control" ng-model="region" ng-options="r as r.name for r in regions">
                                     </select>
                                 </div><br>
-                                Age (leave blank for all)</br>
+                                Age (leave blank for all)<br>
                                 <input type="number" name="ageFrom" ng-model="ageFrom" class="blackText" placeholder="From"> <br>
 
                                 <input type="number" name="ageTo" ng-model="ageTo" class="blackText" placeholder="To">
@@ -190,13 +189,13 @@
                                   <!-- Sub-parameters. Displayed when the criterion is selected.  -->
                                   <div class="halfDiv" ng-show="selectedDeprivations.getEthnicity.displayPars">
                                     <input type="checkbox" ng-checked="selectedDeprivations.getEthnicity.subPars.all"
-                                    ng-click="updateSelectedSubPars('getEthnicity', 'all')"> All </br>
+                                    ng-click="updateSelectedSubPars('getEthnicity', 'all')"> All <br>
                                     <input type="checkbox" ng-disabled="true" ng-checked="selectedDeprivations.getEthnicity.subPars.southAsian"
-                                    ng-click="updateSelectedSubPars('getEthnicity', 'southAsian')"> South Asian </br>
+                                    ng-click="updateSelectedSubPars('getEthnicity', 'southAsian')"> South Asian <br>
                                     <input type="checkbox" ng-disabled="true" ng-checked="selectedDeprivations.getEthnicity.subPars.blackAfroCarribean"
-                                    ng-click="updateSelectedSubPars('getEthnicity', 'blackAfroCarribean')"> Black/Afro-Carribean </br>
+                                    ng-click="updateSelectedSubPars('getEthnicity', 'blackAfroCarribean')"> Black/Afro-Carribean <br>
                                     <input type="checkbox" ng-disabled="true" ng-checked="selectedDeprivations.getEthnicity.subPars.gipsyTraveller"
-                                    ng-click="updateSelectedSubPars('getEthnicity', 'gipsyTraveller')"> Gipsy/Traveller </br>
+                                    ng-click="updateSelectedSubPars('getEthnicity', 'gipsyTraveller')"> Gipsy/Traveller <br>
                                   </div>
 
                                 <span class="blockDisplay">
@@ -206,15 +205,15 @@
                                   <!-- Sub-parameters. Displayed when the criterion is selected.  -->
                                     <div class="halfDiv" ng-show="selectedDeprivations.getTax.displayPars">
                                         <input type="checkbox" ng-checked="selectedDeprivations.getTax.subPars.all"
-                                        ng-click="updateSelectedSubPars('getTax', 'all')">All </br>
+                                        ng-click="updateSelectedSubPars('getTax', 'all')">All <br>
                                         <input type="checkbox" ng-disabled="true" ng-checked="selectedDeprivations.getTax.subPars.a"
-                                        ng-click="updateSelectedSubPars('getTax', 'a')">A </br>
+                                        ng-click="updateSelectedSubPars('getTax', 'a')">A <br>
                                         <input type="checkbox" ng-disabled="true" ng-checked="selectedDeprivations.getTax.subPars.b"
-                                        ng-click="updateSelectedSubPars('getTax', 'b')">B </br>
+                                        ng-click="updateSelectedSubPars('getTax', 'b')">B <br>
                                         <input type="checkbox" ng-disabled="true" ng-checked="selectedDeprivations.getTax.subPars.c"
-                                        ng-click="updateSelectedSubPars('getTax', 'c')">C </br>
+                                        ng-click="updateSelectedSubPars('getTax', 'c')">C <br>
                                         <input type="checkbox" ng-disabled="true" ng-checked="selectedDeprivations.getTax.subPars.d"
-                                        ng-click="updateSelectedSubPars('getTax', 'd')">D </br>
+                                        ng-click="updateSelectedSubPars('getTax', 'd')">D <br>
                                     </div>
 
                                 <span class="blockDisplay">
@@ -239,11 +238,11 @@
                                     <!-- Sub-parameters. Displayed when the criterion is selected.  -->
                                     <div class="halfDiv" ng-show="selectedDeprivations.getTransport.displayPars">
                                         <input type="checkbox" ng-checked="selectedDeprivations.getTransport.subPars.all"
-                                        ng-click="updateSelectedSubPars('getTransport', 'all')">All </br>
+                                        ng-click="updateSelectedSubPars('getTransport', 'all')">All <br>
                                         <input type="checkbox" ng-disabled="true" ng-checked="selectedDeprivations.getTransport.subPars.noCar"
-                                        ng-click="updateSelectedSubPars('getTransport', 'noCar')">No Car </br>
+                                        ng-click="updateSelectedSubPars('getTransport', 'noCar')">No Car <br>
                                         <input type="checkbox" ng-disabled="true" ng-checked="selectedDeprivations.getTransport.subPars.oneCar"
-                                        ng-click="updateSelectedSubPars('getTransport', 'oneCar')">One Car </br>
+                                        ng-click="updateSelectedSubPars('getTransport', 'oneCar')">One Car <br>
                                         <input type="checkbox" ng-disabled="true" ng-checked="selectedDeprivations.getTransport.subPars.twoOrMoreCars"
                                         ng-click="updateSelectedSubPars('getTransport', 'twoOrMoreCars')">Two or More Cars
                                     </div>

@@ -6,7 +6,7 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
     var url = "http://localhost:8080";
 
     $scope.showBenchmarking = false;
-    $scope.showVisualizing = true;
+    $scope.showVisualizing = false;
     // count for loading indicator
     $rootScope.loadingCount = 0;
     $scope.numberOfPeople = null;
