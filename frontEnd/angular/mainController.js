@@ -17,15 +17,16 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
     $scope.gender = null;
 
     $scope.selectedDeprivations = {};
+    $scope.numberOfSelectedDeprivations = 0;
     $scope.results = {};
 
     $scope.downloadAsCSV = function() {
-      var currentdate = new Date(); 
+      var currentdate = new Date();
       var datetime =  currentdate.getDate() + "/"
-                      + (currentdate.getMonth()+1)  + "/" 
-                      + currentdate.getFullYear() + " @ "  
-                      + currentdate.getHours() + ":"  
-                      + currentdate.getMinutes() + ":" 
+                      + (currentdate.getMonth()+1)  + "/"
+                      + currentdate.getFullYear() + " @ "
+                      + currentdate.getHours() + ":"
+                      + currentdate.getMinutes() + ":"
                       + currentdate.getSeconds();
         var array = [['Generated on: ', datetime],['Indicator', 'Total Population','Total Deprived', 'Upper Range', 'Lower Range', 'Estimate', 'Total Deprived %', 'Estimate %', 'Lower Range %', 'Upper Range %']]; // headers
         var csvRows = [];
@@ -86,6 +87,7 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
     $scope.clearSearch = function() {
       $scope.results = {};
       $scope.selectedDeprivations = {};
+      $scope.numberOfSelectedDeprivations = 0;
       $scope.ageFrom = null;
       $scope.ageTo = null;
       $scope.numberOfPeople = null;
@@ -98,8 +100,10 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
     $scope.updateSelectedDeprivations = function(deprivation) {
       if (!(deprivation in $scope.selectedDeprivations)) {
         $scope.selectedDeprivations[deprivation] = {str: deprivation, displayPars: true, subPars: {"all":"all"}};
+        $scope.numberOfSelectedDeprivations++;
       } else {
         delete $scope.selectedDeprivations[deprivation];
+        $scope.numberOfSelectedDeprivations--;
       }
     };
 
@@ -119,7 +123,6 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
 
     // Send a http request to the api and retrieve the data.
     function getData(deprivation, numberOfPeople, ageFrom, ageTo, gender, locality) {
-      console.log(ageFrom, ageTo);
       urlStr = url+ '/' + deprivation + '/' + numberOfPeople +
           "/" + ageFrom +
           "/" + ageTo +
@@ -132,7 +135,7 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
 
     //Mappings
     //Deprivation Criterion params to names mapping
-    $scope.deprivationCriteriaDisplayedName=null;
+    // $scope.deprivationCriteriaDisplayedName=null;
     var deprivationCriteriasNames={
         getEthnicity:"Ethnicity",
         getTax:"Tax Band",
@@ -165,6 +168,7 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
       $scope.results[deprivation] = {data: data, name: deprivationCriteriasNames[deprivation]};
       console.log($scope.results);
     }
+
     function roundData(data){
       data.totalPopulation=Math.round(data.totalPopulation);
       data.totalDeprived=Math.round(data.totalDeprived);
