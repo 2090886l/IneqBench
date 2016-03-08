@@ -146,23 +146,22 @@
             </executions>
         </plugin>
         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-project-info-reports-plugin</artifactId>
-            <version>2.7</version>
-            <configuration>
-                <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
-            </configuration>
-        </plugin>
-        <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>cobertura-maven-plugin</artifactId>
-            <version>2.6</version>
+            <version>2.5.1</version>
             <configuration>
                 <formats>
-                    <format>html</format>
                     <format>xml</format>
                 </formats>
             </configuration>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>cobertura</goal>
+                    </goals>
+                </execution>
+            </executions>
         </plugin>
     </plugins>
   </build>
