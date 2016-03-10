@@ -5,6 +5,11 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
 
     var url = "http://localhost:8080";
 
+    // initialise tooltips
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip(); 
+    });
+
     $scope.showBenchmarking = false;
     $scope.showVisualizing = false;
     // count for loading indicator
@@ -14,7 +19,7 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
     $scope.ageFrom = null;
     $scope.ageTo = null;
     $scope.region = null;
-    $scope.gender = null;
+    $scope.gender = "All People:";
 
     $scope.selectedDeprivations = {};
     $scope.numberOfSelectedDeprivations = 0;
@@ -92,7 +97,7 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
       $scope.ageTo = null;
       $scope.numberOfPeople = null;
       $scope.region = null;
-      $scope.gender = null;
+      $scope.gender = "All People:";
       $scope.showVisualizing = false;
     };
 

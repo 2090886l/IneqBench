@@ -60,3 +60,15 @@
 body {
 	font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
 }
+.blockDisplay + .tooltip.top > .tooltip-arrow {
+    border-top: 5px solid black;
+}
+
+.blockDisplay + .tooltip > .tooltip-inner {
+  background-color: white; 
+  color: black; 
+  border: 1px solid black; 
+  padding: 15px;
+  font-size: 14px;
+  font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+}

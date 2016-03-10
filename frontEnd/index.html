@@ -170,7 +170,7 @@
                                 <br>
                                 Sex <br>
                                 <span class="blockDisplay">
-                                    <input type="radio" name="genderIneq" ng-model="gender" value="All People:">All
+                                    <input type="radio" name="genderIneq"  ng-model="gender" value="All People:" >All
                                 </span>
                                 <span class="blockDisplay">
                                     <input type="radio" name="genderIneq" ng-model="gender" value="Males:">Male
@@ -184,7 +184,7 @@
                             <h3>Deprivation Criteria</h3>
                             <br>
                             <div class="alignLeft halfDiv noWrap">
-                                <span class="blockDisplay">
+                                <span class="blockDisplay"  data-toggle="tooltip" html="true" title="Census Table DC2101SC" data-placement="left" >
                                     <input type="checkbox" ng-checked="selectedDeprivations.getEthnicity"
                                     ng-click="updateSelectedDeprivations('getEthnicity')">Ethnicity
                                 </span>
@@ -200,17 +200,15 @@
                                     ng-click="updateSelectedSubPars('getEthnicity', 'gipsyTraveller')"> Gipsy/Traveller <br>
                                   </div>
 
-                                <span class="blockDisplay">
+                                <span class="blockDisplay"  data-toggle="tooltip" title="Scottish Assessors Association" data-placement="left">
                                     <input type="checkbox" ng-checked="selectedDeprivations.getTax"
                                     ng-click="updateSelectedDeprivations('getTax')">Tax Bands
                                 </span>
                                   <!-- Sub-parameters. Displayed when the criterion is selected.  -->
                                     <div class="halfDiv" ng-show="selectedDeprivations.getTax.displayPars">
-                                        <input type="checkbox" ng-checked="selectedDeprivations.getTax.subPars.all"
-                                        ng-click="updateSelectedSubPars('getTax', 'all')">All <br>
-                                        <input type="checkbox" ng-disabled="true" ng-checked="selectedDeprivations.getTax.subPars.a"
+                                        <input type="checkbox" ng-disabled="false" ng-checked="true"
                                         ng-click="updateSelectedSubPars('getTax', 'a')">A <br>
-                                        <input type="checkbox" ng-disabled="true" ng-checked="selectedDeprivations.getTax.subPars.b"
+                                        <input type="checkbox" ng-disabled="false" ng-checked="true"
                                         ng-click="updateSelectedSubPars('getTax', 'b')">B <br>
                                         <input type="checkbox" ng-disabled="true" ng-checked="selectedDeprivations.getTax.subPars.c"
                                         ng-click="updateSelectedSubPars('getTax', 'c')">C <br>
@@ -218,22 +216,22 @@
                                         ng-click="updateSelectedSubPars('getTax', 'd')">D <br>
                                     </div>
 
-                                <span class="blockDisplay">
+                                <span class="blockDisplay" data-toggle="tooltip" title="Census Table LC3301SC" data-placement="left" >
                                     <input type="checkbox" ng-checked="selectedDeprivations.getUnpaidCarers"
                                     ng-click="updateSelectedDeprivations('getUnpaidCarers')">Unpaid Carers
                                 </span>
 
-                                <span class="blockDisplay">
+                                <span class="blockDisplay" data-toggle="tooltip" title="Census Table QS304SC" data-placement="left">
                                     <input type="checkbox" ng-checked="selectedDeprivations.getLearningDisabilities"
                                     ng-click="updateSelectedDeprivations('getLearningDisabilities')">Learning Disabilities
                                 </span>
 
-                                <span class="blockDisplay">
+                                <span class="blockDisplay" data-toggle="tooltip" title="Census Table LC5102SC" data-placement="left">
                                     <input type="checkbox" ng-checked="selectedDeprivations.getEducationalAttainment"
                                     ng-click="updateSelectedDeprivations('getEducationalAttainment')">Low Educational Attainment
                                 </span>
 
-                                <span class="blockDisplay">
+                                <span class="blockDisplay" data-toggle="tooltip" title="Census Table LC4109SC" data-placement="left">
                                     <input type="checkbox" ng-checked="selectedDeprivations.getTransport"
                                     ng-click="updateSelectedDeprivations('getTransport')">Transport
                                 </span>
@@ -249,28 +247,28 @@
                                         ng-click="updateSelectedSubPars('getTransport', 'twoOrMoreCars')">Two or More Cars
                                     </div>
 
-                                <span class="blockDisplay">
+                                <span class="blockDisplay" data-toggle="tooltip" title="Census Table KS601SC" data-placement="left">
                                     <input type="checkbox" ng-checked="selectedDeprivations.getUnemployed"
                                     ng-click="updateSelectedDeprivations('getUnemployed')">Unemployed
                                 </span>
 
-                                <span class="blockDisplay">
+                                <span class="blockDisplay" data-toggle="tooltip" title="Scottish Index of Multiple Deprivation" data-placement="left">
                                     <input type="checkbox" ng-checked="selectedDeprivations.getLivingInDeprivedArea"
                                     ng-click="updateSelectedDeprivations('getLivingInDeprivedArea')">Living in a deprived area
                                 </span>
 
-                                <span class="blockDisplay">
+                                <span class="blockDisplay" data-toggle="tooltip" title="Nomis" data-placement="left">
                                     <input type="checkbox" ng-checked="selectedDeprivations.getLowPay"
                                     ng-click="updateSelectedDeprivations('getLowPay')">Low Pay (Income support)
                                 </span>
 
-                                <span class="blockDisplay">
+                                <span class="blockDisplay" data-toggle="tooltip" title="Census Table LC4410SC" data-placement="left">
                                     <input type="checkbox" ng-checked="selectedDeprivations.getFuelPoverty"
                                     ng-click="updateSelectedDeprivations('getFuelPoverty')">Fuel Poverty
                                 </span>
 
-                                <span class="blockDisplay">
-                                    <input type="checkbox" ng-checked="selectedDeprivations.getFuelPoverty"
+                                <span class="blockDisplay" data-toggle="tooltip" title="Census Table LC3101SC" data-placement="left">
+                                    <input type="checkbox" ng-checked="selectedDeprivations.getIllness"
                                     ng-click="updateSelectedDeprivations('getIllness')">Long Term Life-limiting illness
                                 </span>
                             </div>
