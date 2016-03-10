@@ -2,7 +2,6 @@ package me.ineqbench.dao;
 
 import java.util.List;
 
-import me.ineqbench.dbRequestPOJOs.Range;
 import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
 
 //Even though all DAOs are essentially with the same signature 

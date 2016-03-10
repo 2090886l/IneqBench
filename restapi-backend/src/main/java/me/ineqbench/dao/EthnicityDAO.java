@@ -1,12 +1,5 @@
 package me.ineqbench.dao;
 
-import java.util.List;
-
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
-
-import me.ineqbench.dbRequestPOJOs.Gender;
-import me.ineqbench.dbRequestPOJOs.Range;
 import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
 
 //Even though all DAOs are essentially with the same signature 

@@ -17,7 +17,6 @@ import me.ineqbench.clientResponsePojos.ClientResponsePOJO;
 import me.ineqbench.controllers.dao.JdbcEthnicityDAO;
 import me.ineqbench.controllers.dao.JdbcFuelPovertyDAO;
 import me.ineqbench.dao.FuelPovertyDAO;
-import me.ineqbench.dbRequestPOJOs.Range;
 import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
 
 //Provides the Fuel Poverty data to the front end (HTTP GET Restful Request)

@@ -14,7 +14,6 @@ import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Component;
 
 import me.ineqbench.dao.EducationalAttainmentDAO;
-import me.ineqbench.dbRequestPOJOs.Range;
 import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
 import me.ineqbench.mappers.ResponseMapper;
 

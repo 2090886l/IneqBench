@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 
 import me.ineqbench.dao.IllnessDAO;
 import me.ineqbench.dao.TaxDAO;
-import me.ineqbench.dbRequestPOJOs.Range;
 import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
 import me.ineqbench.mappers.ResponseMapper;
 
