@@ -10,6 +10,7 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
         $('[data-toggle="tooltip"]').tooltip(); 
     });
 
+
     $scope.showBenchmarking = false;
     $scope.showVisualizing = false;
     // count for loading indicator
