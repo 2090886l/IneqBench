@@ -1,0 +1,15 @@
+This the release note documentation for the project
+
+Release 1.0
+
+Known bugs:
+- no known bugs - subparamets for criteria appearing in the tree-like structure are read-only (if this is considered a bug)
+
+New features:
+- search functionality for specific range group, locality, sex and number of people
+- multiple deprivation criteria search
+- result table
+- about page
+- instruction pop up
+- csv export
+- method page
