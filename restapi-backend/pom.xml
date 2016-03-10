@@ -92,6 +92,10 @@
     <scope>test</scope>
 </dependency>
 <!-- End of dependies -->
+    	<dependency>
+    		<groupId>org.springframework.boot</groupId>
+    		<artifactId>spring-boot-devtools</artifactId>
+    	</dependency>
     </dependencies>
     <properties>
         <java.version>1.8</java.version>
