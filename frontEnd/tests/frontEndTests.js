@@ -1,6 +1,6 @@
 describe('Front end tests', function() {
 
-	beforeEach(module('IneqBench'));
+	beforeEach(module('IneqBenchControllers'));
 
 	var MainController,
 	scope;
@@ -9,7 +9,9 @@ describe('Front end tests', function() {
 		scope = $rootScope.$new();
 		MainController = $controller('MainController', {
 			$scope: scope
+
 		});
+
 		$httpBackend = _$httpBackend_;
 	}));
 
@@ -24,27 +26,22 @@ describe('Front end tests', function() {
 		});
 
 		it('should set mode to benchmarking', function() {
-			scope.benchmarkClicked();
-			expect(scope.wrapper.mode).toEqual("benchmarking");
+			scope.benchmark();
+			expect(scope.showBenchmarking).toBe(true);
 
 		});
 
-		it('should set gender correctly', function() {
-			scope.wrapper.gender = "Males:";
-			scope.genderClicked();
-			expect(scope.isMaleGenderCheckedIneq).toBe(true);
-			expect(scope.isFemaleGenderChecked).toBe(false);
-		});
+		// it('should set age correctly', function() {
+		// 	scope.ageFrom = null;
+		// 	scope.ageTo = null;
+		// 	scope.visualize();
+		// 	expect(scope.ageFrom).toEqual(0);
+		// 	expect(scope.ageTo).toEqual(90);
+		// });
 
 	});
+	
 	describe('http tests', function() {
-		beforeEach(inject(function (_$httpBackend_) {
-			$httpBackend = _$httpBackend_;
-
-
-		}));
-
-
 		// only testing 1 request as they are all identical
 		it('should return ethnicity correctly', inject(function ($http) {
 			var numberOfPeople = 100;

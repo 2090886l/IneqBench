@@ -5,6 +5,7 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
 
     var url = "http://localhost:8080";
 
+  
     // initialise tooltips
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip(); 
@@ -78,12 +79,12 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
     // Visualize button event -> when button clicked, find which criterion is selected and call the corresponding HTTP GET Restful request
     $scope.visualize = function() {
       $scope.showVisualizing = true;
+      if ($scope.ageFrom == null && $scope.ageTo == null) {
+        $scope.ageFrom = 0;
+        $scope.ageTo = 90;
+      }
       for (deprivation in $scope.selectedDeprivations) {
-        if ($scope.ageFrom == null && $scope.ageTo == null) {
-          $scope.ageFrom = 0;
-          $scope.ageTo = 90;
-        }
-        getData($scope.selectedDeprivations[deprivation]['str'],
+        $scope.getData($scope.selectedDeprivations[deprivation]['str'],
                 $scope.numberOfPeople, $scope.ageFrom, $scope.ageTo,
                 $scope.gender, $scope.region.name
         );
@@ -128,14 +129,14 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
     };
 
     // Send a http request to the api and retrieve the data.
-    function getData(deprivation, numberOfPeople, ageFrom, ageTo, gender, locality) {
+    $scope.getData = function getData(deprivation, numberOfPeople, ageFrom, ageTo, gender, locality) {
       urlStr = url+ '/' + deprivation + '/' + numberOfPeople +
           "/" + ageFrom +
           "/" + ageTo +
           "/" + gender +
           "/" + locality;
       $http.get(urlStr).success(function(data){
-        setResult(data, deprivation);
+        $scope.setResult(data, deprivation);
       });
     };
 
@@ -168,14 +169,14 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
     ];
 
     //Miscellaneous
-    function setResult(data, deprivation){
-      data = roundData(data);
+    $scope.setResult = function setResult(data, deprivation){
+      data = $scope.roundData(data);
       $scope.totalPopulation = data.totalPopulation;
       $scope.results[deprivation] = {data: data, name: deprivationCriteriasNames[deprivation]};
       console.log($scope.results);
     }
 
-    function roundData(data){
+    $scope.roundData = function roundData(data){
       data.totalPopulation=Math.round(data.totalPopulation);
       data.totalDeprived=Math.round(data.totalDeprived);
       data.upperRange=Math.round(data.upperRange);
