@@ -31,16 +31,17 @@ describe('Front end tests', function() {
 
 		});
 
-		// it('should set age correctly', function() {
-		// 	scope.ageFrom = null;
-		// 	scope.ageTo = null;
-		// 	scope.visualize();
-		// 	expect(scope.ageFrom).toEqual(0);
-		// 	expect(scope.ageTo).toEqual(90);
-		// });
+		// Regression test added since sometimes the age was not being set properly
+		it('should set age correctly', function() {
+			scope.ageFrom = null;
+			scope.ageTo = null;
+			scope.visualize();
+			expect(scope.ageFrom).toEqual(0);
+			expect(scope.ageTo).toEqual(90);
+		});
 
 	});
-	
+
 	describe('http tests', function() {
 		// only testing 1 request as they are all identical
 		it('should return ethnicity correctly', inject(function ($http) {
