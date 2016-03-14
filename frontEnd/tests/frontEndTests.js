@@ -40,6 +40,17 @@ describe('Front end tests', function() {
 			expect(scope.ageTo).toEqual(90);
 		});
 
+		// Regression test to ensure that app does not crash if information is not filled out
+		it('should not allow you to click visualise unless all the information is filled out', function() {
+			expect(scope.numberOfSelectedDeprivations > 0 && scope.region != null && scope.numberOfPeople != null && scope.gender != null).toBe(false);
+			scope.numberOfSelectedDeprivations = 1;
+			scope.region = "Dumfries & Galloway";
+			scope.numberOfPeople = 100;
+			scope.gender = "Males:";
+			expect(scope.numberOfSelectedDeprivations > 0 && scope.region != null && scope.numberOfPeople != null && scope.gender != null).toBe(true);
+
+		})
+
 	});
 
 	describe('http tests', function() {
