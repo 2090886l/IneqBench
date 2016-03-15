@@ -16,21 +16,23 @@ import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
 @RestController
 public class GetTaxController {
 
-
 	@Autowired
 	JdbcTaxDAO taxDAO;
 
 	@CrossOrigin
-    @RequestMapping(value="/getTax/{numberOfPeople}/{ageGroupStart}/{ageGroupEnd}/{gender}/{locality}", 
-    	method = RequestMethod.GET)
-    //Get Tax ClientResponsePOJO
-    public  ClientResponsePOJO getTaxData(@PathVariable(value="numberOfPeople") int numberOfPeople, @PathVariable(value="ageGroupStart") int ageGroupStart,
-    		 @PathVariable(value="ageGroupEnd") int ageGroupEnd,@PathVariable(value="gender") String gender, @PathVariable(value="locality") String locality){
+	@RequestMapping(value = "/getTax/{numberOfPeople}/{ageGroupStart}/{ageGroupEnd}/{gender}/{locality}", method = RequestMethod.GET)
+	// Get Tax ClientResponsePOJO
+	public ClientResponsePOJO getTaxData(@PathVariable(value = "numberOfPeople") int numberOfPeople,
+			@PathVariable(value = "ageGroupStart") int ageGroupStart,
+			@PathVariable(value = "ageGroupEnd") int ageGroupEnd, @PathVariable(value = "gender") String gender,
+			@PathVariable(value = "locality") String locality) {
 		
+		//Get response from DB
 		ResponseTuplePOJO taxDBREsponse = taxDAO.findData(ageGroupStart, ageGroupEnd, gender, locality);
-    	ClientResponsePOJO estimate = Analyser.getEstimate(taxDBREsponse, numberOfPeople);
-    	return estimate;
-    }
- 
-}
+		
+		//Calculate estimates for DB response		
+		ClientResponsePOJO estimate = Analyser.getEstimate(taxDBREsponse, numberOfPeople);
+		return estimate;
+	}
 
+}

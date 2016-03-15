@@ -16,7 +16,5 @@ import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
 //due to separate Application and Test application context - Spring MVC 
 //limitation - trade-off nothing can be done about it
 public interface EthnicityDAO {
-	public ResponseTuplePOJO findData(int ageGroupStart, int ageGroupEnd,
-			String gender, String locality);
+	public ResponseTuplePOJO findData(int ageGroupStart, int ageGroupEnd, String gender, String locality);
 }
-

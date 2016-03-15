@@ -8,9 +8,10 @@ package me.ineqbench.dbResponsePOJOs;
 public class ResponseTuplePOJO {
 	private int totalPopulation;
 	private int totalDeprived;
-	
-	public ResponseTuplePOJO() {}
-	
+
+	public ResponseTuplePOJO() {
+	}
+
 	public ResponseTuplePOJO(int totalPopulation, int totalDeprived) {
 		super();
 		this.totalPopulation = totalPopulation;
@@ -32,6 +33,5 @@ public class ResponseTuplePOJO {
 	public void setTotalDeprived(int totalDeprived) {
 		this.totalDeprived = totalDeprived;
 	}
-	
-	
+
 }

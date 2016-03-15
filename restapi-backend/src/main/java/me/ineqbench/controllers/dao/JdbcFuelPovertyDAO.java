@@ -21,43 +21,36 @@ import me.ineqbench.mappers.ResponseMapper;
 //requirements are changed to provide easier and more flexible
 //maintenance
 
-
 //Component
 //Component Benefits: provide data for Fuel Poverty
 //Component Obligation: requires age range and sex
 @Component
-public class JdbcFuelPovertyDAO implements FuelPovertyDAO{
+public class JdbcFuelPovertyDAO implements FuelPovertyDAO {
 
 	private SimpleJdbcCall jdbcCall;
 
 	private void setJdbcCall() {
-		//Get driver bean and inject in jdbc
+		// Get driver bean and inject in jdbc
 		ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
-		DataSource dataSource = (DataSource)context.getBean("dataSource");
-		
-		jdbcCall = new SimpleJdbcCall(dataSource)
-	    .withoutProcedureColumnMetaDataAccess()
-	    .withProcedureName("getFuelPovertyOutput")
-	    .returningResultSet("fuelPoverty", new ResponseMapper());
+		DataSource dataSource = (DataSource) context.getBean("dataSource");
+
+		jdbcCall = new SimpleJdbcCall(dataSource).withoutProcedureColumnMetaDataAccess()
+				.withProcedureName("getFuelPovertyOutput").returningResultSet("fuelPoverty", new ResponseMapper());
 	}
 
-	@Override 
-	public ResponseTuplePOJO findData(int ageGroupStart, int ageGroupEnd, 
-			String gender, String locality) {
+	@Override
+	public ResponseTuplePOJO findData(int ageGroupStart, int ageGroupEnd, String gender, String locality) {
 		setJdbcCall();
-		
+
 		jdbcCall.declareParameters(new SqlParameter("start_age", Types.INTEGER));
 		jdbcCall.declareParameters(new SqlParameter("end_age", Types.INTEGER));
 		jdbcCall.declareParameters(new SqlParameter("sexIn", Types.CHAR));
 		jdbcCall.declareParameters(new SqlParameter("locality", Types.CHAR));
-		
-		Map mapResult = jdbcCall.execute(ageGroupStart,
-				ageGroupEnd,
-				gender,
-				locality);
-		
-		List<ResponseTuplePOJO> result = (List<ResponseTuplePOJO>)mapResult.get("fuelPoverty");
+
+		Map mapResult = jdbcCall.execute(ageGroupStart, ageGroupEnd, gender, locality);
+
+		List<ResponseTuplePOJO> result = (List<ResponseTuplePOJO>) mapResult.get("fuelPoverty");
 		return result.get(0);
 	}
-	
+
 }

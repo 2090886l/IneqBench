@@ -1,6 +1,5 @@
 package me.ineqbench.controllers;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,16 +20,20 @@ public class GetLivingInDeprivedAreaController {
 	JdbcLivingInDeprivedAreaDAO livingInDeprivedAreaDAO;
 
 	@CrossOrigin
-    @RequestMapping(value="/getLivingInDeprivedArea/{numberOfPeople}/{ageGroupStart}/{ageGroupEnd}/{gender}/{locality}", 
-    	method = RequestMethod.GET)
-    ////Get Living in deprived area ClientResponsePOJO
-    public  ClientResponsePOJO getLivingInDeprivedAreaData(@PathVariable(value="numberOfPeople") int numberOfPeople, @PathVariable(value="ageGroupStart") int ageGroupStart,
-    		 @PathVariable(value="ageGroupEnd") int ageGroupEnd,@PathVariable(value="gender") String gender, @PathVariable(value="locality") String locality){
+	@RequestMapping(value = "/getLivingInDeprivedArea/{numberOfPeople}/{ageGroupStart}/{ageGroupEnd}/{gender}/{locality}", method = RequestMethod.GET)
+	//// Get Living in deprived area ClientResponsePOJO
+	public ClientResponsePOJO getLivingInDeprivedAreaData(@PathVariable(value = "numberOfPeople") int numberOfPeople,
+			@PathVariable(value = "ageGroupStart") int ageGroupStart,
+			@PathVariable(value = "ageGroupEnd") int ageGroupEnd, @PathVariable(value = "gender") String gender,
+			@PathVariable(value = "locality") String locality) {
 		
-		ResponseTuplePOJO livingInDeprivedAreaDBREsponse = livingInDeprivedAreaDAO.findData(ageGroupStart, ageGroupEnd, gender, locality);
-    	ClientResponsePOJO estimate = Analyser.getEstimate(livingInDeprivedAreaDBREsponse, numberOfPeople);
-    	return estimate;
-    }
- 
-}
+		//Get response from DB
+		ResponseTuplePOJO livingInDeprivedAreaDBREsponse = livingInDeprivedAreaDAO.findData(ageGroupStart, ageGroupEnd,
+				gender, locality);
+		
+		//Calculate estimates for DB response		
+		ClientResponsePOJO estimate = Analyser.getEstimate(livingInDeprivedAreaDBREsponse, numberOfPeople);
+		return estimate;
+	}
 
+}

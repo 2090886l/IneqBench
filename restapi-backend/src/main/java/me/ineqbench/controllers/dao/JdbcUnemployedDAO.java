@@ -25,38 +25,32 @@ import me.ineqbench.mappers.ResponseMapper;
 //Component Benefits: provide data for Unemployed
 //Component Obligation: requires age range and sex
 @Component
-public class JdbcUnemployedDAO implements UnemployedDAO{
-	
+public class JdbcUnemployedDAO implements UnemployedDAO {
+
 	private SimpleJdbcCall jdbcCall;
-	
+
 	private void setJdbcCall() {
-		//Get driver bean and inject in jdbc
+		// Get driver bean and inject in jdbc
 		ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
-		DataSource dataSource = (DataSource)context.getBean("dataSource");
-		
-		jdbcCall = new SimpleJdbcCall(dataSource)
-	    .withoutProcedureColumnMetaDataAccess()
-	    .withProcedureName("getUnemployedOutput")
-	    .returningResultSet("unemployed", new ResponseMapper());
+		DataSource dataSource = (DataSource) context.getBean("dataSource");
+
+		jdbcCall = new SimpleJdbcCall(dataSource).withoutProcedureColumnMetaDataAccess()
+				.withProcedureName("getUnemployedOutput").returningResultSet("unemployed", new ResponseMapper());
 	}
-	
-	@Override 
-	public ResponseTuplePOJO findData(int ageGroupStart, int ageGroupEnd, 
-			String gender, String locality) {
+
+	@Override
+	public ResponseTuplePOJO findData(int ageGroupStart, int ageGroupEnd, String gender, String locality) {
 		setJdbcCall();
-		
+
 		jdbcCall.declareParameters(new SqlParameter("start_age", Types.INTEGER));
 		jdbcCall.declareParameters(new SqlParameter("end_age", Types.INTEGER));
 		jdbcCall.declareParameters(new SqlParameter("sexIn", Types.CHAR));
 		jdbcCall.declareParameters(new SqlParameter("locality", Types.CHAR));
-		
-		Map mapResult = jdbcCall.execute(ageGroupStart,
-				ageGroupEnd,
-				gender,
-				locality);
-		
-		List<ResponseTuplePOJO> result = (List<ResponseTuplePOJO>)mapResult.get("unemployed");
+
+		Map mapResult = jdbcCall.execute(ageGroupStart, ageGroupEnd, gender, locality);
+
+		List<ResponseTuplePOJO> result = (List<ResponseTuplePOJO>) mapResult.get("unemployed");
 		return result.get(0);
-}
+	}
 
 }

@@ -1,13 +1,14 @@
 package me.ineqbench.tests.util;
 
 // Simple ClientRequest POJO to avoid data clumps
+//gathering the client (front end) request received during http get request
 public class ClientRequestPOJO {
 	private int numberOfPeople;
 	private int ageGroupStart;
 	private int ageGroupEnd;
 	private String gender;
 	private String locality;
-	
+
 	public ClientRequestPOJO(int numberOfPeople, int ageGroupStart, int ageGroupEnd, String gender, String locality) {
 		super();
 		this.numberOfPeople = numberOfPeople;
@@ -36,6 +37,5 @@ public class ClientRequestPOJO {
 	public String getLocality() {
 		return locality;
 	}
-	
-	
+
 }

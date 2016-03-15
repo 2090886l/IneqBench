@@ -15,20 +15,23 @@ import me.ineqbench.dbResponsePOJOs.ResponseTuplePOJO;
 //Provides the Illness data to the front end (HTTP GET Restful Request)
 @RestController
 public class GetIllnessController {
-	
+
 	@Autowired
 	JdbcIllnessDAO illnessDAO;
 
 	@CrossOrigin
-    @RequestMapping(value="/getIllness/{numberOfPeople}/{ageGroupStart}/{ageGroupEnd}/{gender}/{locality}", 
-    	method = RequestMethod.GET)
-    ////Get Illness ClientResponsePOJO
-    public  ClientResponsePOJO getIllnessData(@PathVariable(value="numberOfPeople") int numberOfPeople, @PathVariable(value="ageGroupStart") int ageGroupStart,
-    		 @PathVariable(value="ageGroupEnd") int ageGroupEnd,@PathVariable(value="gender") String gender, @PathVariable(value="locality") String locality){
-		
-		ResponseTuplePOJO illnessDBREsponse = illnessDAO.findData(ageGroupStart, ageGroupEnd, gender, locality);
-    	ClientResponsePOJO estimate = Analyser.getEstimate(illnessDBREsponse, numberOfPeople);
-    	return estimate;
-    }
-}
+	@RequestMapping(value = "/getIllness/{numberOfPeople}/{ageGroupStart}/{ageGroupEnd}/{gender}/{locality}", method = RequestMethod.GET)
+	//// Get Illness ClientResponsePOJO
+	public ClientResponsePOJO getIllnessData(@PathVariable(value = "numberOfPeople") int numberOfPeople,
+			@PathVariable(value = "ageGroupStart") int ageGroupStart,
+			@PathVariable(value = "ageGroupEnd") int ageGroupEnd, @PathVariable(value = "gender") String gender,
+			@PathVariable(value = "locality") String locality) {
 
+		//Get response from DB
+		ResponseTuplePOJO illnessDBREsponse = illnessDAO.findData(ageGroupStart, ageGroupEnd, gender, locality);
+		
+		//Calculate estimates for DB response		
+		ClientResponsePOJO estimate = Analyser.getEstimate(illnessDBREsponse, numberOfPeople);
+		return estimate;
+	}
+}

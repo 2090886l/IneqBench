@@ -27,56 +27,54 @@ import me.ineqbench.tests.util.ClientRequestPOJO;
 import me.ineqbench.tests.util.TestUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-// Spring-Test-Module is the test environment - mirror of the Spring-Module environment
-// used only for testing purposes 
-@ContextConfiguration(locations = {"classpath:Spring-Test-Module.xml"})
+// Spring-Test-Module is the test environment - mirror of the Spring-Module
+// environment
+// used only for testing purposes
+@ContextConfiguration(locations = { "classpath:Spring-Test-Module.xml" })
 @WebAppConfiguration
 public class IllnessControllerTest {
- 
-    private MockMvc mockMvc;
- 
-    @Autowired
-    private JdbcIllnessDAO illnessDAO;
- 
-    @Autowired
-    private WebApplicationContext webApplicationContext;
- 
-    @Before
-    public void setUp() {
-        //We have to reset our mock between tests because the mock objects
-        //are managed by the Spring container. If we would not reset them,
-        //stubbing and verified behavior would "leak" from one test to another.
-    	
-    	Mockito.reset(illnessDAO);
-    	
-    	// Get the mock builder from the WebApplicationContext Spring container
-        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-    }
-    
-    @Test
-    public void findIllness_ShouldMapRequestToController() throws Exception {
-    	
-    	ResponseTuplePOJO response = DBResponseBuilder.getDBMockResponse();
-    	
-        //Avoid "data clumps", unfortunately Illness interface method
-    	//findData gets only primitive params - explain why in interface doc 
-       ClientRequestPOJO clientRequest = ClientRequestBuilder.getRequestObject();
-       
-       // Configure mockito to return "response" when findData called
-       when(illnessDAO.findData(clientRequest.getAgeGroupStart(),clientRequest.getAgeGroupEnd(),
-    		   clientRequest.getGender(),clientRequest.getLocality())).thenReturn(response);
-       
-       mockMvc.perform(get("/getIllness/{numberOfPeople}/{ageGroupStart}/{ageGroupEnd}/{gender}/{locality}",
-        		clientRequest.getNumberOfPeople(),
-        		clientRequest.getAgeGroupStart(),
-        		clientRequest.getAgeGroupEnd(),
-        		clientRequest.getGender(),
-        		clientRequest.getLocality()).accept(TestUtil.APPLICATION_JSON_UTF8))
-        		.andExpect(status().isOk());
- 
-        verify(illnessDAO, times(1)).findData(clientRequest.getAgeGroupStart(),clientRequest.getAgeGroupEnd(),
-     		   clientRequest.getGender(),clientRequest.getLocality());
-        verifyNoMoreInteractions(illnessDAO);
-    }
-}
 
+	private MockMvc mockMvc;
+
+	@Autowired
+	private JdbcIllnessDAO illnessDAO;
+
+	@Autowired
+	private WebApplicationContext webApplicationContext;
+
+	@Before
+	public void setUp() {
+		// We have to reset our mock between tests because the mock objects
+		// are managed by the Spring container. If we would not reset them,
+		// stubbing and verified behavior would "leak" from one test to another.
+
+		Mockito.reset(illnessDAO);
+
+		// Get the mock builder from the WebApplicationContext Spring container
+		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+	}
+
+	@Test
+	public void findIllness_ShouldMapRequestToController() throws Exception {
+
+		ResponseTuplePOJO response = DBResponseBuilder.getDBMockResponse();
+
+		// Avoid "data clumps", unfortunately Illness interface method
+		// findData gets only primitive params - explain why in interface doc
+		ClientRequestPOJO clientRequest = ClientRequestBuilder.getRequestObject();
+
+		// Configure mockito to return "response" when findData called
+		when(illnessDAO.findData(clientRequest.getAgeGroupStart(), clientRequest.getAgeGroupEnd(),
+				clientRequest.getGender(), clientRequest.getLocality())).thenReturn(response);
+
+		// exec request
+		mockMvc.perform(get("/getIllness/{numberOfPeople}/{ageGroupStart}/{ageGroupEnd}/{gender}/{locality}",
+				clientRequest.getNumberOfPeople(), clientRequest.getAgeGroupStart(), clientRequest.getAgeGroupEnd(),
+				clientRequest.getGender(), clientRequest.getLocality()).accept(TestUtil.APPLICATION_JSON_UTF8))
+				.andExpect(status().isOk());
+
+		verify(illnessDAO, times(1)).findData(clientRequest.getAgeGroupStart(), clientRequest.getAgeGroupEnd(),
+				clientRequest.getGender(), clientRequest.getLocality());
+		verifyNoMoreInteractions(illnessDAO);
+	}
+}

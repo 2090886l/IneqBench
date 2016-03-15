@@ -25,37 +25,31 @@ import me.ineqbench.mappers.ResponseMapper;
 //Component Benefits: provide data for Unpaid Care
 //Component Obligation: requires age range and sex
 @Component
-public class JdbcUnpaidCarersDAO implements UnpaidCarersDAO{
-	
+public class JdbcUnpaidCarersDAO implements UnpaidCarersDAO {
+
 	private SimpleJdbcCall jdbcCall;
-	
+
 	private void setJdbcCall() {
-		//Get driver bean and inject in jdbc
+		// Get driver bean and inject in jdbc
 		ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
-		DataSource dataSource = (DataSource)context.getBean("dataSource");
-		
-		jdbcCall = new SimpleJdbcCall(dataSource)
-	    .withoutProcedureColumnMetaDataAccess()
-	    .withProcedureName("getUnpaidCareOutput")
-	    .returningResultSet("unpaidCarers", new ResponseMapper());
+		DataSource dataSource = (DataSource) context.getBean("dataSource");
+
+		jdbcCall = new SimpleJdbcCall(dataSource).withoutProcedureColumnMetaDataAccess()
+				.withProcedureName("getUnpaidCareOutput").returningResultSet("unpaidCarers", new ResponseMapper());
 	}
-	
-	@Override 
-	public ResponseTuplePOJO findData(int ageGroupStart, int ageGroupEnd, 
-			String gender, String locality) {
+
+	@Override
+	public ResponseTuplePOJO findData(int ageGroupStart, int ageGroupEnd, String gender, String locality) {
 		setJdbcCall();
-		
+
 		jdbcCall.declareParameters(new SqlParameter("start_age", Types.INTEGER));
 		jdbcCall.declareParameters(new SqlParameter("end_age", Types.INTEGER));
 		jdbcCall.declareParameters(new SqlParameter("sexIn", Types.CHAR));
 		jdbcCall.declareParameters(new SqlParameter("locality", Types.CHAR));
-		
-		Map mapResult = jdbcCall.execute(ageGroupStart,
-				ageGroupEnd,
-				gender,
-				locality);
-		
-		List<ResponseTuplePOJO> result = (List<ResponseTuplePOJO>)mapResult.get("unpaidCarers");
+
+		Map mapResult = jdbcCall.execute(ageGroupStart, ageGroupEnd, gender, locality);
+
+		List<ResponseTuplePOJO> result = (List<ResponseTuplePOJO>) mapResult.get("unpaidCarers");
 		return result.get(0);
 	}
 

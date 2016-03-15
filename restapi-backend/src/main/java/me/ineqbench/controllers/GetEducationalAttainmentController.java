@@ -18,18 +18,22 @@ public class GetEducationalAttainmentController {
 
 	@Autowired
 	JdbcEducationalAttainmentDAO educationalAttainmentDAO;
-	
+
 	@CrossOrigin
-    @RequestMapping(value="/getEducationalAttainment/{numberOfPeople}/{ageGroupStart}/{ageGroupEnd}/{gender}/{locality}", 
-    	method = RequestMethod.GET)
-    //Get Educational Attainment ClientResponsePOJO
-    public  ClientResponsePOJO getEducationalAttainmentData(@PathVariable(value="numberOfPeople") int numberOfPeople, @PathVariable(value="ageGroupStart") int ageGroupStart,
-    		 @PathVariable(value="ageGroupEnd") int ageGroupEnd,@PathVariable(value="gender") String gender, @PathVariable(value="locality") String locality){
+	@RequestMapping(value = "/getEducationalAttainment/{numberOfPeople}/{ageGroupStart}/{ageGroupEnd}/{gender}/{locality}", method = RequestMethod.GET)
+	// Get Educational Attainment ClientResponsePOJO
+	public ClientResponsePOJO getEducationalAttainmentData(@PathVariable(value = "numberOfPeople") int numberOfPeople,
+			@PathVariable(value = "ageGroupStart") int ageGroupStart,
+			@PathVariable(value = "ageGroupEnd") int ageGroupEnd, @PathVariable(value = "gender") String gender,
+			@PathVariable(value = "locality") String locality) {
 		
-    	ResponseTuplePOJO educationalAttainmentDBResponse = educationalAttainmentDAO.findData(ageGroupStart, ageGroupEnd, gender, locality);
-    	ClientResponsePOJO estimate = Analyser.getEstimate(educationalAttainmentDBResponse, numberOfPeople);
-    	return estimate;
-    }	
+		//Get response from DB
+		ResponseTuplePOJO educationalAttainmentDBResponse = educationalAttainmentDAO.findData(ageGroupStart,
+				ageGroupEnd, gender, locality);
+		
+		//Calculate estimates for DB response
+		ClientResponsePOJO estimate = Analyser.getEstimate(educationalAttainmentDBResponse, numberOfPeople);
+		return estimate;
+	}
 
 }
-
