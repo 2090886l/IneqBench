@@ -3,7 +3,7 @@ var app = angular.module('IneqBenchControllers', []);
 
 app.controller('MainController', ["$http", "$scope", "$rootScope", function($http, $scope, $rootScope) {
 
-    var url = "http://localhost:8080";
+    var url = "/api/";
 
     // initialise tooltips
     $(document).ready(function() {
