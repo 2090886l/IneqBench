@@ -124,6 +124,7 @@
         <!-- /.container-fluid -->
     </nav>
 
+    <!-- Index page header navigation -->
     <header>
         <section id="top">
             <div class="header-content">
@@ -142,6 +143,7 @@
         </section>
     </header>
 
+    <!-- Section for the selection of benchmarking criteria -->
     <section class="bg-primary" id="estimates" ng-show="showBenchmarking">
         <div class="container">
             <div class="row">
@@ -150,7 +152,8 @@
                     <hr class="light">
                     <br>
                     <div class="row borderStyle">
-                        <!-- Population Variables Part -->
+
+                        <!-- Population Variables View -->
                         <div class="col-lg-5 text-center">
                             <h3>Search Parameters</h3>
                             <br>
@@ -180,6 +183,8 @@
                                 </span>
                             </div>
                         </div>
+
+                        <!-- Deprivation Criteria Selection View -->
                         <div class="col-lg-7 text-center">
                             <h3>Deprivation Criteria</h3>
                             <br>
@@ -277,14 +282,17 @@
                     <br>
                     <br>
                     <br>
+
+                    <!-- Visualise -->
                     <a href="#visualization" class="btn btn-default btn-xl btn-long" ng-click="visualize()"
                        ng-show="numberOfSelectedDeprivations > 0 && region && numberOfPeople && gender">Visualize</a>
-                    <a href="#top" class="btn btn-default btn-xl btn-long">Back</a> <!--page-scroll-visualization-->
+                    <a href="#top" class="btn btn-default btn-xl btn-long">Back</a> 
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Results section -->
     <section id="visualization" ng-show="showVisualizing">
         <div class="container fullSizeContainer">
             <div class="row">
@@ -292,6 +300,7 @@
                     <h1 class="section-heading">Results</h1>
                     <br>
                     <br>
+                    <!-- Results table -->
                     <div class="estimate">
                         <table class="table table-hover table-bordered">
                             <tr>
@@ -320,8 +329,6 @@
                                     </table>
                                 </th>
                             </tr>
-
-
                             <tr ng-repeat="indicator in results track by $index">
                                 <td>{{indicator.name}}</td>
                                 <td>{{indicator.data.totalDeprived}} | {{indicator.data.totalDeprivedPercentage}}%</td>
@@ -341,34 +348,15 @@
                     <button id="csv" ng-if="loadingCount == 0" type="button" class="btn btn-primary btn-xl btn-long" ng-click="downloadAsCSV()">Download as .csv</button>
                     <a href="#estimates" class="btn btn-primary btn-xl btn-long" ng-click="clearSearch()">New Search</a>
                 </div>
-
             </div>
-
             <h3 ng-if="loadingCount > 0" class= "text-center">LOADING...</h3>
         </div>
         <br>
         <br>
         <br>
-    <!--    <div class="container fullSizeContainer">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 text-center">
-                    <h2> Possible Visualization Mechanisms</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 text-center">
-                    <div id="chart_div"></div>
-                </div>
-                <div class="col-lg-4 col-md-6 text-center">
-                    <div id="curve_chart"></div>
-                </div>
-                <div class="col-lg-4 col-md-12 text-center">
-                    <div id="series_chart_div"></div>
-                </div>
-            </div>
-        </div>
-        -->
     </section>
+
+    <!-- Services section -->
 
     <section id="services">
         <div class="container">
@@ -428,5 +416,4 @@
     <script src="js/creative.js"></script>
 
 </body>
-
 </html>

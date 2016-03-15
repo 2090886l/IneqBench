@@ -1,3 +1,7 @@
+/* Jasmine test suite for IneqBench */
+/* Code is mostly self-documented */
+
+
 describe('Front end tests', function() {
 
 	beforeEach(module('IneqBenchControllers'));
@@ -9,9 +13,7 @@ describe('Front end tests', function() {
 		scope = $rootScope.$new();
 		MainController = $controller('MainController', {
 			$scope: scope
-
 		});
-
 		$httpBackend = _$httpBackend_;
 	}));
 
@@ -20,15 +22,15 @@ describe('Front end tests', function() {
 		it('should round numbers to the decimal point', function() {
 			scope.data = {totalPopulation: 8076, totalDeprived: 41, upperRange: 8.056713981106709, lowerRange: 0.7936575231058619, estimate: 2.53838533927687};
 			scope.data = scope.roundData(scope.data);
+
 			expect(scope.data.upperRange).toEqual(8);
 			expect(scope.data.lowerRange).toEqual(1);
-
 		});
 
 		it('should set mode to benchmarking', function() {
 			scope.benchmark();
-			expect(scope.showBenchmarking).toBe(true);
 
+			expect(scope.showBenchmarking).toBe(true);
 		});
 
 		// Regression test added since sometimes the age was not being set properly
@@ -36,6 +38,7 @@ describe('Front end tests', function() {
 			scope.ageFrom = null;
 			scope.ageTo = null;
 			scope.visualize();
+			
 			expect(scope.ageFrom).toEqual(0);
 			expect(scope.ageTo).toEqual(90);
 		});
@@ -47,8 +50,8 @@ describe('Front end tests', function() {
 			scope.region = "Dumfries & Galloway";
 			scope.numberOfPeople = 100;
 			scope.gender = "Males:";
-			expect(scope.numberOfSelectedDeprivations > 0 && scope.region != null && scope.numberOfPeople != null && scope.gender != null).toBe(true);
 
+			expect(scope.numberOfSelectedDeprivations > 0 && scope.region != null && scope.numberOfPeople != null && scope.gender != null).toBe(true);
 		})
 
 	});
@@ -62,30 +65,23 @@ describe('Front end tests', function() {
 
 			$http.get('http://localhost:8080/getEthnicity?numberOfPeople='+numberOfPeople+
 	            "&ageGroup="+ageGroup+
-	            "&gender="+gender
-	        ).success(function(data){
+	            "&gender="+gender)
+	        .success(function(data){
 	            scope.data = data;
 	        });
 
 			$httpBackend.whenGET('http://localhost:8080/getEthnicity?numberOfPeople='+numberOfPeople+
 	            "&ageGroup="+ageGroup+
-	            "&gender="+gender).respond({ 
-
+	            "&gender="+gender)
+			.respond({ 
 	        	totalPopulation: 8076, totalDeprived: 41, upperRange: 8.056713981106709, lowerRange: 0.7936575231058619, estimate: 2.53838533927687
 	   		});
-
 	        $httpBackend.flush();
+
 			expect(scope.data).not.toBe(null);
 			expect(scope.data.totalDeprived).toEqual(41);
 		}));			
 
 	});
-
-
-
-
-
-
-
 
 });
