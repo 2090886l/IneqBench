@@ -69,6 +69,46 @@ We split the project into three sections: the database, the middleware, and the 
 
 This diagram helped each of us understand how the part we were working on interacted with the rest of the project. It reflected the status of the project at the time and we stuck to this design, maintaining separation of concerns. The components work and interact is as follows:
 
+\section{Back End Testing Strategy}
+\label{backEndTesting}
+
+
+Assumed knowledge:
+\begin{itemize}
+\item Spring MVC 3.0 Architecture 
+\item Spring MVC Testing Framework
+\item  Mockito
+\item  Java Unit Tests
+\end{itemize}
+
+The purpose of this page is to briefly describe the testing strategy and methods used the QA of the back end to be provided. There are three main methods used for testing the back end, namely the Spring MVC Tests, Unit tests, and Integration tests. The following 3 sections explain each of them in further detail.
+
+\textbf{Unit Tests}
+
+Unit tests are the simplest example of tests used, so they are explained first. The standard unit test library is used to test the isolated Analyser class. The class is designed as a separate component with low coupling making it a strong candidate for a unit test. Its main functionality is related to its getEstimate() method returning the estimate for a particular frond end request for a given deprivation criterion. This is exactly the function tested by the unit test using a standard expectedResponse object and requestObject for improved cohesion of the function.
+
+\textbf{Spring MVC Tests}
+
+The Spring MVC tests are a specialized example of a unit tests specifically design for Spring. The reason they are selected is that they give us the following advantages:
+
+Separate testing environment mirroring the actual Spring Application Context of the application.
+Mockito - a framework allowing us to mock, create stubs of functions and classes.
+Allowing us to create a test client sending actual request to the back end.
+And a mock server for our testing environment (in our case the DAO layer is mocked to test controllers in isolation).
+Can test whether the exchange of packets is correct, in other words if the correct accept/request type is expected sent by client/sever.
+All of these benefits make it easy to test the otherwise relatively sophisticated logic of the back end controllers, confirming if the requests are mapped to the right url handler. Additionally, all other interactions of the mapped controller are inspected. For example, it is tested whether the controller directs the request to the DB DAO and does not make any further requests. Also, the status code returned back to front end is checked to confirm the completion of the request. All controllers are examined following these mechanism ensuring that all url restful request expected are satisfied.
+
+\textbf{Integration Tests}
+
+The final component of our testing strategy is related to using integration tests. Once the core logic making estimations is tested and the requests from the front end are successfully received and linked to appropriate controllers, integration tests allow us to test the overall performance of our application gathering all pieces together.
+
+All deprivation criteria DAOs are tested using the Spring MVC testing framework in an integration testing manner. A ClientRequestBuilder? is used to generate front end JSON requests parsed to POJOs. The use of the Builder object is a good design practice allowing us to reduce repetition and increase cohesion. The requested data from the builder is handed to the corresponding DAO for processing. The DAO, in turn, makes a connection to the remote DB and calls the correct procedure, maps it to a POJO, uses a row mapper class and returns the list of tuples back to the test for validation. In this way the integration tests make it possible the entire execution path from the frond end data request received state to the retrieving of the appropriate data from the DB to be investigated at once.
+
+\textbf{Summary}
+
+These three test strategies provide both the individual and combined effectiveness of the back end classes to be tested. It ensures the stability of the application and the detecting of any either class or inter-class communication errors.
+
+
 \begin{itemize}
 \item The Client - The client component appears as a separate unit on the left hand side of the picture. It is a representation of a thin client simply requesting HTTP GET Requests and receive a response which is visible using the two-way data binding of AngularJS.
 
