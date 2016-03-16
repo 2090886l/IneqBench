@@ -7,7 +7,7 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
 
     // initialise tooltips
     $(document).ready(function() {
-        $('[data-toggle="tooltip"]').tooltip(); 
+        //$('[data-toggle="tooltip"]').tooltip(); 
     });
 
     // system state variables
