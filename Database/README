@@ -1,0 +1,72 @@
+##############################################
+# Section 1 - To build database from scratch #
+##############################################
+
+The database schema, procedures, functions and all data for the tables are included in their corresponding folders.  The Python script deploy.py correlates all the SQL files into one SQL runnable script that can then be deployed onto a MySQL database.
+
+To deploy this database from new into your own MySQL database, pipe the output from deploy.py into your MySQL database.  For example:
+
+$ python deploy.py | mysql -h [database hostname] -u [username] -p[password] 
+
+(or leave password blank to enter it securely via a prompt)
+
+################################
+# Section 2 - Applying changes #
+################################
+
+All modifications to the database should be applied by editing the correct .SQL file and redeploying the database.  Once the file has been altered, re-run the deploy script described in section 1.  Each time this script is run it wipes the current database and builds it again from new, therefore it is highly recommended to ensure full functionality on a working local copy first or through automated tests.
+
+#################################################
+# Section 3 - Altering Procedures and Functions #
+#################################################
+
+Procedures and functions can be altered and tested through a MySQL editor such as MySQL Workbench or directly via the SQL files themselves.  Apply any changes by following the steps in section 2.
+
+############################################
+# Section 4 - Altering The Schema And Data #
+############################################
+
+Altering any table schema or data within a table needs to be completed either via a MySQL editor or directly through the command line on a local working copy for testing and safety purposes.  Once altered the data and schema needs to be extracted from the database and inserted into the appropriate folder, replacing the existing file, so the deployment script and can successfully apply the changes.  To obtain these files you must be able to connect to your database through a terminal.
+
+To obtain the schema run the following command in a terminal:
+
+$ mysqldump -h [hostname] -u [username] -p[password] --no-data [database name] > schema.sql
+
+This produces a file schema.sql that can be placed into the schema folder.
+
+To obtain the data:
+
+$ mysqldump -h [hostname] -u [username] -p[password] --no-create-info [database name] > data.sql
+
+Again, this produces a file data.sql that contains only the data to be inserted into the tables.  Place this in the data folder.
+
+Once the data and/or schema files have been replaced the existing files in the correct folders you can apply these changes to the database by following section 2.
+
+###############################################
+# Section 5 - Updating the data in the tables #
+###############################################
+
+At times you may wish to update the data in the tables with new data from a source, to do so follow these steps.  
+
+1. Obtain the data you wish to import into the database as a .csv file.
+
+2. At the top of the .csv file will be the column headers.  The exact names of the headers do not need to match the names of the columns in the table you want to update, but the amount of columns and their data type must match.
+
+3. If the amount of headers and data types match, clear the current data from the table by issuing the SQL command "TRUNCATE [TABLE_NAME]".  Then go to step 5.
+
+4. If the headers do not match the current table columns you will need to re-create the table.  Delete the table with the SQL command "DROP [TABLE_NAME]".  Then re-create the table, using the same name or new name of your choice matching the amount of headers and data type of each column in the order that they appear in the .csv file.
+
+5. Once you have an empty table structure, import the data from the .csv file with the following SQL command:
+
+LOAD DATA LOCAL INFILE 'path/to/csv/file.csv'
+INTO TABLE [TABLE_NAME]
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+This command will work for most .csv formats but it is recommended to review each line to ensure it is applicable to your file.
+
+6. Any changes to a table name, column name, order or data type will need to be mirrored in the appropriate procedure that uses that table.
+
+7. Apply your changes by following the steps in section 4. 
