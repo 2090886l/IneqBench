@@ -15,7 +15,7 @@ SELECT (
 )
 *(SELECT  SUM(PERCENT)/100
 FROM POP_AGE_PERCENT
-WHERE AGE BETWEEN start_age AND end_age),0),',','') --estimate age group size using POP_AGE_PERCENT
+WHERE AGE BETWEEN start_age AND end_age),0),',','') -- estimate age group size using POP_AGE_PERCENT
 FROM LONE_PARENTS_WITH_DEPENDANT_CHILDREN
 WHERE SEX = sexIn -- filter by sex
 ) AS 'totalDeprived';
