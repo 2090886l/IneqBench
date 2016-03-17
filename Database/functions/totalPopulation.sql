@@ -3,6 +3,9 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `totalPopulation`(start_age int(2),
 								end_age int(2),
 								sexIn VARCHAR(25),
 								locality VARCHAR(25)) RETURNS int(11)
+/* this function is used to get the total population of a locality given start age, end age, and sex
+to be used by the procedures to get the totalPopulation field for the result
+*/
 BEGIN
 DECLARE RESULT INT;
 
