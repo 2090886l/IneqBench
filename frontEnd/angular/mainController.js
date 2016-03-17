@@ -82,7 +82,7 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
           $scope.ageTo = 90;
         }
         for (var deprivation in $scope.selectedDeprivations) {
-          $scope.getData($scope.selectedDeprivations[deprivation]['str'],
+          $scope.getData($scope.selectedDeprivations[deprivation].str,
             $scope.numberOfPeople, $scope.ageFrom, $scope.ageTo,
             $scope.gender, $scope.region.name
             );
