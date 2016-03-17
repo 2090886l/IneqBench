@@ -3,11 +3,11 @@ var app = angular.module('IneqBenchControllers', []);
 
 app.controller('MainController', ["$http", "$scope", "$rootScope", function($http, $scope, $rootScope) {
 
-    var url = "/api/";
+    var url = "http://beta.ineqbench.me/api/";
 
     // initialise tooltips
     $(document).ready(function() {
-        //$('[data-toggle="tooltip"]').tooltip(); 
+        $('[data-toggle="tooltip"]').tooltip(); 
     });
 
     // system state variables
@@ -54,7 +54,7 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
         // joins all the rows with commas to indicate it's a new row in the csv
         for(var i=0, l=array.length; i<l; ++i){
           csvRows.push(array[i].join(','));
-        };
+        }
 
         // create a fake button and click it programatically to initiate download
         var csvString = csvRows.join("\r\n");
@@ -66,7 +66,7 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
         document.body.appendChild(a);
         a.click();
 
-    }
+    };
 
     // set the system state to benchmarking
     $scope.benchmark = function() {
@@ -77,11 +77,11 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
     // Visualize button event -> when button clicked, find which criterion is selected and call the corresponding HTTP GET Restful request
     $scope.visualize = function() {
         $scope.showVisualizing = true;
-        if ($scope.ageFrom == null && $scope.ageTo == null) {
+        if ($scope.ageFrom === null && $scope.ageTo === null) {
           $scope.ageFrom = 0;
           $scope.ageTo = 90;
         }
-        for (deprivation in $scope.selectedDeprivations) {
+        for (var deprivation in $scope.selectedDeprivations) {
           $scope.getData($scope.selectedDeprivations[deprivation]['str'],
             $scope.numberOfPeople, $scope.ageFrom, $scope.ageTo,
             $scope.gender, $scope.region.name
@@ -115,15 +115,15 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
 
     // Add/remove a sub-parameter for a certain deprivation criterion.
     $scope.updateSelectedSubPars = function(deprivation, subPar) {
-        if (!(subPar in $scope.selectedDeprivations[deprivation]["subPars"])) {
-          if (subPar == "all") {
-            $scope.selectedDeprivations[deprivation]["subPars"] = {"all":"all"};
+        if (!(subPar in $scope.selectedDeprivations[deprivation].subPars)) {
+          if (subPar === "all") {
+            $scope.selectedDeprivations[deprivation].subPars = {"all":"all"};
         } else {
-            delete $scope.selectedDeprivations[deprivation]["subPars"]["all"];
-            $scope.selectedDeprivations[deprivation]["subPars"][subPar] = subPar;
+            delete $scope.selectedDeprivatios[deprivation].subPars.all;
+            $scope.selectedDeprivations[deprivation].subPars.subPar = subPar;
         }
         } else {
-        delete $scope.selectedDeprivations[deprivation]["subPars"][subPar];
+        delete $scope.selectedDeprivations[deprivation].subPars[subPar];
         }
     };
 
@@ -174,7 +174,7 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
         data = $scope.roundData(data);
         $scope.totalPopulation = data.totalPopulation;
         $scope.results[deprivation] = {data: data, name: deprivationCriteriasNames[deprivation]};
-    }
+    };
 
     // Rounds data and transforms some of it to percentages and returns the result of the backend response 
     $scope.roundData = function roundData(data){
@@ -188,6 +188,6 @@ app.controller('MainController', ["$http", "$scope", "$rootScope", function($htt
         data.lowerRangePercentage=Math.round((data.lowerRange/$scope.numberOfPeople)*10000)/100;
         data.upperRangePercentage=Math.round((data.upperRange/$scope.numberOfPeople)*10000)/100;
         return data;
-    }
+    };
 
 }]);
