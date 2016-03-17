@@ -69,6 +69,49 @@ We split the project into three sections: the database, the middleware, and the 
 
 This diagram helped each of us understand how the part we were working on interacted with the rest of the project. It reflected the status of the project at the time and we stuck to this design, maintaining separation of concerns. The components work and interact is as follows:
 
+\section{User Evaluation Test Plan}
+\label{userEvaluationPlan}
+
+The purpose of this page is to describe the strategies adopted for the user testing by the team. The following three sections explain further, which were the three key evaluation techniques we used, what we discovered applying them and how we improved the application in order to resolve the issues.
+
+\textbf{Regular Meetings with the client}
+
+First of all, the fact that the development team had regular meetings with the client significantly improved the evaluation of the project and its testing effectiveness. Initially, we gathered requirements during the first meeting presenting a prototype of our initial plan for the project at the second capturing the main application features. The prototype present in the trac wiki (not added here in order to try to keep the document small and concise) allowed us to negotiate the appearance and organization of the front end and reach an agreement for some initial requirements. It helped the frond end developers to rapidly build the appearance of the website satisfying the customer's expectations. The following meetings were an opportunity to gather more requirements and allow the user to play with the application in front us us making it particularly easy to detect unexpected behavior from the user and get rapid feedback for improvement. For example, because of these meetings, we changed the arrangement of some of the search options of the dynamic search, discarded the visualization which was considered to be simply an enhancement but definitely not a "must have" functionality. Also, the meetings helped us realize that font size is too small, some of the text is difficult to be seen due to the similar background and that we need tooltips to better describe the searching process. Overall, they significantly improved our software process making it easy and most importantly quickly to discover and fix problems. This, in turn was helpful for improving the efficiency and decreasing the cost/time for the project development.
+
+\textbf{Deployment}
+
+Another particularly appropriate strategy is related to the deployments of the project done by team to improve the communication and presenting of progress to the stakeholders. Both the database and web application were deployed to servers early during the development process to allow direct clients and potential users of the application to have an easy access to it. The deployed database provided a reliable data to be tested for any discrepancies by the clients, namely NHS analysts working with similar data regularly. The application was deployed in two separate versions - the ​http://beta.ineqbench.me and ​http://alpha.ineqbench.me webpages. The beta page was used for the product under development (this is our main trunk repo) while the alpha was the current stable version (a branch). It gave the users the unique opportunity to play with both versions whenever they desire and to give feedback for completed features and for features under development. The last one was particularly useful. For example, during the early stages of the development process when we still did not have thorough testing strategy, we received an email from our client notifying us about a problem with the result table. It turned out that the database was down which was an issue we had to address.
+
+\textbf{User Acceptance Testing}
+
+The user acceptance testing was the last component of our user evaluation testing plan. It gave the opportunity a diverse number of potential and expected stakeholders to see and play with the beta version of our product. It gave us key information what the users like/dislike about the project. We had a chance to ask them questions and get essential feedback such as:
+
+\textit{Is the output data clear? Could you find what you were looking for?}
+
+The reply we received is that the output can be clarify. More specifically some of the column headers had to be changed, instead of "Total Population of Locality" we were advised to use "Estimated total population/Deprivation criterion here" and instead of "Estimate" to use "Estimated number of people"
+
+\textit{Would you benefit from any explanation written on the website such as instructions on how to use it?}
+
+The answer of this question was positive. For this reason, the team created an about and method pages with an instruction button at the main index page directing the user to a pop up with information about "How to use the app"
+
+\textit{Was there something missing you were expecting to see?}
+
+As a consequence of the feedback, we had to add tooltips explaining each of the deprivation criteria in further detail and links to the sources of data we used.
+
+\textit{Would you find any benefit in splitting the deprived indicator categories down even further? 
+For example: Viewing each individual ethnic background rather than all? 
+Viewing households just in Tax Band A or B, not both? etc...}
+
+Decided to leave this functionality partly implemented with code for it provided in the frond end and a system architecture allowing it for the back end (explain in more detail in the premature design decision reflection). Unfortunately, the team did not manage to provide it due to the lack of time of sources of such detailed information. However, this is a potential feature HNS can significantly benefit from. It is something they initially mentioned but it was not made clear whether it is essential. That's why, we decided not to complete remove the partly implemented functionality and give a chance to the development team to additionally develop it if needed.
+
+\textit{How did you find the layout of the page?}
+
+We had to modify and simplify the dynamic search reducing it to only several views for easier comprehension from the customers. For additional proofs the branch and trunk repos can be compared. Again, we try to keep the documentation simple and short for better maintenance.
+
+\textit{If you could change one thing on the site, whether it is major or minor, what would be at the top of the to do list?}
+
+Did not get a reply for this question.
+
 \section{Back End Testing Strategy}
 \label{backEndTesting}
 
